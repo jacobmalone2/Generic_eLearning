@@ -656,3 +656,4 @@ C:\Users\corha\source\repos\3750_Spr25_KJCJK_Group_Project\obj\Debug\net9.0\refi
 C:\Users\corha\source\repos\3750_Spr25_KJCJK_Group_Project\obj\Debug\net9.0\CS3750Assignment1.pdb
 C:\Users\corha\source\repos\3750_Spr25_KJCJK_Group_Project\obj\Debug\net9.0\CS3750Assignment1.genruntimeconfig.cache
 C:\Users\corha\source\repos\3750_Spr25_KJCJK_Group_Project\obj\Debug\net9.0\ref\CS3750Assignment1.dll
+C:\Users\corha\source\repos\3750_Spr25_KJCJK_Group_Project\obj\Debug\net9.0\CS3750Assignment1.sourcelink.json

@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\corha\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\signup2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\signup2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Migrations\\20250122212144_AddedAccountRole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250122212144_AddedAccountRole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\corha\\source\\repos\\3750_spr25_kjcjk_group_project\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\corha\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -18,11 +30,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20250122212144_AddedAccountRole.cs",
+              "DocumentMoniker": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Migrations\\20250122212144_AddedAccountRole.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250122212144_AddedAccountRole.cs",
+              "ToolTip": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Migrations\\20250122212144_AddedAccountRole.cs",
+              "RelativeToolTip": "Migrations\\20250122212144_AddedAccountRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T21:21:44.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Account.cs",
+              "RelativeDocumentMoniker": "Models\\Account.cs",
+              "ToolTip": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Account.cs",
+              "RelativeToolTip": "Models\\Account.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T18:52:54.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SignUp2.cshtml",
+              "DocumentMoniker": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\SignUp2.cshtml",
+              "RelativeDocumentMoniker": "Pages\\SignUp2.cshtml",
+              "ToolTip": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\SignUp2.cshtml",
+              "RelativeToolTip": "Pages\\SignUp2.cshtml",
+              "ViewState": "AgIAABYAAAAAAAAAAAAmwDwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-22T18:51:02.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Pages\\Shared\\_Layout.cshtml",
@@ -30,12 +81,11 @@
               "RelativeToolTip": "Pages\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-22T18:34:06.504Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-22T18:34:06.504Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "20250122183039_ProjectInitialMigration.cs",
               "DocumentMoniker": "C:\\Users\\corha\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Migrations\\20250122183039_ProjectInitialMigration.cs",
               "RelativeDocumentMoniker": "Migrations\\20250122183039_ProjectInitialMigration.cs",
@@ -43,8 +93,7 @@
               "RelativeToolTip": "Migrations\\20250122183039_ProjectInitialMigration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T18:30:39.783Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-22T18:30:39.783Z"
             }
           ]
         }

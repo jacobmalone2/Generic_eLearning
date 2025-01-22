@@ -26,6 +26,6 @@ namespace CS3750Assignment1.Models
         [DataType(DataType.Password)] //gonna try without this, let's see what happens
         [Required]
         public required string Password { get; set; }
-
+        //test
     }
 }

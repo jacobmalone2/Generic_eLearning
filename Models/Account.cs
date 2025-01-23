@@ -82,6 +82,8 @@ namespace CS3750Assignment1.Models
             //end snippet
 
             return age >= 16; //return true if age is greater than or equal to 16, false if age is less than 16
+
+            //making sure this works to push to github - Jackson Hardy
         }
     }
 }

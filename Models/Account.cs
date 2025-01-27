@@ -30,18 +30,19 @@ namespace CS3750Assignment1.Models
 
         [StringLength(int.MaxValue, MinimumLength = 8)]
         [DataType(DataType.Password)] //gonna try without this, let's see what happens
-        [MinLength(8)] //minimum password length is 8 characters
         [Required]
         public required string Password { get; set; }
 
         [Compare("Password", ErrorMessage = "Passwords do not match. Please try again.")]
         [StringLength(int.MaxValue, MinimumLength = 8)]
         [DataType(DataType.Password)]
+        [NotMapped]
+        [Required]
         public string PasswordConfirmation { get; set; } //extra field for password validation purposes
 
-        [StringLength(10,  MinimumLength = 7)]
-        [Required]
-        public string AccountRole { get; set; } //can be instructor or student
+        //[StringLength(10,  MinimumLength = 7)]
+        //[Required]
+        //public string AccountRole { get; set; } //can be instructor or student
 
     }
 

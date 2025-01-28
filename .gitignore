@@ -47,3 +47,4 @@ appsettings*.json
 *.DS_Store
 *.nupkg
 *.lock.json
+/.vs/CS3750Assignment1/v17/.suo

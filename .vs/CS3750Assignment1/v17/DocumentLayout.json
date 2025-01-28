@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\",
+  "WorkspaceRootPath": "C:\\Users\\freef\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\theed\\source\\repos\\3750_spr25_kjcjk_group_project\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\theed\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\signup2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\signup2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\theed\\source\\repos\\3750_spr25_kjcjk_group_project\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 68,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Account.cs",
-              "DocumentMoniker": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Account.cs",
-              "RelativeDocumentMoniker": "Models\\Account.cs",
-              "ToolTip": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Account.cs",
-              "RelativeToolTip": "Models\\Account.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAkwCEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T17:01:04.017Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -43,16 +26,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SignUp2.cshtml",
-              "DocumentMoniker": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\SignUp2.cshtml",
-              "RelativeDocumentMoniker": "Pages\\SignUp2.cshtml",
-              "ToolTip": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\SignUp2.cshtml",
-              "RelativeToolTip": "Pages\\SignUp2.cshtml",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAEYAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-27T16:59:55.899Z",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-01-27T16:48:46.65Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\freef\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\RegistrationPages\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\RegistrationPages\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\freef\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\RegistrationPages\\Create.cshtml.cs",
+              "RelativeToolTip": "Pages\\RegistrationPages\\Create.cshtml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T21:12:15.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         },

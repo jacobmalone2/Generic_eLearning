@@ -41,8 +41,8 @@ namespace CS3750Assignment1.Models
         public string PasswordConfirmation { get; set; } //extra field for password validation purposes
 
         //[StringLength(10,  MinimumLength = 7)]
-        //[Required]
-        //public string AccountRole { get; set; } //can be instructor or student
+        [Required]
+        public string AccountRole { get; set; } //can be instructor or student
 
     }
 

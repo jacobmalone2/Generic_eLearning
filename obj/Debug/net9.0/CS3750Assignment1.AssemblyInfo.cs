@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CS3750Assignment1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3e4fa12fe96d9d3ae0d474cab688e7bd85d6af3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0061d3f6a07beb1592e1d684dcd0acd8568f9f52")]
 [assembly: System.Reflection.AssemblyProductAttribute("CS3750Assignment1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CS3750Assignment1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

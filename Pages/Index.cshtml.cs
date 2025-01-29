@@ -7,16 +7,11 @@ using CS3750Assignment1.Data;
 using NuGet.Protocol;
 
 
-namespace CS3750Assignment1.Pages
-{
-    public class IndexModel : PageModel
-    {
-        //private readonly ILogger<IndexModel> _logger;
+namespace CS3750Assignment1.Pages {
+    public class IndexModel : PageModel {
+        private readonly CS3750Assignment1Context _context;
 
-        private readonly CS3750Assignment1.Data.CS3750Assignment1Context? _context;
-
-        public IndexModel(CS3750Assignment1.Data.CS3750Assignment1Context context)
-        {
+        public IndexModel(CS3750Assignment1Context context) {
             _context = context;
         }
 
@@ -26,35 +21,38 @@ namespace CS3750Assignment1.Pages
         [BindProperty]
         public string password { get; set; }
 
-
-
-        public void OnGet()
-        {
-
+        public void OnGet() {
         }
 
         [BindProperty]
         public Account Account { get; set; } = default!;
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            
-            //await _context.SaveChangesAsync();
-            int desiredUserID = _context.Account
-                .Where(a => a.Username == username && a.Password == password)
-                .Select(a => a.Id)
-                .FirstOrDefault();
-            //from acc in _context.Account where Username == Account.Username AND Account.Password == Account.Password;
+        public async Task<IActionResult> OnPostAsync() {
+            //if (!ModelState.IsValid)
+            //{
+             //   return Page();
+            //}
 
-            Console.WriteLine(desiredUserID);
-            /*var userAccount = await _context.Account.FindAsync(desiredUserID);
+            // Log the input values
+            Console.WriteLine($"Username: {username}, Password: {password}");
 
-            if (userAccount == null)
+            // Query the database to find the account with the provided username and password
+            var account = await _context.Account
+                .Where(a => a.Username == username && a.PasswordConfirmation == password)
+                .FirstOrDefaultAsync();
+
+            // Check if the account exists
+            if (account == null)
             {
-                return NotFound();
-            }*/
+                ModelState.AddModelError(string.Empty, "Invalid username or password.");
+                return Page();
+            }
 
-            return RedirectToPage("./WelcomeUser/" + desiredUserID + "?");
+            // Log the found user ID
+            Console.WriteLine($"Found User ID: {account.Id}");
+
+            // Redirect to the WelcomeUser page with the found user ID
+            return RedirectToPage("./WelcomeUser", new { id = account.Id });
         }
     }
 }

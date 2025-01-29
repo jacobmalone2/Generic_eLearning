@@ -6,6 +6,7 @@ obj/
 *.db-wal
 
 # Visual Studio
+Debug/
 .vscode/
 .vs/
 *.suo
@@ -47,3 +48,4 @@ appsettings*.json
 *.DS_Store
 *.nupkg
 *.lock.json
+/.vs/CS3750Assignment1/v17/.suo

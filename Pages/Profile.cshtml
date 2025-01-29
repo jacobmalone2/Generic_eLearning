@@ -1,0 +1,23 @@
+﻿@page
+@model CS3750Assignment1.Pages.ProfileModel
+@{
+	ViewData["Title"] = "Profile Page";
+}
+
+<div>
+    <h1>User Profile</h1>
+
+    <div class="image-container">
+        <img src=""/>
+    </div>
+
+    <div class="profile-container">
+        <h2>@Model.Account.FirstName @Model.Account.LastName</h2>
+        <p><strong>Username: </strong> @Model.Account.Username</p>
+        <p><strong>Email :</strong> @Model.Account.Email</p>
+        <p><strong>Birthdate: </strong> @Model.Account.Birthdate</p>
+        <p><strong>Role: </strong> @Model.Account.AccountRole</p>
+    </div>
+
+    <a asp-page="EditProfile" asp-route-id="" class="btn btn-primary">Edit Profile</a>
+</div>

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.CoursePages
+namespace CS3750Assignment1.Pages.Registrations
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace CS3750Assignment1.Pages.CoursePages
         }
 
         [BindProperty]
-        public Course Course { get; set; } = default!;
+        public Registration Registration { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,11 +29,11 @@ namespace CS3750Assignment1.Pages.CoursePages
                 return NotFound();
             }
 
-            var course = await _context.Course.FirstOrDefaultAsync(m => m.Id == id);
+            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (course is not null)
+            if (registration is not null)
             {
-                Course = course;
+                Registration = registration;
 
                 return Page();
             }
@@ -48,11 +48,11 @@ namespace CS3750Assignment1.Pages.CoursePages
                 return NotFound();
             }
 
-            var course = await _context.Course.FindAsync(id);
-            if (course != null)
+            var registration = await _context.Registration.FindAsync(id);
+            if (registration != null)
             {
-                Course = course;
-                _context.Course.Remove(Course);
+                Registration = registration;
+                _context.Registration.Remove(Registration);
                 await _context.SaveChangesAsync();
             }
 

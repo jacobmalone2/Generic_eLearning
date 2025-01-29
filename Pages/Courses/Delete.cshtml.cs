@@ -8,17 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.CoursePages
+namespace CS3750Assignment1.Pages.Courses
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly CS3750Assignment1.Data.CS3750Assignment1Context _context;
 
-        public DetailsModel(CS3750Assignment1.Data.CS3750Assignment1Context context)
+        public DeleteModel(CS3750Assignment1.Data.CS3750Assignment1Context context)
         {
             _context = context;
         }
 
+        [BindProperty]
         public Course Course { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -38,6 +39,24 @@ namespace CS3750Assignment1.Pages.CoursePages
             }
 
             return NotFound();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var course = await _context.Course.FindAsync(id);
+            if (course != null)
+            {
+                Course = course;
+                _context.Course.Remove(Course);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }

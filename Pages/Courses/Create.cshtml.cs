@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.RegistrationPages
+namespace CS3750Assignment1.Pages.Courses
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace CS3750Assignment1.Pages.RegistrationPages
         }
 
         [BindProperty]
-        public Registration Registration { get; set; } = default!;
+        public Course Course { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace CS3750Assignment1.Pages.RegistrationPages
                 return Page();
             }
 
-            _context.Registration.Add(Registration);
+            _context.Course.Add(Course);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

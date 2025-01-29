@@ -1,10 +1,106 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\freef\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\",
+  "WorkspaceRootPath": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\theed\\source\\repos\\3750_spr25_kjcjk_group_project\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\registrations\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\registrations\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\delete.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\edit.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\courses\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\courses\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\cs3750assignment1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:cs3750assignment1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|c:\\users\\rick\\source\\repos\\3750_spr25_kjcjk_group_project\\pages\\signup2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}|CS3750Assignment1.csproj|solutionrelative:pages\\signup2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +110,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 68,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -25,44 +121,336 @@
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Details.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Details.cshtml",
+              "RelativeToolTip": "Pages\\Registrations\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:29:13.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Edit.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Edit.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Edit.cshtml.cs",
+              "RelativeToolTip": "Pages\\Registrations\\Edit.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:29:13.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Edit.cshtml",
+              "RelativeToolTip": "Pages\\Registrations\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:29:13.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Create.cshtml.cs",
+              "RelativeToolTip": "Pages\\Registrations\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:29:13.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Create.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Create.cshtml",
+              "RelativeToolTip": "Pages\\Registrations\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:29:13.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Courses\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:27:36.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Delete.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Delete.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Delete.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Delete.cshtml.cs",
+              "RelativeToolTip": "Pages\\Registrations\\Delete.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:29:13.605Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\TheEd\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAABwAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-27T16:48:46.65Z",
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Create.cshtml.cs",
+              "RelativeToolTip": "Pages\\Courses\\Create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:27:36.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Details.cshtml.cs",
+              "RelativeToolTip": "Pages\\Registrations\\Details.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:29:13.464Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Create.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\freef\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\RegistrationPages\\Create.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\RegistrationPages\\Create.cshtml.cs",
-              "ToolTip": "C:\\Users\\freef\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\RegistrationPages\\Create.cshtml.cs",
-              "RelativeToolTip": "Pages\\RegistrationPages\\Create.cshtml.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Course.cs",
+              "RelativeDocumentMoniker": "Models\\Course.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Course.cs",
+              "RelativeToolTip": "Models\\Course.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T21:12:15.322Z",
+              "WhenOpened": "2025-01-29T00:33:11.723Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 332,
-          "SelectedChildIndex": -1,
-          "Children": [
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Delete.cshtml",
+              "RelativeToolTip": "Pages\\Registrations\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:29:13.527Z",
+              "EditorCaption": ""
+            },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Registrations\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:29:13.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Registrations\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Registrations\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Registrations\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:29:13.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Courses\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:27:36.581Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Delete.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Delete.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Delete.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Delete.cshtml.cs",
+              "RelativeToolTip": "Pages\\Courses\\Delete.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:27:36.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Delete.cshtml",
+              "RelativeToolTip": "Pages\\Courses\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:27:36.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Details.cshtml.cs",
+              "RelativeToolTip": "Pages\\Courses\\Details.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:27:36.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Details.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Details.cshtml",
+              "RelativeToolTip": "Pages\\Courses\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:27:36.305Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Edit.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Edit.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Edit.cshtml.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Edit.cshtml.cs",
+              "RelativeToolTip": "Pages\\Courses\\Edit.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:27:36.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Create.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Create.cshtml",
+              "RelativeToolTip": "Pages\\Courses\\Create.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:27:36.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Courses\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\Courses\\Edit.cshtml",
+              "RelativeToolTip": "Pages\\Courses\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:27:36.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CS3750Assignment1",
+              "DocumentMoniker": "C:\\Users\\Rick\\Source\\Repos\\3750_Spr25_KJCJK_Group_Project\\CS3750Assignment1.csproj",
+              "RelativeDocumentMoniker": "CS3750Assignment1.csproj",
+              "ToolTip": "C:\\Users\\Rick\\Source\\Repos\\3750_Spr25_KJCJK_Group_Project\\CS3750Assignment1.csproj",
+              "RelativeToolTip": "CS3750Assignment1.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-29T00:12:42.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T00:06:21.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Account.cs",
+              "RelativeDocumentMoniker": "Models\\Account.cs",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Models\\Account.cs",
+              "RelativeToolTip": "Models\\Account.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T17:01:04.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "SignUp2.cshtml",
+              "DocumentMoniker": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\SignUp2.cshtml",
+              "RelativeDocumentMoniker": "Pages\\SignUp2.cshtml",
+              "ToolTip": "C:\\Users\\Rick\\source\\repos\\3750_Spr25_KJCJK_Group_Project\\Pages\\SignUp2.cshtml",
+              "RelativeToolTip": "Pages\\SignUp2.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEYAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-27T16:59:55.899Z"
             }
           ]
         }

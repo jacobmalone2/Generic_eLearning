@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.RegistrationPages
+namespace CS3750Assignment1.Pages.Courses
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace CS3750Assignment1.Pages.RegistrationPages
             _context = context;
         }
 
-        public IList<Registration> Registration { get;set; } = default!;
+        public IList<Course> Course { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Registration = await _context.Registration.ToListAsync();
+            Course = await _context.Course.ToListAsync();
         }
     }
 }

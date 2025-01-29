@@ -13,15 +13,12 @@ namespace CS3750Assignment1.Models
         [Required]
         public string Name { get; set; } = string.Empty;
 
-        [StringLength(30, MinimumLength = 2)]
         [Required]
         public int CourseNumber { get; set; }
 
-        [StringLength(30, MinimumLength = 2)]
         [Required]
         public int Credits { get; set; }
 
-        [StringLength(30, MinimumLength = 2)]
         [Required]
         public int Capacity { get; set; }
 

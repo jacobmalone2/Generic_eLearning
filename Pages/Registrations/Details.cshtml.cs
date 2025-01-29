@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.RegistrationPages
+namespace CS3750Assignment1.Pages.Registrations
 {
     public class DetailsModel : PageModel
     {

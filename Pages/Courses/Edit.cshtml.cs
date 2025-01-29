@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.CoursePages
+namespace CS3750Assignment1.Pages.Courses
 {
     public class EditModel : PageModel
     {

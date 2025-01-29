@@ -17,49 +17,89 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CS3750Assignment1
 build_property.RootNamespace = CS3750Assignment1
-build_property.ProjectDir = C:\Users\TheEd\Source\Repos\3750_Spr25_KJCJK_Group_Project\
+build_property.ProjectDir = C:\Users\freef\Source\Repos\3750_Spr25_KJCJK_Group_Project\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\TheEd\Source\Repos\3750_Spr25_KJCJK_Group_Project
+build_property.MSBuildProjectDirectory = C:\Users\freef\Source\Repos\3750_Spr25_KJCJK_Group_Project
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Error.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/CoursePages/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlUGFnZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/CoursePages/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlUGFnZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/CoursePages/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlUGFnZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/CoursePages/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlUGFnZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/CoursePages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlUGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Index.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Privacy.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/RegistrationPages/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uUGFnZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/RegistrationPages/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uUGFnZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/RegistrationPages/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uUGFnZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/RegistrationPages/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uUGFnZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/RegistrationPages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uUGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/SignUp2.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/SignUp2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnblVwMi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/WelcomeUser.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/WelcomeUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VsY29tZVVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/_ViewImports.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/_ViewStart.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/TheEd/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Shared/_Layout.cshtml]
+[C:/Users/freef/Source/Repos/3750_Spr25_KJCJK_Group_Project/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-62o99d4xyi

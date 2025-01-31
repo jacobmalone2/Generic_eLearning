@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
-using NuGet.Protocol;
-
+using System.Text;
+using System.Security.Cryptography;
 
 namespace CS3750Assignment1.Pages {
-    public class IndexModel : PageModel {
+    public class IndexModel:PageModel {
         private readonly CS3750Assignment1Context _context;
 
         public IndexModel(CS3750Assignment1Context context) {
@@ -16,10 +16,10 @@ namespace CS3750Assignment1.Pages {
         }
 
         [BindProperty]
-        public string username { get; set; }
+        public string username { get; set; } = string.Empty;
 
         [BindProperty]
-        public string password { get; set; }
+        public string password { get; set; } = string.Empty;
 
         public void OnGet() {
         }
@@ -28,31 +28,36 @@ namespace CS3750Assignment1.Pages {
         public Account Account { get; set; } = default!;
 
         public async Task<IActionResult> OnPostAsync() {
-            //if (!ModelState.IsValid)
-            //{
-             //   return Page();
-            //}
+            if (_context == null) {
+                Console.WriteLine("Database context is null.");
+                return Page();
+            }
 
             // Log the input values
             Console.WriteLine($"Username: {username}, Password: {password}");
 
-            // Query the database to find the account with the provided username and password
+            // Hash the input password
+            var hashedPassword = HashPassword(password);
+
+            // Query the database to find the account with the provided username and hashed password
             var account = await _context.Account
-                .Where(a => a.Username == username && a.PasswordConfirmation == password)
+                .Where(a => a.Username == username && a.Password == hashedPassword)
                 .FirstOrDefaultAsync();
 
             // Check if the account exists
-            if (account == null)
-            {
-                ModelState.AddModelError(string.Empty, "Invalid username or password.");
+            if (account == null) {
+                ModelState.AddModelError(string.Empty,"Invalid username or password.");
                 return Page();
             }
 
-            // Log the found user ID
-            Console.WriteLine($"Found User ID: {account.Id}");
-
-            // Redirect to the WelcomeUser page with the found user ID
-            return RedirectToPage("./WelcomeUser", new { id = account.Id });
+            return RedirectToPage("./WelcomeUser/",new { id = account.Id });
+        }
+        private string HashPassword(string password) {
+            using (var sha256 = SHA256.Create()) {
+                var bytes = Encoding.UTF8.GetBytes(password);
+                var hash = sha256.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
+            }
         }
     }
 }

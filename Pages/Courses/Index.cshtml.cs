@@ -23,17 +23,21 @@ namespace CS3750Assignment1.Pages.Courses
 
         public int instructorID { get; set; }
 
-        public async Task OnGetAsync(int id)
-        {
-            // Recieve Instructor ID
-            instructorID = id;
+        public async Task OnGetAsync(int? id) {
+            if (id == null) {
+                instructorID = 0; // Default value if no ID is passed
+            }
+            else {
+                instructorID = id.Value;
+            }
 
-            // </snippet_search_linqQuery>
-            var courses = from c in _context.Course
-                            select c;
-
-            courses = courses.Where(c => c.InstructorID == id);
-            Course = await courses.ToListAsync();
+            // Fetch courses only if ID is valid
+            if (instructorID > 0) {
+                Course = await _context.Course.Where(c => c.InstructorID == instructorID).ToListAsync();
+            }
+            else {
+                Course = new List<Course>(); // Avoid null reference issues
+            }
         }
     }
 }

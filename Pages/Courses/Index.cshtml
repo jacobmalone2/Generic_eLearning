@@ -8,14 +8,22 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="./Create">Create New</a>
+    <a asp-page="./Create" asp-route-id="@Model.instructorID">Create New</a>
 </p>
+<p>Instructor ID: @Model.instructorID</p>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Course[0].InstructorID)
+                @if (Model.Course.Any())
+                {
+                    @Html.DisplayNameFor(model => model.Course[0].InstructorID)
+                }
+                else
+                {
+                    <span>Instructor ID</span> <!-- Default text if no courses exist -->
+                }
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Course[0].Name)

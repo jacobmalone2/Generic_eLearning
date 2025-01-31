@@ -37,11 +37,11 @@ namespace CS3750Assignment1.Models
         [StringLength(int.MaxValue, MinimumLength = 8)]
         [DataType(DataType.Password)]
         [NotMapped]
-        public string PasswordConfirmation { get; set; } //extra field for password validation purposes
+        public required string PasswordConfirmation { get; set; } //extra field for password validation purposes
 
         //[StringLength(10,  MinimumLength = 7)]
         [Required]
-        public string AccountRole { get; set; } //can be instructor or student
+        public required string AccountRole { get; set; } //can be instructor or student
 
     }
 

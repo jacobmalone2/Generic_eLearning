@@ -1,0 +1,11 @@
+﻿@page "{id:int}"
+@model CS3750Assignment1.Pages.WelcomeStudentModel
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<h1>Welcome, Student!</h1>
+
+<p>Student ID: @Model.StudentId</p>
+
+<a asp-page="/Index">Logout</a>

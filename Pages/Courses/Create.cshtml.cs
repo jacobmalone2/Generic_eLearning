@@ -28,12 +28,15 @@ namespace CS3750Assignment1.Pages.Courses
         public Course Course { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+
+            // Add instructor information to course
+            Course.InstructorID = id;
 
             _context.Course.Add(Course);
             await _context.SaveChangesAsync();

@@ -49,3 +49,5 @@ appsettings*.json
 *.nupkg
 *.lock.json
 /.vs/CS3750Assignment1/v17/.suo
+/.vs/CS3750Assignment1/v17/.suo
+/.vs/CS3750Assignment1/v17/DocumentLayout.json

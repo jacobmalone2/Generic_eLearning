@@ -50,7 +50,18 @@ namespace CS3750Assignment1.Pages {
                 return Page();
             }
 
-            return RedirectToPage("./WelcomeUser/",new { id = account.Id });
+            // Redirect to the applicable Welcome page based on user account
+            if(account.AccountRole == "Instructor") {
+                return RedirectToPage("./WelcomeInstructor/",new { id = account.Id });
+            }
+            else if (account.AccountRole == "Student") {
+                return RedirectToPage("./WelcomeStudent/",new { id = account.Id });
+            } // else if the the account is not being found, return to the index page
+            else {
+                ModelState.AddModelError(string.Empty,"Account role not found.");
+                return Page();
+            }
+
         }
         private string HashPassword(string password) {
             using (var sha256 = SHA256.Create()) {

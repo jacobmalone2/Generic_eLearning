@@ -36,11 +36,12 @@ namespace CS3750Assignment1.Models
         [Compare("Password", ErrorMessage = "Passwords do not match. Please try again.")]
         [StringLength(int.MaxValue, MinimumLength = 8)]
         [DataType(DataType.Password)]
-        public string PasswordConfirmation { get; set; } //extra field for password validation purposes
+        [NotMapped]
+        public required string PasswordConfirmation { get; set; } //extra field for password validation purposes
 
         //[StringLength(10,  MinimumLength = 7)]
         [Required]
-        public string AccountRole { get; set; } //can be instructor or student
+        public required string AccountRole { get; set; } //can be instructor or student
 
     }
 

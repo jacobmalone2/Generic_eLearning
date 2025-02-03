@@ -19,11 +19,24 @@ namespace CS3750Assignment1.Pages.Registrations
             _context = context;
         }
 
-        public IList<Registration> Registration { get;set; } = default!;
+        public IList<Registration> Registration { get; set; } = default!;
+
+        int studentID;
 
         public async Task OnGetAsync()
         {
-            Registration = await _context.Registration.ToListAsync();
+            studentID = int.Parse(Request.Cookies["LoggedUserID"]);
+
+            // Fetch registrations only if ID is valid
+            if (studentID > 0)
+            {
+                Registration = await _context.Registration.Where(c => c.StudentID == studentID).ToListAsync();
+
+            }
+            else
+            {
+                Registration = new List<Registration>(); // Avoid null reference issues
+            }
         }
     }
 }

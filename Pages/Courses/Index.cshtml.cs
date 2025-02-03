@@ -21,9 +21,19 @@ namespace CS3750Assignment1.Pages.Courses
 
         public IList<Course> Course { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        int instructorID;
+
+        public async Task OnGetAsync() 
         {
-            Course = await _context.Course.ToListAsync();
+            instructorID = int.Parse(Request.Cookies["LoggedUserID"]);
+
+            // Fetch courses only if ID is valid
+            if (instructorID > 0) {
+                Course = await _context.Course.Where(c => c.InstructorID == instructorID).ToListAsync();
+            }
+            else {
+                Course = new List<Course>(); // Avoid null reference issues
+            }
         }
     }
 }

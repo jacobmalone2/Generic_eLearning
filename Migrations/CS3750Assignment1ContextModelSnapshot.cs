@@ -30,6 +30,10 @@ namespace CS3750Assignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AccountRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateOnly>("Birthdate")
                         .HasColumnType("date");
 
@@ -52,11 +56,6 @@ namespace CS3750Assignment1.Migrations
                         .HasMaxLength(2147483647)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordConfirmation")
-                        .IsRequired()
-                        .HasMaxLength(2147483647)
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -75,16 +74,16 @@ namespace CS3750Assignment1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Capacity")
-                        .HasMaxLength(30)
                         .HasColumnType("int");
 
                     b.Property<int>("CourseNumber")
-                        .HasMaxLength(30)
                         .HasColumnType("int");
 
                     b.Property<int>("Credits")
-                        .HasMaxLength(30)
                         .HasColumnType("int");
 
                     b.Property<int>("InstructorID")
@@ -95,8 +94,9 @@ namespace CS3750Assignment1.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<DateOnly>("MeetingTime")
-                        .HasColumnType("date");
+                    b.Property<string>("MeetingTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -104,6 +104,8 @@ namespace CS3750Assignment1.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
 
                     b.ToTable("Course");
                 });
@@ -125,6 +127,17 @@ namespace CS3750Assignment1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Registration");
+                });
+
+            modelBuilder.Entity("CS3750Assignment1.Models.Course", b =>
+                {
+                    b.HasOne("CS3750Assignment1.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 #pragma warning restore 612, 618
         }

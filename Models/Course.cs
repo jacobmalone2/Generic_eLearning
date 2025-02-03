@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CS3750Assignment1.Models
 {
@@ -7,7 +8,9 @@ namespace CS3750Assignment1.Models
         public int Id { get; set; }
 
         [Required]
+        [ForeignKey("InstructorID")]
         public int InstructorID { get; set; } // Foreign Key
+        public Account Account { get; set; }
 
         [StringLength(30, MinimumLength = 2)]
         [Required]
@@ -22,9 +25,8 @@ namespace CS3750Assignment1.Models
         [Required]
         public int Capacity { get; set; }
 
-        [DataType(DataType.Date)]
         [Required]
-        public DateOnly MeetingTime { get; set; }
+        public string MeetingTime { get; set; }
 
         [StringLength(30, MinimumLength = 2)]
         [Required]

@@ -15,16 +15,6 @@
     <thead>
         <tr>
             <th>
-                @if (Model.Course.Any())
-                {
-                    @Html.DisplayNameFor(model => model.Course[0].InstructorID)
-                }
-                else
-                {
-                    <span>Instructor ID</span> <!-- Default text if no courses exist -->
-                }
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Course[0].Name)
             </th>
             <th>
@@ -48,9 +38,6 @@
     <tbody>
 @foreach (var item in Model.Course) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.InstructorID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

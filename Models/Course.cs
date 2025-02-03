@@ -8,9 +8,9 @@ namespace CS3750Assignment1.Models
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey("InstructorID")]
         public int InstructorID { get; set; } // Foreign Key
-        public Account Account { get; set; }
+        [ForeignKey("InstructorID")]
+        public Account? Account { get; set; }
 
         [StringLength(30, MinimumLength = 2)]
         [Required]

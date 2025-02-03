@@ -22,9 +22,8 @@ namespace CS3750Assignment1.Models
         [Required]
         public int Capacity { get; set; }
 
-        [DataType(DataType.Date)]
         [Required]
-        public DateOnly MeetingTime { get; set; }
+        public string MeetingTime { get; set; }
 
         [StringLength(30, MinimumLength = 2)]
         [Required]

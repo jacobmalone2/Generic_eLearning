@@ -21,15 +21,13 @@ namespace CS3750Assignment1.Pages.Courses
 
         public IList<Course> Course { get;set; } = default!;
 
-        public int instructorID { get; set; }
+        int instructorID;
 
-        public async Task OnGetAsync(int? id) {
-            if (id == null) {
-                instructorID = 0; // Default value if no ID is passed
-            }
-            else {
-                instructorID = id.Value;
-            }
+        public async Task OnGetAsync() 
+        {
+            var cookieUserID = Request.Cookies["LoggedUserID"];
+
+            instructorID = int.Parse(Request.Cookies["LoggedUserID"]);
 
             // Fetch courses only if ID is valid
             if (instructorID > 0) {

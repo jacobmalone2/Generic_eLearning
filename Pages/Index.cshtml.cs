@@ -50,8 +50,18 @@ namespace CS3750Assignment1.Pages {
                 return Page();
             }
 
+            // Grab user ID
+            Response.Cookies.Append("LoggedUserID", account.Id.ToString());
+            var cookieUserID = Request.Cookies["LoggedUserID"];
+
+            // Cookie function failed
+            if (Request.Cookies["LoggedUserID"] == null || Request.Cookies["LoggedUserID"] == "0")
+            {
+                return NotFound();
+            }
+
             // Redirect to the applicable Welcome page based on user account
-            if(account.AccountRole == "Instructor") {
+            if (account.AccountRole == "Instructor") {
                 return RedirectToPage("./WelcomeInstructor/",new { id = account.Id });
             }
             else if (account.AccountRole == "Student") {

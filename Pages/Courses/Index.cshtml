@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page 
 @model CS3750Assignment1.Pages.Courses.IndexModel
 
 @{
@@ -8,9 +8,8 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="./Create" asp-route-id="@Model.instructorID">Create New</a>
+    <a asp-page="Create">Create New</a>
 </p>
-<p>Instructor ID: @Model.instructorID</p>
 
 <table class="table">
     <thead>

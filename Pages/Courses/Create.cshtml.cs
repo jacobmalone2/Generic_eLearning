@@ -11,14 +11,10 @@ namespace CS3750Assignment1.Pages.Courses {
         public Course Course { get; set; } = default!;
 
         [BindProperty(SupportsGet = true)]
-        public int InstructorID { get; set; }  // Receive the Instructor ID
+        public int instructorID { get; set; }  // Receive the Instructor ID
 
         public CreateModel(CS3750Assignment1Context context) {
             _context = context;
-        }
-
-        public void OnGet(int id) {
-            InstructorID = id; // Store the ID
         }
 
         public async Task<IActionResult> OnPostAsync() {
@@ -26,11 +22,13 @@ namespace CS3750Assignment1.Pages.Courses {
                 return Page();
             }
 
-            Course.InstructorID = InstructorID;  // Assign instructor ID to new course
+            instructorID = int.Parse(Request.Cookies["LoggedUserID"]);
+
+            Course.InstructorID = instructorID;  // Assign instructor ID to new course
             _context.Course.Add(Course);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index",new { id = InstructorID }); // Redirect back with instructor ID
+            return RedirectToPage("./Index");
         }
     }
 }

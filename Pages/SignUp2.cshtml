@@ -5,79 +5,92 @@
     ViewData["Title"] = "Sign Up Page";
 }
 
-<h1>Sign up</h1>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 450px;">
+        <div class="card-body">
+            <h2 class="text-center mb-3">Create an Account</h2>
+            <p class="text-muted text-center">Fill in your details to sign up</p>
 
-<h4>Account Information</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Account.FirstName" class="control-label">First name</label>
-                <input asp-for="Account.FirstName" class="form-control" />
-                <span asp-validation-for="Account.FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Account.LastName" class="control-label">Last name</label>
-                <input asp-for="Account.LastName" class="form-control" />
-                <span asp-validation-for="Account.LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Account.Birthdate" class="control-label">Birthdate</label>
-                <input asp-for="Account.Birthdate" class="form-control" />
-                <span asp-validation-for="Account.Birthdate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Account.Email" class="control-label"></label>
-                <input asp-for="Account.Email" class="form-control" />
-                <span asp-validation-for="Account.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Account.Username" class="control-label"></label>
-                <input asp-for="Account.Username" class="form-control" />
-                <span asp-validation-for="Account.Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Account.Password" class="control-label"></label>
-                <input asp-for="Account.Password" class="form-control" />
-                <span asp-validation-for="Account.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Account.PasswordConfirmation" class="control-label">Confirm Password</label>
-                <input asp-for="Account.PasswordConfirmation" id="PasswordConfirmation" class="form-control" />
-                <span asp-validation-for="Account.PasswordConfirmation" class="text-danger"></span>
-            </div>
-            @*Radio buttons for the Instructor/Student selection*@
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label class="control-label">User Role</label><br />
-                <div>
-                    <input type="radio" asp-for="Account.AccountRole" value="Instructor" id="instructor" />
-                    <label for="instructor">Instructor</label>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- First Name -->
+                <div class="mb-3">
+                    <label asp-for="Account.FirstName" class="form-label fw-bold">First Name</label>
+                    <input asp-for="Account.FirstName" class="form-control" placeholder="Enter your first name" required />
+                    <span asp-validation-for="Account.FirstName" class="text-danger"></span>
                 </div>
-                <div>
-                    <input type="radio" asp-for="Account.AccountRole" value="Student" id="student" />
-                    <label for="student">Student</label>
+
+                <!-- Last Name -->
+                <div class="mb-3">
+                    <label asp-for="Account.LastName" class="form-label fw-bold">Last Name</label>
+                    <input asp-for="Account.LastName" class="form-control" placeholder="Enter your last name" required />
+                    <span asp-validation-for="Account.LastName" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Account.AccountRole" class="text-danger"></span>
+
+                <!-- Birthdate -->
+                <div class="mb-3">
+                    <label asp-for="Account.Birthdate" class="form-label fw-bold">Birthdate</label>
+                    <input asp-for="Account.Birthdate" type="date" class="form-control" required />
+                    <span asp-validation-for="Account.Birthdate" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label asp-for="Account.Email" class="form-label fw-bold">Email</label>
+                    <input asp-for="Account.Email" type="email" class="form-control" placeholder="Enter your email" required />
+                    <span asp-validation-for="Account.Email" class="text-danger"></span>
+                </div>
+
+                <!-- Username -->
+                <div class="mb-3">
+                    <label asp-for="Account.Username" class="form-label fw-bold">Username</label>
+                    <input asp-for="Account.Username" class="form-control" placeholder="Choose a username" required />
+                    <span asp-validation-for="Account.Username" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label asp-for="Account.Password" class="form-label fw-bold">Password</label>
+                    <input asp-for="Account.Password" type="password" class="form-control" placeholder="Enter a secure password" required />
+                    <span asp-validation-for="Account.Password" class="text-danger"></span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-3">
+                    <label asp-for="Account.PasswordConfirmation" class="form-label fw-bold">Confirm Password</label>
+                    <input asp-for="Account.PasswordConfirmation" type="password" class="form-control" placeholder="Re-enter your password" required />
+                    <span asp-validation-for="Account.PasswordConfirmation" class="text-danger"></span>
+                </div>
+
+                <!-- User Role Selection -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">User Role</label>
+                    <div class="form-check">
+                        <input type="radio" asp-for="Account.AccountRole" value="Instructor" id="instructor" class="form-check-input" required />
+                        <label for="instructor" class="form-check-label">Instructor</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" asp-for="Account.AccountRole" value="Student" id="student" class="form-check-input" required />
+                        <label for="student" class="form-check-label">Student</label>
+                    </div>
+                    <span asp-validation-for="Account.AccountRole" class="text-danger"></span>
+                </div>
+
+                <!-- Sign Up Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+            </form>
+
+            <!-- Login Redirect Link -->
+            <div class="text-center mt-3">
+                <p class="text-muted">Already have an account? 
+                    <a asp-page="Index" class="text-primary fw-bold">Log in</a>
+                </p>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Sign Up" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to Log in page</a>
 </div>
 
 @section Scripts {

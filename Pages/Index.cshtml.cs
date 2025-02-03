@@ -50,9 +50,11 @@ namespace CS3750Assignment1.Pages {
                 return Page();
             }
 
-            // Grab user ID
+            // Grab User ID
             Response.Cookies.Append("LoggedUserID", account.Id.ToString());
-            var cookieUserID = Request.Cookies["LoggedUserID"];
+
+            // Grab User Role
+            Response.Cookies.Append("LoggedUserRole", account.AccountRole);
 
             // Cookie function failed
             if (Request.Cookies["LoggedUserID"] == null || Request.Cookies["LoggedUserID"] == "0")

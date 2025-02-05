@@ -61,7 +61,7 @@ namespace CS3750Assignment1.Pages
                 }
 
                 // Update the account's profile picture path
-                account.ProfilePicturePath = "/images/profile_pictures/" + ProfilePicture.FileName;
+                account.imgSource = "/images/profile_pictures/" + ProfilePicture.FileName;
 
                 _context.Account.Update(account);
                 await _context.SaveChangesAsync();

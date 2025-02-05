@@ -43,6 +43,9 @@ namespace CS3750Assignment1.Models
         [Required]
         public required string AccountRole { get; set; } //can be instructor or student
 
+        [StringLength(int.MaxValue)]
+        [DataType(DataType.ImageUrl)]
+        public string? imgSource { get; set; }
     }
 
     /// <summary>

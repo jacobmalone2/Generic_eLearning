@@ -18,13 +18,13 @@ namespace CS3750Assignment1.Pages.Courses {
         }
 
         public async Task<IActionResult> OnPostAsync() {
+            instructorID = int.Parse(Request.Cookies["LoggedUserID"]);
+            Course.InstructorID = instructorID;  // Assign instructor ID to new course
+
             if (!ModelState.IsValid) {
                 return Page();
             }
 
-            instructorID = int.Parse(Request.Cookies["LoggedUserID"]);
-
-            Course.InstructorID = instructorID;  // Assign instructor ID to new course
             _context.Course.Add(Course);
             await _context.SaveChangesAsync();
 

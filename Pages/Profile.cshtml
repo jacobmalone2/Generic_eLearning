@@ -1,23 +1,55 @@
 ﻿@page
 @model CS3750Assignment1.Pages.ProfileModel
 @{
-	ViewData["Title"] = "Profile Page";
+    ViewData["Title"] = "Profile Page";
 }
 
-<div>
-    <h1>User Profile</h1>
+<div class="container mt-4">
+    <h1 class="text-center">User Profile</h1>
 
-    <div class="image-container">
-        <img src=""/>
+    <div class="card shadow-lg mx-auto p-4" style="max-width: 500px;">
+        <div class="text-center">
+            <!-- Profile Picture with Default -->
+            <div class="profile-pic-container">
+                <img id="profileImage" src="@(!string.IsNullOrEmpty(Model.Account.imgSource) ? Model.Account.imgSource : "/images/profiles/default-profile.png")" 
+                     class="rounded-circle img-thumbnail" 
+                     width="150" height="150" 
+                     alt="Profile Picture" />
+            </div>
+
+            <!-- Upload Profile Picture Form -->
+            <form method="post" enctype="multipart/form-data" asp-page-handler="UploadProfilePicture">
+                <input type="hidden" name="id" value="@Model.Account.Id" />
+                <input type="file" id="profilePicInput" name="ProfilePicture" class="form-control mt-3" accept="image/*" onchange="previewImage(event)">
+                <button type="submit" class="btn btn-primary mt-2">Upload</button>
+            </form>
+        </div>
+
+        <hr />
+
+        <!-- Profile Details -->
+        <div class="profile-container">
+            <h2 class="text-center">@Model.Account.FirstName @Model.Account.LastName</h2>
+            <p><strong>Username:</strong> @Model.Account.Username</p>
+            <p><strong>Email:</strong> @Model.Account.Email</p>
+            <p><strong>Birthdate:</strong> @Model.Account.Birthdate.ToShortDateString()</p>
+            <p><strong>Role:</strong> @Model.Account.AccountRole</p>
+        </div>
+
+        <div class="text-center">
+            <a asp-page="EditProfile" asp-route-id="@Model.Account.Id" class="btn btn-primary mt-3">Edit Profile</a>
+        </div>
     </div>
-
-    <div class="profile-container">
-        <h2>@Model.Account.FirstName @Model.Account.LastName</h2>
-        <p><strong>Username: </strong> @Model.Account.Username</p>
-        <p><strong>Email :</strong> @Model.Account.Email</p>
-        <p><strong>Birthdate: </strong> @Model.Account.Birthdate</p>
-        <p><strong>Role: </strong> @Model.Account.AccountRole</p>
-    </div>
-
-    <a asp-page="EditProfile" asp-route-id="" class="btn btn-primary">Edit Profile</a>
 </div>
+
+<!-- JavaScript for Live Image Preview -->
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('profileImage');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

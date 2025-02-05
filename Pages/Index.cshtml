@@ -4,23 +4,39 @@
     ViewData["Title"] = "Log In Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <form method="post">
-        <legend>Please log in</legend>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div>
-            <label for="username">Username: </label>
-            <input type="text" id="username" name="username" asp-for="username" class="form-control" />
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 400px;">
+        <div class="card-body">
+            <h2 class="text-center mb-3">Welcome Back</h2>
+            <p class="text-muted text-center">Log in to your account</p>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- Username -->
+                <div class="mb-3">
+                    <label for="username" class="form-label fw-bold">Username</label>
+                    <input type="text" id="username" name="username" asp-for="username" class="form-control" placeholder="Enter your username" required />
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-bold">Password</label>
+                    <input type="password" id="password" name="password" asp-for="password" class="form-control" placeholder="Enter your password" required />
+                </div>
+
+                <!-- Login Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </div>
+            </form>
+
+            <!-- Sign-Up Redirect -->
+            <div class="text-center mt-3">
+                <p class="text-muted">Don't have an account?  
+                    <a asp-page="SignUp2" class="text-primary fw-bold">Sign up</a>
+                </p>
+            </div>
         </div>
-        <div>
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password" asp-for="password" class="form-control" />
-        </div>
-        <div>
-            <label>&nbsp;</label>
-            <input type="submit" value="Log In" class="btn btn-primary" />
-        </div>
-    </form>
-    <a asp-page="SignUp2">Don't have an account? Sign up!</a>
+    </div>
 </div>

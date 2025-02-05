@@ -2,25 +2,33 @@
 @model ErrorModel
 @{
     ViewData["Title"] = "Error";
+    Layout = "_Layout"; // Ensures consistency with your site's layout
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<div class="container text-center mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0">Oops! Something went wrong.</h2>
+        </div>
+        <div class="card-body">
+            <img src="~/images/error-icon.png" alt="Error Icon" class="mb-3" width="120">
+            <p class="lead text-muted">An unexpected error occurred while processing your request.</p>
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
+            @if (Model.ShowRequestId)
+            {
+                <p>
+                    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                </p>
+            }
 
-<h3>Development Mode</h3>
-<p>
-    Swapping to the <strong>Development</strong> environment displays detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>
+            <hr>
+
+            <h4 class="text-secondary">What can you do?</h4>
+            <ul class="list-unstyled">
+                <li>🔄 <strong>Try refreshing the page.</strong></li>
+                <li>📧 <strong>Contact support</strong> if the issue persists.</li>
+                <li>🏠 <a asp-page="/Index" class="btn btn-primary mt-3">Return to Homepage</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

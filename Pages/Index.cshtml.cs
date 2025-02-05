@@ -64,10 +64,10 @@ namespace CS3750Assignment1.Pages {
 
             // Redirect to the applicable Welcome page based on user account
             if (account.AccountRole == "Instructor") {
-                return RedirectToPage("./WelcomeInstructor/",new { id = account.Id });
+                return RedirectToPage("./WelcomeInstructor/");
             }
             else if (account.AccountRole == "Student") {
-                return RedirectToPage("./WelcomeStudent/",new { id = account.Id });
+                return RedirectToPage("./WelcomeStudent/");
             } // else if the the account is not being found, return to the index page
             else {
                 ModelState.AddModelError(string.Empty,"Account role not found.");

@@ -25,10 +25,17 @@ namespace CS3750Assignment1.Pages
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            // If ID is not provided in the URL, try getting it from the cookie
             if (id == null)
             {
-                return NotFound();
-                //return RedirectToPage("/index");
+                if (HttpContext.Request.Cookies.ContainsKey("LoggedUserID"))
+                {
+                    id = int.Parse(HttpContext.Request.Cookies["LoggedUserID"]);
+                }
+                else
+                {
+                    return RedirectToPage("/Index"); // Redirect if no ID is found
+                }
             }
 
             var account = await _context.Account.FirstOrDefaultAsync(m => m.Id == id);
@@ -41,6 +48,7 @@ namespace CS3750Assignment1.Pages
 
             return NotFound();
         }
+
 
         public async Task<IActionResult> OnPostUploadProfilePictureAsync(int id)
         {
@@ -62,7 +70,7 @@ namespace CS3750Assignment1.Pages
                 }
 
                 // Update the account's profile picture path
-                account.imgSource = "/images/profiles/profile_pictures/" + ProfilePicture.FileName;
+                account.imgSource = "/images/profiles/" + ProfilePicture.FileName;
 
                 _context.Account.Update(account);
                 await _context.SaveChangesAsync();

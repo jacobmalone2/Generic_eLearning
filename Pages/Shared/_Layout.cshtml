@@ -33,7 +33,7 @@
                                 <img src="~/images/profile-icon.png" alt="User" class="rounded-circle" width="32" height="32">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" asp-page="/Profile">Profile</a></li>
+                                <li><a class="dropdown-item" asp-page="/Profile" asp-route-id="@Context.Request.Cookies["LoggedUserID"]">Profile</a></li>
                                 <li><a class="dropdown-item" asp-page="/Settings">Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" asp-page="/Logout">Logout</a></li>

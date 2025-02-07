@@ -14,6 +14,8 @@ namespace CS3750Assignment1.Pages.Calendars
     {
         private readonly CS3750Assignment1.Data.CS3750Assignment1Context _context;
 
+        public bool? pageRole = true; //null means no role, false means student, true means instructor
+
         public CalendarInstructorModel(CS3750Assignment1.Data.CS3750Assignment1Context context)
         {
             _context = context;
@@ -23,8 +25,9 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public async Task OnGetAsync()
         {
-            Course = await _context.Course
-                .Include(c => c.Account).ToListAsync();
+            //The following code was commented out on Feb 7, 2025 to get the calendar loaded on the page but the calendar does not yet have instructor course functionality
+            //Course = await _context.Course
+              //  .Include(c => c.Account).ToListAsync();
         }
     }
 }

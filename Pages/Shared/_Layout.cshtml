@@ -15,7 +15,7 @@
                 <a class="navbar-brand" asp-area="" asp-page="/Index">KJCJK Project</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -24,6 +24,33 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
+                        @{
+                            //every page will have to have a propery called 'showCalendar'
+                            bool? showCalendar = Model.pageRole;
+
+                            bool pageRole = false;
+                            string calendarURL = "/Calendars/Calendar";
+                            if (showCalendar is not null)
+                            {
+                                pageRole = (bool)showCalendar;
+                                if (pageRole)
+                                    calendarURL += "Instructor";
+                                else
+                                    calendarURL += "Student";
+                            }
+
+                            
+
+
+
+                            //will require a student or instructor tag in the future
+                        }
+                        @if (showCalendar is not null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="@calendarURL">Calendar</a>
+                            </li>
+                        }
                     </ul>
 
                     <!-- Profile Icon and Dropdown Menu -->

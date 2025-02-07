@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 namespace CS3750Assignment1.Pages {
     public class IndexModel:PageModel {
         private readonly CS3750Assignment1Context _context;
+        public bool? pageRole = null; //added for calendar functionality -> null is for pages with no role required, false is for students, true is for instructors
 
         public IndexModel(CS3750Assignment1Context context) {
             _context = context;

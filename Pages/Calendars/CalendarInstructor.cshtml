@@ -4,12 +4,31 @@
 @{
     ViewData["Title"] = "CalendarInstructor";
 }
+<head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script>
 
-<h1>CalendarInstructor</h1>
-<!--https://stackoverflow.com/questions/63197868/razor-pages-asp-net-core-install-fullcalendar      <-for putting the calendar in            -->
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+          });
+          calendar.render();
+        });
+
+    </script>
+</head>
+
+<body>
+    <h1>Calendar</h1>
+
+    <div id='calendar'></div>
+</body>
+
+@*
+<!--https://stackoverflow.com/questions/63197868/razor-pages-asp-net-core-install-fullcalendar      <-for putting the calendar in            
+
 <table class="table">
     <thead>
         <tr>
@@ -75,4 +94,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table> -->*@

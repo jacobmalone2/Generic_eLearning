@@ -6,6 +6,8 @@ namespace CS3750Assignment1.Pages {
         [BindProperty(SupportsGet = true)]
         public int StudentId { get; set; }
 
+        public bool? pageRole = false; //added for calendar functionality
+
         public void OnGet() {
             // Additional logic for student dashboard can be added here.
         }

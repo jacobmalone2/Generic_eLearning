@@ -20,6 +20,7 @@ namespace CS3750Assignment1.Pages.Registrations
         }
 
         public IList<Registration> Registration { get; set; } = default!;
+        public IList<Course> Course { get; set; }
 
         int studentID;
 
@@ -30,8 +31,15 @@ namespace CS3750Assignment1.Pages.Registrations
             // Fetch registrations only if ID is valid
             if (studentID > 0)
             {
-                Registration = await _context.Registration.Where(c => c.StudentID == studentID).ToListAsync();
+                var testr = await _context.Registration.Where(c => c.StudentID == studentID).ToListAsync();
+                //Course = await _context.Course.ToListAsync();
 
+                //var join = testr.Join(Course, x => x.CourseID, y => y.Id, (testr, testc) => new { testr, testc }).Where(z => z.testr.CourseID == z.testc.Id);
+
+                //Course = await _context.Course.ToListAsync();
+                //var RegistrationInfo = await _context.Registration.Join(Course)
+
+                Registration = await _context.Registration.Where(c => c.StudentID == studentID).ToListAsync();
             }
             else
             {

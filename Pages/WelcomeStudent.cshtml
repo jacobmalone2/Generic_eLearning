@@ -1,7 +1,7 @@
 ﻿@page
 @model CS3750Assignment1.Pages.WelcomeStudentModel
 @{
-    ViewData["Title"] = "Student Dashboard";
+    ViewData["Title"] = "Dashboard";
     Layout = "_Layout"; // Ensures consistency with the site's layout
 }
 
@@ -11,8 +11,6 @@
             <h2 class="mb-0">Welcome, Student!</h2>
         </div>
         <div class="card-body">
-            <p class="lead">Student ID: <strong>@Model.StudentId</strong></p>
-
             <p>Access your courses, assignments, and student resources from your dashboard.</p>
 
             <a asp-page="/Index" class="btn btn-danger">Logout</a>

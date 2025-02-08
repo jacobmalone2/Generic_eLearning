@@ -38,7 +38,7 @@ namespace CS3750Assignment1.Pages.Registrations
             _context.Registration.Add(Registration);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/WelcomeStudent");
+            return RedirectToPage("./Index");
         }
     }
 }

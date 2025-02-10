@@ -27,10 +27,11 @@ namespace CS3750Assignment1.Pages
         {
             if (id == null)
             {
-                return RedirectToPage("/index");
+                return NotFound();
+                //return RedirectToPage("/index");
             }
 
-            var account = await _context.Account.FindAsync(id);
+            var account = await _context.Account.FirstOrDefaultAsync(m => m.Id == id);
 
             if (account is not null)
             {

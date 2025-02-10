@@ -1,4 +1,4 @@
-﻿@{
+@{
     var isLoggedIn = Context.Request.Cookies["LoggedUserID"] != null;
     var userRole = Context.Request.Cookies["LoggedUserRole"]; // Get role from cookies
     var homePage = "/Index"; // Default home page
@@ -35,6 +35,26 @@
                 <div class="container">
                     <a class="navbar-brand" asp-area="" asp-page="@homePage">KJCJK Project</a>
 
+                        @{
+                            //every page will have to have a propery called 'pageRole'
+                            bool? showCalendar = Model.pageRole;
+
+                            bool pageRole = false;
+                            string calendarURL = "/Calendars/Calendar";
+                            if (showCalendar is not null)
+                            {
+                                pageRole = (bool)showCalendar;
+                                if (pageRole)
+                                {
+                                    calendarURL += "Instructor";
+                                }
+                                else
+                                {
+                                    calendarURL += "Student";
+                                }
+                            }
+
+                        }
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -51,9 +71,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Tuition">Tuition</a>
                             </li>
+                          @if (showCalendar is not null)
+                        {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Calendar">Calendar</a>
+                                <a class="nav-link text-dark" asp-page="@calendarURL">Calendar</a>
                             </li>
+                        }
                         </ul>
 
                         <!-- Profile Icon and Dropdown Menu -->
@@ -66,7 +89,7 @@
                                     <li><a class="dropdown-item" asp-page="/Profile" asp-route-id="@Context.Request.Cookies["LoggedUserID"]">Profile</a></li>
                                     <li><a class="dropdown-item" asp-page="/Settings">Settings</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" asp-page="/Logout">Logout</a></li>
+                                    <li><a class="dropdown-item" asp-page="/Index">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

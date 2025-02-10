@@ -15,6 +15,7 @@ namespace CS3750Assignment1.Pages
     public class SignUp2Model : PageModel
     {
         private readonly CS3750Assignment1.Data.CS3750Assignment1Context _context;
+        public bool? pageRole = null;
 
         public SignUp2Model(CS3750Assignment1.Data.CS3750Assignment1Context context)
         {

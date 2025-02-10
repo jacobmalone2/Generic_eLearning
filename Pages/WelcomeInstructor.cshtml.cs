@@ -14,6 +14,8 @@ namespace CS3750Assignment1.Pages {
         [BindProperty(SupportsGet = true)]
         public int InstructorId { get; set; }
 
+        public bool? pageRole = true; //added for calendar functionality
+
         public void OnGet() {
             // Additional logic for instructor dashboard can be added here.
             InstructorId = Int32.Parse(Request.Cookies["LoggedUserID"]);

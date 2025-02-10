@@ -1,0 +1,67 @@
+﻿@page
+@model CS3750Assignment1.Pages.Calendars.CalendarStudentModel
+
+@{
+    ViewData["Title"] = "Student Calendar";
+}
+
+@*The following code is from fullcalendar's website at https://fullcalendar.io/docs/initialize-globals*@
+<head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script>
+        //javascript script for loading the calendar on the page
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar'); //variable for the calendar element
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth' //not sure which views are possible, dayGridMonth is probably the initial view we want for LMS 
+          });
+          calendar.render();
+        });
+
+    </script>
+</head>
+
+<body>
+    <h1>Calendar</h1>
+
+    <div id='calendar'></div>
+</body>
+
+
+@*
+<h1>CalendarStudent</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Registration[0].Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registration[0].Account)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Registration) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.AccountRole)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

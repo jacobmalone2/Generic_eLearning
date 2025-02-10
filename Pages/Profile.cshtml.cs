@@ -13,6 +13,7 @@ namespace CS3750Assignment1.Pages
     public class ProfileModel : PageModel
     {
         private readonly CS3750Assignment1Context _context;
+        public bool? pageRole = null;
 
         public ProfileModel(CS3750Assignment1Context context) {
             _context = context ?? throw new ArgumentNullException(nameof(context));

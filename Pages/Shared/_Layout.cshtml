@@ -2,12 +2,12 @@
     var isLoggedIn = Context.Request.Cookies["LoggedUserID"] != null;
     var userRole = Context.Request.Cookies["LoggedUserRole"]; // Get role from cookies
     var homePage = "/Index"; // Default home page
-    var classManagement = "/Index";
+    string classManagement = "";
 
     if (userRole == "Student")
     {
         homePage = "/WelcomeStudent"; // Redirect students to student dashboard
-        classManagement = "../Regisrations";
+        classManagement = "/Regisrations/Index";
     }
     else if (userRole == "Instructor")
     {

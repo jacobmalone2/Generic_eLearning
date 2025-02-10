@@ -2,14 +2,17 @@
     var isLoggedIn = Context.Request.Cookies["LoggedUserID"] != null;
     var userRole = Context.Request.Cookies["LoggedUserRole"]; // Get role from cookies
     var homePage = "/Index"; // Default home page
+    var classManagement = "/Index";
 
     if (userRole == "Student")
     {
         homePage = "/WelcomeStudent"; // Redirect students to student dashboard
+        classManagement = "../Regisrations";
     }
     else if (userRole == "Instructor")
     {
         homePage = "/WelcomeInstructor"; // Redirect instructors to instructor dashboard
+        classManagement = "/Courses";
     }
 
     // Detect if the user is on the login or signup page
@@ -49,7 +52,7 @@
                                 <a class="nav-link text-dark" asp-page="@homePage">Home</a> <!-- Dynamic Home Button -->
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Register">Register</a>
+                                <a class="nav-link text-dark" asp-page="../Regisrations/Index">Classes</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Tuition">Tuition</a>

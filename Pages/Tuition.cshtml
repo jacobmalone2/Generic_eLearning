@@ -1,0 +1,40 @@
+﻿@page
+@model CS3750Assignment1.Pages.TuitionModel
+@{
+    ViewData["Title"] = "Tuition Payment";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-info text-white">
+            <h2 class="mb-0">Tuition Payment</h2>
+        </div>
+        <div class="card-body">
+            <h4>Registered Courses</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Course Number</th>
+                        <th>Credits</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var course in Model.RegisteredCourses)
+                    {
+                        <tr>
+                            <td>@course.CourseName</td>
+                            <td>@course.CourseNumber</td>
+                            <td>@course.Credits</td>
+                            <td>@(course.Credits * 300)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <h4>Total Cost: $@Model.TotalCost</h4>
+            <a asp-page="/Payment" class="btn btn-primary">Proceed to Payment</a>
+        </div>
+    </div>
+</div>

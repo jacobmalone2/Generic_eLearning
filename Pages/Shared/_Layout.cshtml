@@ -34,16 +34,15 @@
                             {
                                 pageRole = (bool)showCalendar;
                                 if (pageRole)
+                                {
                                     calendarURL += "Instructor";
+                                }
                                 else
+                                {
                                     calendarURL += "Student";
+                                }
                             }
 
-                            
-
-
-
-                            //will require a student or instructor tag in the future
                         }
                         @if (showCalendar is not null)
                         {

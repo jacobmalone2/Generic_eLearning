@@ -19,8 +19,8 @@ namespace CS3750Assignment1.Pages.Registrations
             _context = context;
         }
 
-        public IList<Registration> Registration { get; set; } = default!;
-        public IList<Course> Course { get; set; }
+        // Use a ViewModel instead of Registration directly
+        public IList<RegistrationViewModel> Registrations { get; set; } = new List<RegistrationViewModel>();
 
         int studentID;
 
@@ -28,23 +28,42 @@ namespace CS3750Assignment1.Pages.Registrations
         {
             studentID = int.Parse(Request.Cookies["LoggedUserID"]);
 
-            // Fetch registrations only if ID is valid
             if (studentID > 0)
             {
-                var testr = await _context.Registration.Where(c => c.StudentID == studentID).ToListAsync();
-                //Course = await _context.Course.ToListAsync();
-
-                //var join = testr.Join(Course, x => x.CourseID, y => y.Id, (testr, testc) => new { testr, testc }).Where(z => z.testr.CourseID == z.testc.Id);
-
-                //Course = await _context.Course.ToListAsync();
-                //var RegistrationInfo = await _context.Registration.Join(Course)
-
-                Registration = await _context.Registration.Where(c => c.StudentID == studentID).ToListAsync();
+                // LINQ JOIN to include Course Name
+                Registrations = await (from reg in _context.Registration
+                                       join course in _context.Course
+                                       on reg.CourseID equals course.Id
+                                       where reg.StudentID == studentID
+                                       select new RegistrationViewModel
+                                       {
+                                           Id = reg.Id,
+                                           StudentID = reg.StudentID,
+                                           CourseID = reg.CourseID,
+                                           CourseName = course.Name, // Added Course Name
+                                           CourseNumber = course.CourseNumber,
+                                           Capacity = course.Capacity,
+                                           Credits = course.Credits,
+                                           MeetingDays = course.MeetingDays,
+                                           MeetingTime = course.MeetingTime,
+                                           Location = course.Location
+                                       }).ToListAsync();
             }
-            else
-            {
-                Registration = new List<Registration>(); // Avoid null reference issues
-            }
+        }
+
+        // Custom ViewModel to hold Registration and Course details
+        public class RegistrationViewModel
+        {
+            public int Id { get; set; }
+            public int StudentID { get; set; }
+            public int CourseID { get; set; }
+            public string CourseName { get; set; } // New field for Course Name
+            public int CourseNumber { get; set; }
+            public int Capacity{ get; set; }
+            public int Credits { get; set; }
+            public string MeetingDays { get; set; }
+            public string MeetingTime { get; set; }
+            public string Location { get; set; }
         }
     }
 }

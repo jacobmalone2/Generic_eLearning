@@ -2,51 +2,43 @@
 @model CS3750Assignment1.Pages.Registrations.IndexModel
 
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "My Registrations";
 }
 
+<h1>My Registrations</h1>
 
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
 
-<div class="container mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-success text-white">
-            <h2 class="mb-0">Welcome, Student!</h2>
-        </div>
-        <div class="card-body">
-            <p>Access your courses, assignments, and student resources from your dashboard.</p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Registration[0].CourseID)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Registration[0].StudentID)
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Registration)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CourseID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StudentID)
-                            </td>
-                            <td>
-                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                                <a asp-page="./Delete" asp-route-id="@item.Id">Drop</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-            <a asp-page="/Index" class="btn btn-danger">Logout</a>
-        </div>
-    </div>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Course Number</th>
+            <th>Credits</th>
+            <th>Capacity</th>
+            <th>Days Held</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Registrations)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CourseName)</td> 
+                <td>@Html.DisplayFor(modelItem => item.CourseNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Credits)</td>
+                <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
+                <td>@Html.DisplayFor(modelItem => item.MeetingDays)</td>
+                <td>@Html.DisplayFor(modelItem => item.MeetingTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.Location)</td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

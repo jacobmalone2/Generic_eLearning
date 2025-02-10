@@ -1,0 +1,99 @@
+﻿@page "{id:int?}"
+@model CS3750Assignment1.Pages.EditProfileModel
+@{
+	ViewData["Title"] = "Edit Profile";
+}
+
+<h1>Edit Profile</h1>
+
+<div class="row">
+	<div class="col-md-4">
+		<form method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<!-- ID -->
+			<input type="hidden" asp-for="Account.Id" />
+
+			<!-- First Name -->
+			<div class="mb-3">
+				<label asp-for="Account.FirstName" class="form-label fw-bold">First Name</label>
+				<input asp-for="Account.FirstName" class="form-control" placeholder="Enter your first name" required />
+				<span asp-validation-for="Account.FirstName" class="text-danger"></span>
+			</div>
+
+			<!-- Last Name -->
+			<div class="mb-3">
+				<label asp-for="Account.LastName" class="form-label fw-bold">Last Name</label>
+				<input asp-for="Account.LastName" class="form-control" placeholder="Enter your last name" required />
+				<span asp-validation-for="Account.LastName" class="text-danger"></span>
+			</div>
+
+			<!-- Birthdate -->
+			<div class="mb-3">
+				<label asp-for="Account.Birthdate" class="form-label fw-bold">Birthdate</label>
+				<input asp-for="Account.Birthdate" type="date" class="form-control" required />
+				<span asp-validation-for="Account.Birthdate" class="text-danger"></span>
+			</div>
+
+			<!-- Email -->
+			<div class="mb-3">
+				<label asp-for="Account.Email" class="form-label fw-bold">Email</label>
+				<input asp-for="Account.Email" type="email" class="form-control" placeholder="Enter your email" required />
+				<span asp-validation-for="Account.Email" class="text-danger"></span>
+			</div>
+
+			<!-- Username -->
+			<div class="mb-3">
+				<label asp-for="Account.Username" class="form-label fw-bold">Username</label>
+				<input asp-for="Account.Username" class="form-control" placeholder="Choose a username" required />
+				<span asp-validation-for="Account.Username" class="text-danger"></span>
+			</div>
+
+			<!-- Password -->
+			<div class="mb-3">
+				<label asp-for="Account.Password" class="form-label fw-bold">Password</label>
+				<input asp-for="Account.Password" type="password" class="form-control" placeholder="Enter a secure password" required />
+				<span asp-validation-for="Account.Password" class="text-danger"></span>
+			</div>
+
+			<!-- Confirm Password -->
+			<div class="mb-3">
+				<label asp-for="Account.PasswordConfirmation" class="form-label fw-bold">Confirm Password</label>
+				<input asp-for="Account.PasswordConfirmation" type="password" class="form-control" placeholder="Re-enter your password" required />
+				<span asp-validation-for="Account.PasswordConfirmation" class="text-danger"></span>
+			</div>
+
+			<!-- User Role Selection -->
+			<div class="mb-3">
+				<label class="form-label fw-bold">User Role</label>
+				<div class="form-check">
+					<input type="radio" asp-for="Account.AccountRole" value="Instructor" id="instructor" class="form-check-input" required />
+					<label for="instructor" class="form-check-label">Instructor</label>
+				</div>
+				<div class="form-check">
+					<input type="radio" asp-for="Account.AccountRole" value="Student" id="student" class="form-check-input" required />
+					<label for="student" class="form-check-label">Student</label>
+				</div>
+				<span asp-validation-for="Account.AccountRole" class="text-danger"></span>
+			</div>
+
+			<!-- Confirm Changes Button -->
+			<div class="d-grid my-1">
+				<button type="submit" class="btn btn-primary">Confirm Changes</button>
+			</div>
+
+			<!-- Cancel Button -->
+			<div class="d-grid my-1">
+				<a asp-page="./Profile" class="btn btn-primary">Cancel</a>
+			</div>
+		</form>
+
+		
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

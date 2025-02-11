@@ -24,6 +24,7 @@ namespace CS3750Assignment1.Pages.Registrations
         public Registration Registration { get; set; } = default!;
 
         public IList<Course> Courses { get; set; } = default!;
+        public IList<Registration> Registrations { get; set; } = default!;
 
         int studentID;
 
@@ -38,6 +39,15 @@ namespace CS3750Assignment1.Pages.Registrations
             catch (Exception ex)
             {
                 Courses = new List<Course>(); // Avoid null reference issues
+            }
+
+            try
+            {
+                Registrations = await _context.Registration.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Registrations = new List<Registration>(); // Avoid null reference issues
             }
         }
 
@@ -60,6 +70,16 @@ namespace CS3750Assignment1.Pages.Registrations
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        public bool IsRegistered(int x)
+        {
+            foreach (Registration r in Registrations)
+            {
+                if (r.CourseID == x) return true;
+            }
+
+            return false;
         }
     }
 }

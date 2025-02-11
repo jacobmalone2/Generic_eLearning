@@ -22,14 +22,16 @@ namespace CS3750Assignment1.Pages.Registrations
         [BindProperty]
         public Registration Registration { get; set; } = default!;
 
+
+        // Course ID is passed in here, not the registration ID.
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id == null || Request.Cookies["LoggedUserID"] == null || Request.Cookies["LoggedUserID"] == "0")
             {
                 return NotFound();
             }
 
-            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.Id == id);
+            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.CourseID == id && m.StudentID == Int32.Parse(Request.Cookies["LoggedUserID"]));
 
             if (registration is not null)
             {
@@ -48,7 +50,7 @@ namespace CS3750Assignment1.Pages.Registrations
                 return NotFound();
             }
 
-            var registration = await _context.Registration.FindAsync(id);
+            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.CourseID == id && m.StudentID == Int32.Parse(Request.Cookies["LoggedUserID"]));
             if (registration != null)
             {
                 Registration = registration;

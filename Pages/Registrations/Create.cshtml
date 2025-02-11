@@ -64,11 +64,18 @@
                     @Html.DisplayFor(modelItem => item.Location)
                 </td>
                 <td>
-                    <div class="form-group">
-                        <form method="post" asp-page-handler="Submit" asp-route-id=@item.Id>
-                            <input type="submit" value="Register" class="btn btn-primary" />
-                        </form>
-                    </div>
+                    @if (Model.IsRegistered(item.Id))
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Drop</a>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <form method="post" asp-page-handler="Submit" asp-route-id=@item.Id>
+                                <input type="submit" value="Register" class="btn btn-primary" />
+                            </form>
+                        </div>
+                    }
                 </td>
             </tr>
         }

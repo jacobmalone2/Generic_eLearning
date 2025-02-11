@@ -28,6 +28,26 @@ namespace CS3750Assignment1.Pages {
         [BindProperty]
         public Account Account { get; set; } = default!;
 
+        public async Task OnGetAsync()
+        {
+            try
+            {
+                Response.Cookies.Delete("LoggedUserID");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No UserID Cookie Found");
+            }
+            try
+            {
+                Response.Cookies.Delete("LoggedUserRole");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No UserRole Cookie Found");
+            }
+        }
+
         public async Task<IActionResult> OnPostAsync() {
             if (_context == null) {
                 Console.WriteLine("Database context is null.");

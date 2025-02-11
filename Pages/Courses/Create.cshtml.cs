@@ -21,7 +21,8 @@ namespace CS3750Assignment1.Pages.Courses {
             instructorID = int.Parse(Request.Cookies["LoggedUserID"]);
             Course.InstructorID = instructorID;  // Assign instructor ID to new course
 
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid || Request.Cookies["LoggedUserRole"] != "Instructor")
+            {
                 return Page();
             }
 

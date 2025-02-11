@@ -44,7 +44,7 @@ namespace CS3750Assignment1.Pages.Registrations
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync(int Id)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Request.Cookies["LoggedUserRole"] != "Student")
             {
                 return Page();
             }

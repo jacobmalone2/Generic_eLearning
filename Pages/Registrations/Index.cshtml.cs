@@ -54,10 +54,11 @@ namespace CS3750Assignment1.Pages.Registrations
         // Custom ViewModel to hold Registration and Course details
         public class RegistrationViewModel
         {
+            // New fields for Course information
             public int Id { get; set; }
             public int StudentID { get; set; }
             public int CourseID { get; set; }
-            public string CourseName { get; set; } // New field for Course Name
+            public string CourseName { get; set; }
             public int CourseNumber { get; set; }
             public int Capacity{ get; set; }
             public int Credits { get; set; }

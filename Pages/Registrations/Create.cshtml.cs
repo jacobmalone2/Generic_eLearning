@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CS3750Assignment1.Pages.Registrations
 {
@@ -21,11 +22,26 @@ namespace CS3750Assignment1.Pages.Registrations
 
         public IActionResult OnGet()
         {
+            studentID = int.Parse(Request.Cookies["LoggedUserID"]);
+
+            try
+            {
+                Courses = await _context.Course.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Courses = new List<Course>(); // Avoid null reference issues
+            }
+
             return Page();
         }
 
         [BindProperty]
         public Registration Registration { get; set; } = default!;
+
+        public IList<Course> Courses { get; set; } = default!;
+
+        int studentID;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()

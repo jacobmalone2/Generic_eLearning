@@ -5,6 +5,7 @@ namespace CS3750Assignment1.Models
 {
     public class Registration
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]

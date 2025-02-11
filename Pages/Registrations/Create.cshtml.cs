@@ -20,7 +20,14 @@ namespace CS3750Assignment1.Pages.Registrations
             _context = context;
         }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public Registration Registration { get; set; } = default!;
+
+        public IList<Course> Courses { get; set; } = default!;
+
+        int studentID;
+
+        public async Task OnGetAsync()
         {
             studentID = int.Parse(Request.Cookies["LoggedUserID"]);
 
@@ -32,24 +39,20 @@ namespace CS3750Assignment1.Pages.Registrations
             {
                 Courses = new List<Course>(); // Avoid null reference issues
             }
-
-            return Page();
         }
 
-        [BindProperty]
-        public Registration Registration { get; set; } = default!;
-
-        public IList<Course> Courses { get; set; } = default!;
-
-        int studentID;
-
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int Id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+
+            studentID = int.Parse(Request.Cookies["LoggedUserID"]);
+
+            Registration.StudentID = studentID;
+            Registration.CourseID = Id; // Fetch Course ID from register button.
 
             _context.Registration.Add(Registration);
             await _context.SaveChangesAsync();

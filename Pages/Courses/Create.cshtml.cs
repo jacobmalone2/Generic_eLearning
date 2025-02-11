@@ -26,7 +26,6 @@ namespace CS3750Assignment1.Pages.Courses {
             }
 
             _context.Course.Add(Course);
-            Console.WriteLine(Course.MeetingDays);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

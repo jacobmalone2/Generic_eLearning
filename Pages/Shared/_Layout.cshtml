@@ -1,16 +1,48 @@
 @{
+    // Link Url Redirects
+    string homePage = ""; // Default home page
+    string classManagementURL, calendarURL = "";
+
+    // Link Displays
+    string userClassDisplay = "";
+
     var isLoggedIn = Context.Request.Cookies["LoggedUserID"] != null;
     var userRole = Context.Request.Cookies["LoggedUserRole"]; // Get role from cookies
-    var homePage = "/Index"; // Default home page
 
+    // Generate redirects and displays based on user role.
+
+    if (userRole == "Instructor")
+    {
+        homePage = "/Courses/Index";
+        calendarURL = "/Calendars/CalendarInstructor";
+        classManagementURL = "/Courses/Create";
+        userClassDisplay = "Create a Course";
+    }
+    else
+    {
+        homePage = "/Registrations/Index";
+        calendarURL = "/Calendars/CalendarStudent";
+        classManagementURL = "/Registrations/Create";
+        userClassDisplay = "Register for Classes";
+    }
+
+    // Leaving it here incase we do need to bring back the welcome pages as the home page.
+    // As of writing this, the professor did not care for having a welcome screen. We should redirect the user to their list of classes
+    // upon login instead of showing a welcome page.
+    /*
     if (userRole == "Student")
     {
         homePage = "/WelcomeStudent"; // Redirect students to student dashboard
+                                      //classURL = "/Regisrations/Index";
     }
     else if (userRole == "Instructor")
     {
         homePage = "/WelcomeInstructor"; // Redirect instructors to instructor dashboard
+                                         //classURL = "/Courses/Index";
     }
+    */
+
+
 
     // Detect if the user is on the login or signup page
     var currentPath = Context.Request.Path.Value?.ToLower() ?? "";
@@ -27,6 +59,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CS3750Assignment1.styles.css" asp-append-version="true" />
 </head>
+
+@using Microsoft.AspNetCore.Http;
+
 <body>
     <header>
         @if (!isAuthPage && isLoggedIn) // Hide navbar if on login or signup page
@@ -35,26 +70,6 @@
                 <div class="container">
                     <a class="navbar-brand" asp-area="" asp-page="@homePage">KJCJK Project</a>
 
-                        @{
-                            //every page will have to have a propery called 'pageRole'
-                            bool? showCalendar = Model.pageRole;
-
-                            bool pageRole = false;
-                            string calendarURL = "/Calendars/Calendar";
-                            if (showCalendar is not null)
-                            {
-                                pageRole = (bool)showCalendar;
-                                if (pageRole)
-                                {
-                                    calendarURL += "Instructor";
-                                }
-                                else
-                                {
-                                    calendarURL += "Student";
-                                }
-                            }
-
-                        }
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -62,21 +77,19 @@
 
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" id="navbarNav">
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
+                            <!--I think having the home button is reduntant since the KJCJK button already links to home.-->
+                            @* <li class="nav-item"> 
                                 <a class="nav-link text-dark" asp-page="@homePage">Home</a> <!-- Dynamic Home Button -->
-                            </li>
+                            </li> *@
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Register">Register</a>
+                                <a class="nav-link text-dark" asp-page="@classManagementURL">@userClassDisplay</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Tuition">Tuition</a>
                             </li>
-                          @if (showCalendar is not null)
-                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="@calendarURL">Calendar</a>
                             </li>
-                        }
                         </ul>
 
                         <!-- Profile Icon and Dropdown Menu -->

@@ -23,13 +23,6 @@ namespace CS3750Assignment1.Pages {
         public string password { get; set; } = string.Empty;
 
         public void OnGet() {
-        }
-
-        [BindProperty]
-        public Account Account { get; set; } = default!;
-
-        public async Task OnGetAsync()
-        {
             try
             {
                 Response.Cookies.Delete("LoggedUserID");
@@ -47,6 +40,9 @@ namespace CS3750Assignment1.Pages {
                 Console.WriteLine("No UserRole Cookie Found");
             }
         }
+
+        [BindProperty]
+        public Account Account { get; set; } = default!;
 
         public async Task<IActionResult> OnPostAsync() {
             if (_context == null) {

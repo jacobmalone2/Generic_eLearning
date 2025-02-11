@@ -54,6 +54,8 @@ namespace CS3750Assignment1.Pages.Registrations
             Registration.StudentID = studentID;
             Registration.CourseID = Id; // Fetch Course ID from register button.
 
+            Registration.Id = 0; // Unless you feel like going down a rabit hole, don't delete this line.
+
             _context.Registration.Add(Registration);
             await _context.SaveChangesAsync();
 

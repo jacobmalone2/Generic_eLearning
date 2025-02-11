@@ -64,9 +64,11 @@
                     @Html.DisplayFor(modelItem => item.Location)
                 </td>
                 <td>
-                    <form method="post" asp-page-handler="Submit" asp-route-id=@item.Id>
-                        <input type="submit" value="Register" class="btn btn-primary" />
-                    </form>
+                    <div class="form-group">
+                        <form method="post" asp-page-handler="Submit" asp-route-id=@item.Id>
+                            <input type="submit" value="Register" class="btn btn-primary" />
+                        </form>
+                    </div>
                 </td>
             </tr>
         }

@@ -64,13 +64,17 @@
 			</div>
 
 			<!-- User Role Selection -->
-			<div>
+			<div class="d-none">
+				<label class="form-label fw-bold">User Role</label>
 				<div class="form-check">
-					<input type="hidden" asp-for="Account.AccountRole" value="Instructor" id="instructor" class="form-check-input" required />
+					<input type="radio" asp-for="Account.AccountRole" value="Instructor" id="instructor" class="form-check-input" required />
+					<label for="instructor" class="form-check-label">Instructor</label>
 				</div>
 				<div class="form-check">
-					<input type="hidden" asp-for="Account.AccountRole" value="Student" id="student" class="form-check-input" required />
+					<input type="radio" asp-for="Account.AccountRole" value="Student" id="student" class="form-check-input" required />
+					<label for="student" class="form-check-label">Student</label>
 				</div>
+				<span asp-validation-for="Account.AccountRole" class="text-danger"></span>
 			</div>
 
 			<!-- Confirm Changes Button -->

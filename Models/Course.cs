@@ -30,7 +30,7 @@ namespace CS3750Assignment1.Models
 
         // List of the days of the week enum.
         [StringLength(80, MinimumLength = 0)]
-        public List<DayOfWeek>? MeetingDays { get; set; }
+        public string? MeetingDays { get; set; }
 
         [StringLength(15, MinimumLength = 0)]
         public string? MeetingTime { get; set; }

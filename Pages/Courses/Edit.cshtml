@@ -46,6 +46,12 @@
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
+                <label asp-for="Course.MeetingDays" class="control-label"></label>
+                <input asp-for="Course.MeetingDays" class="form-control" />
+                <span asp-validation-for="Course.MeetingDays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
                 <label asp-for="Course.MeetingTime" class="control-label"></label>
                 <input asp-for="Course.MeetingTime" class="form-control" />
                 <span asp-validation-for="Course.MeetingTime" class="text-danger"></span>

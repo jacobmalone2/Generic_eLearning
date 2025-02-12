@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CS3750Assignment1.Pages.Registrations
 {
@@ -19,26 +20,66 @@ namespace CS3750Assignment1.Pages.Registrations
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
         [BindProperty]
         public Registration Registration { get; set; } = default!;
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public IList<Course> Courses { get; set; } = default!;
+        public IList<Registration> Registrations { get; set; } = default!;
+
+        int studentID;
+
+        public async Task OnGetAsync()
         {
-            if (!ModelState.IsValid)
+            studentID = int.Parse(Request.Cookies["LoggedUserID"]);
+
+            try
+            {
+                Courses = await _context.Course.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Courses = new List<Course>(); // Avoid null reference issues
+            }
+
+            try
+            {
+                Registrations = await _context.Registration.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Registrations = new List<Registration>(); // Avoid null reference issues
+            }
+        }
+
+        // For more information, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync(int Id)
+        {
+            if (!ModelState.IsValid || Request.Cookies["LoggedUserRole"] != "Student")
             {
                 return Page();
             }
+
+            studentID = int.Parse(Request.Cookies["LoggedUserID"]);
+
+            Registration.StudentID = studentID;
+            Registration.CourseID = Id; // Fetch Course ID from register button.
+
+            Registration.Id = 0; // Unless you feel like going down a rabit hole, don't delete this line.
 
             _context.Registration.Add(Registration);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        public bool IsRegistered(int x)
+        {
+            foreach (Registration r in Registrations)
+            {
+                if (r.CourseID == x) return true;
+            }
+
+            return false;
         }
     }
 }

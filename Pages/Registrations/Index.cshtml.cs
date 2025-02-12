@@ -40,7 +40,13 @@ namespace CS3750Assignment1.Pages.Registrations
                                            Id = reg.Id,
                                            StudentID = reg.StudentID,
                                            CourseID = reg.CourseID,
-                                           CourseName = course.Name // Added Course Name
+                                           CourseName = course.Name, // Added Course Name
+                                           CourseNumber = course.CourseNumber,
+                                           Capacity = course.Capacity,
+                                           Credits = course.Credits,
+                                           MeetingDays = course.MeetingDays,
+                                           MeetingTime = course.MeetingTime,
+                                           Location = course.Location
                                        }).ToListAsync();
             }
         }
@@ -48,10 +54,17 @@ namespace CS3750Assignment1.Pages.Registrations
         // Custom ViewModel to hold Registration and Course details
         public class RegistrationViewModel
         {
+            // New fields for Course information
             public int Id { get; set; }
             public int StudentID { get; set; }
             public int CourseID { get; set; }
-            public string CourseName { get; set; } // New field for Course Name
+            public string CourseName { get; set; }
+            public int CourseNumber { get; set; }
+            public int Capacity{ get; set; }
+            public int Credits { get; set; }
+            public string MeetingDays { get; set; }
+            public string MeetingTime { get; set; }
+            public string Location { get; set; }
         }
     }
 }

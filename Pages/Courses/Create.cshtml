@@ -38,6 +38,27 @@
                 <span asp-validation-for="Course.Capacity" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Course.MeetingDays" class="control-label">Meeting Days</label><br />
+                <input asp-for="MeetingSunday" type="checkbox"/>
+                <label for="meetingSunday">Sunday</label>
+                <input asp-for="MeetingMonday" type="checkbox"/>
+                <label for="meetingSunday">Monday</label>
+                <input asp-for="MeetingTuesday" type="checkbox"/>
+                <label for="meetingSunday">Tuesday</label>
+                <input asp-for="MeetingWednesday" type="checkbox"/>
+                <label for="meetingSunday">Wednesday</label><br />
+                <input asp-for="MeetingThursday" type="checkbox"/>
+                <label for="meetingSunday">Thursday</label>
+                <input asp-for="MeetingFriday" type="checkbox"/>
+                <label for="meetingSunday">Friday</label>
+                <input asp-for="MeetingSaturday" type="checkbox"/>
+                <label for="meetingSunday">Saturday</label>
+                @*<span class="text-danger">*</span>
+                <label asp-for="Course.MeetingDays" class="control-label"></label>
+                <input asp-for="Course.MeetingDays" class="form-control" />
+                <span asp-validation-for="Course.MeetingDays" class="text-danger"></span> @*Original form element for the meetingDays property.*@
+            </div>
+            <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Course.MeetingTime" class="control-label"></label>
                 <input asp-for="Course.MeetingTime" class="form-control" />

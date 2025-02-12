@@ -23,6 +23,22 @@ namespace CS3750Assignment1.Pages {
         public string password { get; set; } = string.Empty;
 
         public void OnGet() {
+            try
+            {
+                Response.Cookies.Delete("LoggedUserID");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No UserID Cookie Found");
+            }
+            try
+            {
+                Response.Cookies.Delete("LoggedUserRole");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No UserRole Cookie Found");
+            }
         }
 
         [BindProperty]
@@ -65,10 +81,10 @@ namespace CS3750Assignment1.Pages {
 
             // Redirect to the applicable Welcome page based on user account
             if (account.AccountRole == "Instructor") {
-                return RedirectToPage("./WelcomeInstructor/",new { id = account.Id });
+                return RedirectToPage("./Courses/Index/");
             }
             else if (account.AccountRole == "Student") {
-                return RedirectToPage("./WelcomeStudent/",new { id = account.Id });
+                return RedirectToPage("./Registrations/Index/");
             } // else if the the account is not being found, return to the index page
             else {
                 ModelState.AddModelError(string.Empty,"Account role not found.");

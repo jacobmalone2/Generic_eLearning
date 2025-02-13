@@ -31,7 +31,7 @@ namespace CS3750Assignment1.Pages.Registrations
                 return NotFound();
             }
 
-            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.CourseID == id && m.StudentID == Int32.Parse(Request.Cookies["LoggedUserID"]));
+            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.CourseID == id && m.StudentID == int.Parse(Request.Cookies["LoggedUserID"]));
 
             if (registration is not null)
             {
@@ -50,7 +50,7 @@ namespace CS3750Assignment1.Pages.Registrations
                 return NotFound();
             }
 
-            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.CourseID == id && m.StudentID == Int32.Parse(Request.Cookies["LoggedUserID"]));
+            var registration = await _context.Registration.FirstOrDefaultAsync(m => m.CourseID == id && m.StudentID == int.Parse(Request.Cookies["LoggedUserID"]));
             if (registration != null)
             {
                 Registration = registration;

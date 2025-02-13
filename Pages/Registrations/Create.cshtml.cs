@@ -76,7 +76,7 @@ namespace CS3750Assignment1.Pages.Registrations
         {
             foreach (Registration r in Registrations)
             {
-                if (r.CourseID == x) return true;
+                if (r.CourseID == x && r.StudentID == int.Parse(Request.Cookies["LoggedUserID"])) return true;
             }
 
             return false;

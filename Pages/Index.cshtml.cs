@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 namespace CS3750Assignment1.Pages {
     public class IndexModel:PageModel {
         private readonly CS3750Assignment1Context _context;
-        public bool? pageRole = null; //added for calendar functionality -> null is for pages with no role required, false is for students, true is for instructors
+        public bool? pageRole = null; // added for calendar functionality -> null is for pages with no role required, false is for students, true is for instructors
 
         public IndexModel(CS3750Assignment1Context context) {
             _context = context;
@@ -23,21 +23,17 @@ namespace CS3750Assignment1.Pages {
         public string password { get; set; } = string.Empty;
 
         public void OnGet() {
-            try
-            {
+            try {
                 Response.Cookies.Delete("LoggedUserID");
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine("No UserID Cookie Found: " + ex);
             }
-            try
-            {
+            try {
                 Response.Cookies.Delete("LoggedUserRole");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("No UserRole Cookie Found: "+ ex);
+            catch (Exception ex) {
+                Console.WriteLine("No UserRole Cookie Found: " + ex);
             }
         }
 
@@ -62,30 +58,29 @@ namespace CS3750Assignment1.Pages {
                 .FirstOrDefaultAsync();
 
             // Check if the account exists
-            if (account == null || account.Id==0) {
+            if (account == null || account.Id == 0) {
                 ModelState.AddModelError(string.Empty,"Invalid username or password.");
                 return Page();
             }
 
             // Grab User ID
-            Response.Cookies.Append("LoggedUserID", account.Id.ToString(), new CookieOptions {
+            Response.Cookies.Append("LoggedUserID",account.Id.ToString(),new CookieOptions {
                 HttpOnly = true,
                 Secure = true,
-                SameSite = SameSiteMode.Strict
+                SameSite = SameSiteMode.Lax,
+                Expires = DateTime.Now.AddMinutes(180)
             });
 
             // Grab User Role
-            Response.Cookies.Append("LoggedUserRole", account.AccountRole);
+            Response.Cookies.Append("LoggedUserRole",account.AccountRole);
 
             // Grab User Profile Picture Path
             if (!string.IsNullOrEmpty(account.imgSource)) {
                 Response.Cookies.Append("LoggedUserPFP",account.imgSource);
             }
-                //Response.Cookies.Append("LoggedUserPFP", account.imgSource);
 
             // Cookie function failed
-            if (Request.Cookies["LoggedUserID"] == null || Request.Cookies["LoggedUserID"] == "0")
-            {
+            if (Request.Cookies["LoggedUserID"] == null || Request.Cookies["LoggedUserID"] == "0") {
                 ModelState.AddModelError(string.Empty,"Cookie failed to set UserID.");
                 return Page();
             }
@@ -96,13 +91,13 @@ namespace CS3750Assignment1.Pages {
             }
             else if (account.AccountRole == "Student") {
                 return RedirectToPage("./Registrations/Index/");
-            } // else if the the account is not being found, return to the index page
+            }
             else {
                 ModelState.AddModelError(string.Empty,"Account role not found.");
                 return Page();
             }
-
         }
+
         private string HashPassword(string password) {
             using (var sha256 = SHA256.Create()) {
                 var bytes = Encoding.UTF8.GetBytes(password);

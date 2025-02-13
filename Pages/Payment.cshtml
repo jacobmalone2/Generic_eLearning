@@ -1,0 +1,13 @@
+﻿@page
+@model PaymentModel
+@{
+    ViewData["Title"] = "Checkout";
+	Layout = "_Layout";
+}
+
+<h2>Payment Checkout</h2>
+<p>You are about to pay <strong>$@Model.Amount</strong> for tuition.</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+</form>

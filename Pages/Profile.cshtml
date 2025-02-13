@@ -11,18 +11,24 @@
         <div class="text-center">
             <!-- Profile Picture with Default -->
             <div class="profile-pic-container">
-                <img id="profileImage" src="@(!string.IsNullOrEmpty(Model.Account.imgSource) ? Model.Account.imgSource : "/images/profiles/default-profile.png")" 
+                <img id="profileImage" src="@(!string.IsNullOrEmpty(Model.Account.imgSource) ? Model.Account.imgSource : "/images/profiles/defaultprofile.png")" 
                      class="rounded-circle img-thumbnail" 
                      width="150" height="150" 
                      alt="Profile Picture" />
             </div>
 
             <!-- Upload Profile Picture Form -->
-            <form method="post" enctype="multipart/form-data" asp-page-handler="UploadProfilePicture">
-                <input type="hidden" name="id" value="@Model.Account.Id" />
-                <input type="file" id="profilePicInput" name="ProfilePicture" class="form-control mt-3" accept="image/*" onchange="previewImage(event)">
-                <button type="submit" class="btn btn-primary mt-2">Upload</button>
-            </form>
+            <div class="d-none" id="change-photo-form">
+				<form method="post" enctype="multipart/form-data" asp-page-handler="UploadProfilePicture">
+					<input type="hidden" name="id" value="@Model.Account.Id" />
+					<input type="file" id="profilePicInput" name="ProfilePicture" class="form-control mt-3" accept="image/*" onchange="previewImage(event)">
+					<button type="submit" class="btn btn-primary mt-2">Upload</button>
+					@* <button type="button" class="btn btn-danger mt-2">Remove Photo</button> *@
+				</form>
+            </div>
+
+            <button type="button" class="btn btn-secondary mt-2 d-inline" id="change-photo-button">Change Photo</button>
+            <button type="button" class="btn btn-secondary mt-2 d-none" id="cancel-change-photo-button">Cancel</button>
         </div>
 
         <hr />
@@ -51,5 +57,23 @@
             output.src = reader.result;
         };
         reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+<!-- JavaScript to bring up change photo form -->
+<script>
+    let changePhotoForm = document.getElementById("change-photo-form");
+    let changePhotoButton = document.getElementById("change-photo-button");
+    let cancelChangePhotoButton = document.getElementById("cancel-change-photo-button");
+    changePhotoButton.onclick = function() {
+        console.log("change photo clicked");
+        changePhotoForm.classList.replace("d-none", "d-block");
+        changePhotoButton.classList.replace("d-inline", "d-none");
+        cancelChangePhotoButton.classList.replace("d-none", "d-inline");
+    }
+    cancelChangePhotoButton.onclick = function() {
+        changePhotoForm.classList.replace("d-block", "d-none");
+        changePhotoButton.classList.replace("d-none", "d-inline");
+        cancelChangePhotoButton.classList.replace("d-inline", "d-none");
     }
 </script>

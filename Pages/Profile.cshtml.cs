@@ -62,7 +62,7 @@ namespace CS3750Assignment1.Pages
 
             if (ProfilePicture != null)
             {
-                var filePath = Path.Combine("wwwroot/images/profile_pictures", ProfilePicture.FileName);
+                var filePath = Path.Combine("wwwroot/images/profiles", ProfilePicture.FileName);
 
                 // Save the file in the directory
                 using (var stream = new FileStream(filePath, FileMode.Create))

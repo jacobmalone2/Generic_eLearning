@@ -77,6 +77,9 @@
 				<span asp-validation-for="Account.AccountRole" class="text-danger"></span>
 			</div>
 
+			<!-- Profile Picture -->
+			<input type="hidden" asp-for="Account.imgSource" />
+
 			<!-- Confirm Changes Button -->
 			<div class="d-grid my-1">
 				<button type="submit" class="btn btn-primary">Confirm Changes</button>
@@ -84,7 +87,7 @@
 
 			<!-- Cancel Button -->
 			<div class="d-grid my-1">
-				<a asp-page="./Profile" class="btn btn-primary">Cancel</a>
+				<a asp-page="./Profile" class="btn btn-secondary">Cancel</a>
 			</div>
 		</form>
 

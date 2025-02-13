@@ -23,11 +23,12 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public IList<Course> Course { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             //The following code was commented out on Feb 7, 2025 to get the calendar loaded on the page but the calendar does not yet have instructor course functionality
             //Course = await _context.Course
-              //  .Include(c => c.Account).ToListAsync();
+            //  .Include(c => c.Account).ToListAsync();
+            return Page();
         }
     }
 }

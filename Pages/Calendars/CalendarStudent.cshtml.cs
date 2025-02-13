@@ -23,7 +23,7 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public IList<Registration> Registration { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             //the following code block will likely be used later when the calendar is integrated with the student's course information
             //as of Feb 7, 2025 this has been commented out to show that the Calendar itself can be loaded and used on the webpage but
@@ -31,6 +31,7 @@ namespace CS3750Assignment1.Pages.Calendars
             //Registration = await _context.Registration
             //    .Include(r => r.Account)
             //    .Include(r => r.Course).ToListAsync();
+            return Page();
         }
     }
 }

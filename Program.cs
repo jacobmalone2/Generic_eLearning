@@ -24,6 +24,10 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseCookiePolicy(new CookiePolicyOptions {
+    MinimumSameSitePolicy = SameSiteMode.Strict
+});
+
 app.UseAuthorization();
 
 app.MapStaticAssets();

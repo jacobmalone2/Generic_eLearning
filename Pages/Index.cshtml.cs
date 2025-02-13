@@ -29,7 +29,7 @@ namespace CS3750Assignment1.Pages {
             }
             catch (Exception ex)
             {
-                Console.WriteLine("No UserID Cookie Found");
+                Console.WriteLine("No UserID Cookie Found: " + ex);
             }
             try
             {
@@ -37,7 +37,7 @@ namespace CS3750Assignment1.Pages {
             }
             catch (Exception ex)
             {
-                Console.WriteLine("No UserRole Cookie Found");
+                Console.WriteLine("No UserRole Cookie Found: "+ ex);
             }
         }
 
@@ -62,13 +62,17 @@ namespace CS3750Assignment1.Pages {
                 .FirstOrDefaultAsync();
 
             // Check if the account exists
-            if (account == null) {
+            if (account == null || account.Id==0) {
                 ModelState.AddModelError(string.Empty,"Invalid username or password.");
                 return Page();
             }
 
             // Grab User ID
-            Response.Cookies.Append("LoggedUserID", account.Id.ToString());
+            Response.Cookies.Append("LoggedUserID", account.Id.ToString(), new CookieOptions {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict
+            });
 
             // Grab User Role
             Response.Cookies.Append("LoggedUserRole", account.AccountRole);
@@ -82,7 +86,8 @@ namespace CS3750Assignment1.Pages {
             // Cookie function failed
             if (Request.Cookies["LoggedUserID"] == null || Request.Cookies["LoggedUserID"] == "0")
             {
-                return NotFound();
+                ModelState.AddModelError(string.Empty,"Cookie failed to set UserID.");
+                return Page();
             }
 
             // Redirect to the applicable Welcome page based on user account

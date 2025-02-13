@@ -74,7 +74,10 @@ namespace CS3750Assignment1.Pages {
             Response.Cookies.Append("LoggedUserRole", account.AccountRole);
 
             // Grab User Profile Picture Path
-            Response.Cookies.Append("LoggedUserPFP", account.imgSource);
+            if (!string.IsNullOrEmpty(account.imgSource)) {
+                Response.Cookies.Append("LoggedUserPFP",account.imgSource);
+            }
+                //Response.Cookies.Append("LoggedUserPFP", account.imgSource);
 
             // Cookie function failed
             if (Request.Cookies["LoggedUserID"] == null || Request.Cookies["LoggedUserID"] == "0")

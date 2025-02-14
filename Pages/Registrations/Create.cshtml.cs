@@ -71,7 +71,7 @@ namespace CS3750Assignment1.Pages.Registrations
             _context.Registration.Add(Registration);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/WelcomeStudent");
         }
 
         public bool IsRegistered(int x)

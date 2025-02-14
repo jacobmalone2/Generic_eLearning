@@ -105,7 +105,7 @@ namespace CS3750Assignment1.Pages.Courses {
             _context.Course.Add(Course);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/WelcomeInstructor");
         }
     }
 }

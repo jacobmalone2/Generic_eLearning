@@ -1,52 +1,22 @@
-@{
-    // Link Url Redirects
-    string homePage = ""; // Default home page
-    string classManagementURL, calendarURL = "";
-
-    // Link Displays
-    string userClassDisplay = "";
-
+﻿@{
     var isLoggedIn = Context.Request.Cookies["LoggedUserID"] != null;
     var userRole = Context.Request.Cookies["LoggedUserRole"]; // Get role from cookies
+    var homePage = "/Index"; // Default home page
 
-    // Generate redirects and displays based on user role.
-
-    if (userRole == "Instructor")
-    {
-        homePage = "/Courses/Index";
-        calendarURL = "/Calendars/CalendarInstructor";
-        classManagementURL = "/Courses/Create";
-        userClassDisplay = "Create a Course";
-    }
-    else
-    {
-        homePage = "/Registrations/Index";
-        calendarURL = "/Calendars/CalendarStudent";
-        classManagementURL = "/Registrations/Create";
-        userClassDisplay = "Register for Classes";
-    }
-
-    // Leaving it here incase we do need to bring back the welcome pages as the home page.
-    // As of writing this, the professor did not care for having a welcome screen. We should redirect the user to their list of classes
-    // upon login instead of showing a welcome page.
-    /*
     if (userRole == "Student")
     {
         homePage = "/WelcomeStudent"; // Redirect students to student dashboard
-                                      //classURL = "/Regisrations/Index";
     }
     else if (userRole == "Instructor")
     {
         homePage = "/WelcomeInstructor"; // Redirect instructors to instructor dashboard
-                                         //classURL = "/Courses/Index";
     }
-    */
-
-
 
     // Detect if the user is on the login or signup page
     var currentPath = Context.Request.Path.Value?.ToLower() ?? "";
     var isAuthPage = currentPath == "/" || currentPath.Contains("index") || currentPath.Contains("signup2");
+    var userProfilePic = Context.Request.Cookies["LoggedUserPFP"];
+    var profileImage = string.IsNullOrEmpty(userProfilePic) ? "/images/profiles/defaultprofile.png" : userProfilePic;
 }
 
 <!DOCTYPE html>
@@ -59,9 +29,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CS3750Assignment1.styles.css" asp-append-version="true" />
 </head>
-
-@using Microsoft.AspNetCore.Http;
-
 <body>
     <header>
         @if (!isAuthPage && isLoggedIn) // Hide navbar if on login or signup page
@@ -77,32 +44,39 @@
 
                     <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" id="navbarNav">
                         <ul class="navbar-nav flex-grow-1">
-                            <!--I think having the home button is reduntant since the KJCJK button already links to home.-->
-                            @* <li class="nav-item"> 
-                                <a class="nav-link text-dark" asp-page="@homePage">Home</a> <!-- Dynamic Home Button -->
-                            </li> *@
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="@classManagementURL">@userClassDisplay</a>
+                                <a class="nav-link text-dark" asp-page="@homePage">Home</a> <!-- Dynamic Home Button -->
                             </li>
+
+                            @if (userRole == "Student")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Register">Register</a>
+                                </li>
+                            }
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Tuition">Tuition</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="@calendarURL">Calendar</a>
+                                <a class="nav-link text-dark" asp-page="/Calendar">Calendar</a>
                             </li>
                         </ul>
+
 
                         <!-- Profile Icon and Dropdown Menu -->
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="@(!string.IsNullOrEmpty("LoggedUserPFP") ? Context.Request.Cookies["LoggedUserPFP"] : "/images/profiles/defaultprofile.png")" alt="User" class="rounded-circle" width="32" height="32">
+                                    <img src="~/images/profiles/defaultprofile.png" alt="User" class="rounded-circle" width="32" height="32" asp-append-version="true">
+
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                     <li><a class="dropdown-item" asp-page="/Profile" asp-route-id="@Context.Request.Cookies["LoggedUserID"]">Profile</a></li>
                                     <li><a class="dropdown-item" asp-page="/Settings">Settings</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" asp-page="/Index">Logout</a></li>
+
                                 </ul>
                             </li>
                         </ul>

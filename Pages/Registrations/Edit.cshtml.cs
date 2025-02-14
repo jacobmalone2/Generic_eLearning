@@ -66,7 +66,7 @@ namespace CS3750Assignment1.Pages.Registrations
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/WelcomeStudent");
         }
 
         private bool RegistrationExists(int id)

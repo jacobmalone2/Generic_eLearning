@@ -86,14 +86,17 @@ namespace CS3750Assignment1.Pages {
             }
 
             // Redirect to the applicable Welcome page based on user account
-            if (account.AccountRole == "Instructor") {
-                return RedirectToPage("./Courses/Index/");
+            if (account.AccountRole == "Instructor")
+            {
+                return RedirectToPage("/WelcomeInstructor");
             }
-            else if (account.AccountRole == "Student") {
-                return RedirectToPage("./Registrations/Index/");
+            else if (account.AccountRole == "Student")
+            {
+                return RedirectToPage("/WelcomeStudent");
             }
-            else {
-                ModelState.AddModelError(string.Empty,"Account role not found.");
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Account role not found.");
                 return Page();
             }
         }

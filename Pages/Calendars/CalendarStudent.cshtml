@@ -13,22 +13,64 @@
         //javascript script for loading the calendar on the page
         document.addEventListener('DOMContentLoaded', function() {
           var calendarEl = document.getElementById('calendar'); //variable for the calendar element
-          var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth' //not sure which views are possible, dayGridMonth is probably the initial view we want for LMS 
-          });
-          //add events to the calendar before rendering
-        let courseEventArray = [];
-        for (let x = 0; x < <%=this.RegisteredCourses.Count()%>; x++)
-        {
-            courseEventArray.push(
-            title : <%=this.RegisteredCourses[x]%>,
+          //get student registered courses
+          var courses = @Html.Raw(Json.Serialize(Model.RegisteredCourses));
+          var courseEvents = [];
+          
+          courses.forEach(function(course)
+          {
+              var classStart = course.MeetingTime[0];
+              var classEnd = course.MeetingTime[1];
 
-            );
-            <%= MyCsharpValue %>
-        }
+              course.MeetingDays.forEach(function(day)
+              {
+                  var weekDay = mapDayToWeekday(day);
+                  courseEvents.push(
+                  {
+                      title: course.CourseName,
+                      daysOfWeek: [weekDay],
+                      startTime: classStart,
+                      endTime: classEnd,
+                      rrule: 
+                      {
+                          freq: 'weekly',
+                          byweekday: [weekDay],
+                          interval: 1
+                      }
+                  });
+              });
+
+
+          });
+
+
+
+
+
+
+
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth', //not sure which views are possible, dayGridMonth is probably the initial view we want for LMS 
+            events: courseEvents
+          });
+       
         //calendar.
           calendar.render();
         });
+
+        //little function to map days of the week to numbers for FullCalendar
+        function mapDayToWeekday(day) {
+          const dayMap = {
+            'Sunday': 0,
+            'Monday': 1,
+            'Tuesday': 2,
+            'Wednesday': 3,
+            'Thursday': 4,
+            'Friday': 5,
+            'Saturday': 6
+          };
+          return dayMap[day];
+        }
 
     </script>
 </head>

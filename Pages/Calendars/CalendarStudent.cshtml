@@ -17,17 +17,20 @@
           var courses = @Html.Raw(Json.Serialize(Model.RegisteredCourses));
           var courseEvents = [];
           
-          courses.forEach(function(course)
+          //console.log(courses.length);
+          for(var x = 0; x < courses.length; x++)
           {
-              var classStart = course.MeetingTime[0];
-              var classEnd = course.MeetingTime[1];
+              //console.log(courses[x].meetingTime[0], " ", courses[x].meetingTime[1]);
+              var classStart = courses[x].meetingTime[0];
+              var classEnd = courses[x].meetingTime[1];
 
-              course.MeetingDays.forEach(function(day)
+              //console.log(courses[x].courseName, " ", classStart, " ", classEnd);
+              courses[x].meetingDays.forEach(function(day)
               {
                   var weekDay = mapDayToWeekday(day);
                   courseEvents.push(
                   {
-                      title: course.CourseName,
+                      title: courses[x].courseName,
                       daysOfWeek: [weekDay],
                       startTime: classStart,
                       endTime: classEnd,
@@ -41,7 +44,7 @@
               });
 
 
-          });
+          };
 
 
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
+using System.Diagnostics;
 
 namespace CS3750Assignment1.Pages.Calendars
 {
@@ -25,11 +26,12 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public IList<Registration> Registration { get;set; } = default!;
 
-        public IList<RegisteredCourse> RegisteredCourses { get;set; } = default!;
+        public IList<RegisteredCourse> RegisteredCourses { get;set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
             int loggedUserID;
+            RegisteredCourses = [];
             if (Request.Cookies["LoggedUserID"] is not null)
             {
                 try
@@ -76,7 +78,16 @@ namespace CS3750Assignment1.Pages.Calendars
                     }
                     string[] times = registration.Course.MeetingTime.Split("-");
 
-                    RegisteredCourses.Add(new RegisteredCourse(registration.Course.Name, registration.Course.CourseNumber, classDays, times[0], times[1]));
+                   /* Debug.Write(registration.Course.Name + registration.Course.CourseNumber);// + classDays + times[0] + times[1]);
+                    foreach(string day in classDays)
+                    {
+                        Debug.Write(day);
+                    }
+                    Debug.Write(times[0] + times[1]);*/
+
+                    RegisteredCourse tempCourse = new RegisteredCourse(registration.Course.Name, registration.Course.CourseNumber, classDays, times[0], times[1]);
+
+                    RegisteredCourses.Add(tempCourse);
                     
                 }
 

@@ -16,6 +16,17 @@
           var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth' //not sure which views are possible, dayGridMonth is probably the initial view we want for LMS 
           });
+          //add events to the calendar before rendering
+        let courseEventArray = [];
+        for (let x = 0; x < <%=this.RegisteredCourses.Count()%>; x++)
+        {
+            courseEventArray.push(
+            title : <%=this.RegisteredCourses[x]%>,
+
+            );
+            <%= MyCsharpValue %>
+        }
+        //calendar.
           calendar.render();
         });
 

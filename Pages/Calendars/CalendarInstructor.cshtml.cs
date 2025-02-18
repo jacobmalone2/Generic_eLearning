@@ -23,11 +23,56 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public IList<Course> Course { get;set; } = default!;
 
+        public IList<RegisteredCourse> InstructorCourses { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
+            int loggedUserID;
+            InstructorCourses = [];
+            if (Request.Cookies["LoggedUserID"] is not null)
+            {
+                try
+                {
+                    loggedUserID = int.Parse(Request.Cookies["LoggedUserID"]);
+                }
+                catch
+                {
+                    loggedUserID = 0;
+                }
+
+            }
+            else
+            {
+                loggedUserID = 0;
+            }
+
             //The following code was commented out on Feb 7, 2025 to get the calendar loaded on the page but the calendar does not yet have instructor course functionality
-            //Course = await _context.Course
-            //  .Include(c => c.Account).ToListAsync();
+            Course = await _context.Course.Where(c => c.InstructorID == loggedUserID).ToListAsync();
+            //.Include(c => c.Account).ToListAsync();
+
+            foreach (var course in Course)
+            {
+                if (course.MeetingDays is not null && course.MeetingTime is not null)
+                {
+                    List<string> classDays = new List<string>();
+                    string classStart, classEnd, extra;
+                    foreach (string day in course.MeetingDays.Split(','))
+                    {
+                        classDays.Add(day);
+                        //will need to change this. Full Calendar wants the days of the week in number form: 0 for Sunday, 1 for Monday, 2 for Tuesday, etc
+                    }
+                    string[] times = course.MeetingTime.Split("-");
+
+                    RegisteredCourse tempCourse = new RegisteredCourse(course.Name, course.CourseNumber, classDays, times[0], times[1]);
+
+                    InstructorCourses.Add(tempCourse);
+
+                }
+
+
+
+            }
+
             return Page();
         }
     }

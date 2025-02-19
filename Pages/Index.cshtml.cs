@@ -53,6 +53,7 @@ namespace CS3750Assignment1.Pages {
             var hashedPassword = HashPassword(password);
 
             // Query the database to find the account with the provided username and hashed password
+            
             Account account = await _context.Account
                 .Where(a => a.Username == username && a.Password == hashedPassword)
                 .FirstOrDefaultAsync();

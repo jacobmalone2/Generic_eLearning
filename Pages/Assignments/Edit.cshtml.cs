@@ -23,6 +23,9 @@ namespace CS3750Assignment1.Pages.Assignments
         [BindProperty]
         public Assignment Assignment { get; set; } = default!;
 
+        [BindProperty]
+        public string DueTime { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -50,6 +53,8 @@ namespace CS3750Assignment1.Pages.Assignments
             }
 
             _context.Attach(Assignment).State = EntityState.Modified;
+
+            Assignment.DueTime = DueTime;
 
             try
             {

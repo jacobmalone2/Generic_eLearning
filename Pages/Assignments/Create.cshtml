@@ -20,15 +20,15 @@
                 <span asp-validation-for="Assignment.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Assignment.description" class="control-label"></label>
-                <input asp-for="Assignment.description" class="form-control" />
-                <span asp-validation-for="Assignment.description" class="text-danger"></span>
+                <label asp-for="Assignment.Description" class="control-label"></label>
+                <input asp-for="Assignment.Description" class="form-control" />
+                <span asp-validation-for="Assignment.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Assignment.maxPoints" class="control-label"></label>
-                <input asp-for="Assignment.maxPoints" class="form-control" />
-                <span asp-validation-for="Assignment.maxPoints" class="text-danger"></span>
+                <label asp-for="Assignment.MaxPoints" class="control-label"></label>
+                <input asp-for="Assignment.MaxPoints" class="form-control" />
+                <span asp-validation-for="Assignment.MaxPoints" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
@@ -39,14 +39,65 @@
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Assignment.DueTime" class="control-label"></label>
-                <input asp-for="Assignment.DueTime" class="form-control" />
-                <span asp-validation-for="Assignment.DueTime" class="text-danger"></span>
+                @Html.DropDownListFor(model => model.DueTime, new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "12:00am", Value = "12:00am", Selected = true },
+                    new SelectListItem {Text = "12:30am", Value = "12:30am" },
+                    new SelectListItem {Text = "01:00am", Value = "01:00am" },
+                    new SelectListItem {Text = "01:30am", Value = "01:30am" },
+                    new SelectListItem {Text = "02:00am", Value = "02:00am" },
+                    new SelectListItem {Text = "02:30am", Value = "02:30am" },
+                    new SelectListItem {Text = "03:00am", Value = "03:00am" },
+                    new SelectListItem {Text = "03:30am", Value = "03:30am" },
+                    new SelectListItem {Text = "04:00am", Value = "04:00am" },
+                    new SelectListItem {Text = "04:30am", Value = "04:30am" },
+                    new SelectListItem {Text = "05:00am", Value = "05:00am" },
+                    new SelectListItem {Text = "05:30am", Value = "05:30am" },
+                    new SelectListItem {Text = "06:00am", Value = "06:00am" },
+                    new SelectListItem {Text = "06:30am", Value = "06:30am" },
+                    new SelectListItem {Text = "07:00am", Value = "07:00am" },
+                    new SelectListItem {Text = "07:30am", Value = "07:30am" },
+                    new SelectListItem {Text = "08:00am", Value = "08:00am" },
+                    new SelectListItem {Text = "08:30am", Value = "08:30am" },
+                    new SelectListItem {Text = "09:00am", Value = "09:00am" },
+                    new SelectListItem {Text = "09:30am", Value = "09:30am" },
+                    new SelectListItem {Text = "10:00am", Value = "10:00am" },
+                    new SelectListItem {Text = "10:30am", Value = "10:30am" },
+                    new SelectListItem {Text = "11:00am", Value = "11:00am" },
+                    new SelectListItem {Text = "11:30am", Value = "11:30am" },
+
+                    new SelectListItem {Text = "12:00pm", Value = "12:00pm" },
+                    new SelectListItem {Text = "12:30pm", Value = "12:30pm" },
+                    new SelectListItem {Text = "01:00pm", Value = "01:00pm" },
+                    new SelectListItem {Text = "01:30pm", Value = "01:30pm" },
+                    new SelectListItem {Text = "02:00pm", Value = "02:00pm" },
+                    new SelectListItem {Text = "02:30pm", Value = "02:30pm" },
+                    new SelectListItem {Text = "03:00pm", Value = "03:00pm" },
+                    new SelectListItem {Text = "03:30pm", Value = "03:30pm" },
+                    new SelectListItem {Text = "04:00pm", Value = "04:00pm" },
+                    new SelectListItem {Text = "04:30pm", Value = "04:30pm" },
+                    new SelectListItem {Text = "05:00pm", Value = "05:00pm" },
+                    new SelectListItem {Text = "05:30pm", Value = "05:30pm" },
+                    new SelectListItem {Text = "06:00pm", Value = "06:00pm" },
+                    new SelectListItem {Text = "06:30pm", Value = "06:30pm" },
+                    new SelectListItem {Text = "07:00pm", Value = "07:00pm" },
+                    new SelectListItem {Text = "07:30pm", Value = "07:30pm" },
+                    new SelectListItem {Text = "08:00pm", Value = "08:00pm" },
+                    new SelectListItem {Text = "08:30pm", Value = "08:30pm" },
+                    new SelectListItem {Text = "09:00pm", Value = "09:00pm" },
+                    new SelectListItem {Text = "09:30pm", Value = "09:30pm" },
+                    new SelectListItem {Text = "10:00pm", Value = "10:00pm" },
+                    new SelectListItem {Text = "10:30pm", Value = "10:30pm" },
+                    new SelectListItem {Text = "11:00pm", Value = "11:00pm" },
+                    new SelectListItem {Text = "11:30pm", Value = "11:30pm" },
+                }, new { @class = "form-control" })
+                <span asp-validation-for="Assignment.DueTime" class="text-danger"></span> 
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Assignment.acceptedFileTypes" class="control-label"></label>
-                <input asp-for="Assignment.acceptedFileTypes" class="form-control" />
-                <span asp-validation-for="Assignment.acceptedFileTypes" class="text-danger"></span>
+                <label asp-for="Assignment.AcceptedFileTypes" class="control-label"></label>
+                <input asp-for="Assignment.AcceptedFileTypes" class="form-control" />
+                <span asp-validation-for="Assignment.AcceptedFileTypes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

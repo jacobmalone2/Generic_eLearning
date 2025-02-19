@@ -35,6 +35,10 @@ namespace CS3750Assignment1.Pages.Courses
         public bool MeetingFriday { get; set; }
         [BindProperty]
         public bool MeetingSaturday { get; set; }
+        [BindProperty]
+        public string MeetingTimeStart { get; set; }
+        [BindProperty]
+        public string MeetingTimeEnd { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -98,6 +102,7 @@ namespace CS3750Assignment1.Pages.Courses
             if (MeetingSaturday) selectedMeetingDays.Add("Saturday");
 
             courseToUpdate.MeetingDays = selectedMeetingDays.Count > 0 ? string.Join(",", selectedMeetingDays) : "None";
+            courseToUpdate.MeetingTime = String.Concat(MeetingTimeStart, "-", MeetingTimeEnd);
 
             try
             {

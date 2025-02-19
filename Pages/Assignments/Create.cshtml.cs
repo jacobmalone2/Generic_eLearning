@@ -28,6 +28,9 @@ namespace CS3750Assignment1.Pages.Assignments
         [BindProperty]
         public Assignment Assignment { get; set; } = default!;
 
+        [BindProperty]
+        public string DueTime { get; set; }
+
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
@@ -35,6 +38,10 @@ namespace CS3750Assignment1.Pages.Assignments
             {
                 return Page();
             }
+
+            Assignment.CourseID = int.Parse(Request.Cookies["SelectedCourse"]);
+            Console.WriteLine(DueTime);
+            Assignment.DueTime = DueTime;
 
             _context.Assignment.Add(Assignment);
             await _context.SaveChangesAsync();

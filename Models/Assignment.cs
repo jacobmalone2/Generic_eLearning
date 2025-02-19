@@ -17,20 +17,20 @@ namespace CS3750Assignment1.Models
         public string Title { get; set; }
 
         [StringLength(int.MaxValue)]
-        public string? description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
-        public int maxPoints { get; set; }
+        public int MaxPoints { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         public string DueDate { get; set; }
 
-        [Required]
-        public string DueTime { get; set; }
+        [StringLength(7, MinimumLength = 0)]
+        public string? DueTime { get; set; }
 
         [Required]
-        public string acceptedFileTypes { get; set; }
+        public string AcceptedFileTypes { get; set; }
 
 
     }

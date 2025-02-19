@@ -36,6 +36,12 @@ namespace CS3750Assignment1.Pages.Courses {
         public bool MeetingSaturday { get; set; }
         //meeting day properties
 
+        [BindProperty]
+        public string MeetingTimeStart { get; set; }
+
+        [BindProperty]
+        public string MeetingTimeEnd { get; set; }
+
         public CreateModel(CS3750Assignment1Context context) {
             _context = context;
         }
@@ -93,7 +99,7 @@ namespace CS3750Assignment1.Pages.Courses {
 
             //set the course meeting days to that created string
             Course.MeetingDays = meetingDayString; //set the MeetingDays value to the meeting day string created from the given meeting days
-            
+            Course.MeetingTime = String.Concat(MeetingTimeStart, "-", MeetingTimeEnd);
 
             
 

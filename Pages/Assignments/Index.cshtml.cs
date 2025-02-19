@@ -21,10 +21,32 @@ namespace CS3750Assignment1.Pages.Assignments
 
         public IList<Assignment> Assignment { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public int courseID;
+
+        public async Task OnGetAsync(int? id)
         {
-            Assignment = await _context.Assignment
-                .Include(a => a.Course).ToListAsync();
+            Console.WriteLine("Selected Course: ");
+
+            if (id != null)
+            {
+                courseID = id ?? default(int);
+            }
+            else
+            {
+                courseID = int.Parse(Request.Cookies["SelectedCourse"]);
+            }
+
+            // Grab Course ID
+            Response.Cookies.Append("SelectedCourse", courseID.ToString(), new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Lax,
+                Expires = DateTime.Now.AddMinutes(180)
+            });
+
+
+            Assignment = await _context.Assignment.Where(a => a.CourseID == courseID).ToListAsync();
         }
     }
 }

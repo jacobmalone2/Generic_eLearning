@@ -5,25 +5,22 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Assignments</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create"> Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].Course)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Assignment[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].description)
+                @Html.DisplayNameFor(model => model.Assignment[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].maxPoints)
+                @Html.DisplayNameFor(model => model.Assignment[0].MaxPoints)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Assignment[0].DueDate)
@@ -32,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.Assignment[0].DueTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].acceptedFileTypes)
+                @Html.DisplayNameFor(model => model.Assignment[0].AcceptedFileTypes)
             </th>
             <th></th>
         </tr>
@@ -41,16 +38,13 @@
 @foreach (var item in Model.Assignment) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Course.Location)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.description)
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.maxPoints)
+                @Html.DisplayFor(modelItem => item.MaxPoints)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DueDate)
@@ -59,11 +53,10 @@
                 @Html.DisplayFor(modelItem => item.DueTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.acceptedFileTypes)
+                @Html.DisplayFor(modelItem => item.AcceptedFileTypes)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

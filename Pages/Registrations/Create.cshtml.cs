@@ -39,6 +39,7 @@ namespace CS3750Assignment1.Pages.Registrations
             catch (Exception ex)
             {
                 Courses = new List<Course>(); // Avoid null reference issues
+                Console.WriteLine("No Courses Found: " + ex);
             }
 
             try
@@ -48,6 +49,7 @@ namespace CS3750Assignment1.Pages.Registrations
             catch (Exception ex)
             {
                 Registrations = new List<Registration>(); // Avoid null reference issues
+                Console.WriteLine("No Registrations Found: " + ex);
             }
         }
 
@@ -69,7 +71,7 @@ namespace CS3750Assignment1.Pages.Registrations
             _context.Registration.Add(Registration);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/WelcomeStudent");
         }
 
         public bool IsRegistered(int x)

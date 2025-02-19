@@ -2,7 +2,7 @@
 @model CS3750Assignment1.Pages.WelcomeInstructorModel
 @{
     ViewData["Title"] = "Instructor Dashboard";
-    Layout = "_Layout"; // Ensure it uses the main layout
+    Layout = "_Layout";
 }
 
 <div class="container mt-4">
@@ -11,11 +11,51 @@
             <h2 class="mb-0">Welcome, Instructor!</h2>
         </div>
         <div class="card-body">
-            <p class="lead">Instructor ID: <strong>@Model.InstructorId</strong></p>
-
+           <!-- <p class="lead">Instructor ID: <strong>@Model.InstructorId</strong></p>-->
             <p>Manage your courses, students, and resources from your dashboard.</p>
 
-            <a asp-page="/Index" class="btn btn-danger">Logout</a>
+            <h3 class="mt-4">Your Courses</h3>
+
+            @if (Model.InstructorCourses.Any())
+            {
+                <div class="row">
+                    @foreach (var course in Model.InstructorCourses)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="mb-0">@course.Name</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Department:</strong> @course.Department</p>
+                                    <p><strong>Course Number:</strong> @course.CourseNumber</p>
+                                    <p><strong>Credits:</strong> @course.Credits</p>
+                                    <p><strong>Capacity:</strong> @course.Capacity</p>
+                                    <p><strong>Meeting Days:</strong> @(string.IsNullOrEmpty(course.MeetingDays) ? "N/A" : course.MeetingDays)</p>
+                                    <p><strong>Meeting Time:</strong> @(string.IsNullOrEmpty(course.MeetingTime) ? "N/A" : course.MeetingTime)</p>
+                                    <p><strong>Location:</strong> @course.Location</p>
+
+                                    <thread>
+                                        <!-- Replacing "View Details" with "Edit" -->
+                                        <a asp-page="/Courses/Edit" asp-route-id="@course.Id" class="btn btn-warning">Edit</a>
+
+                                        <!-- View List of Assignments -->
+                                        <a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-warning">Manage Assignments</a>
+                                    </thread>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p>No courses found.</p>
+            }
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a asp-page="/Courses/Create" class="btn btn-primary">+ Create New Course</a>
+            </div>
         </div>
     </div>
 </div>

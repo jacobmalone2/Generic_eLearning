@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.Registrations
+namespace CS3750Assignment1.Pages.Assignments
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,10 @@ namespace CS3750Assignment1.Pages.Registrations
         }
 
         [BindProperty]
-        public Registration Registration { get; set; } = default!;
+        public Assignment Assignment { get; set; } = default!;
+
+        [BindProperty]
+        public string DueTime { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +33,13 @@ namespace CS3750Assignment1.Pages.Registrations
                 return NotFound();
             }
 
-            var registration =  await _context.Registration.FirstOrDefaultAsync(m => m.Id == id);
-            if (registration == null)
+            var assignment =  await _context.Assignment.FirstOrDefaultAsync(m => m.Id == id);
+            if (assignment == null)
             {
                 return NotFound();
             }
-            Registration = registration;
+            Assignment = assignment;
+           ViewData["CourseID"] = new SelectList(_context.Course, "Id", "Location");
             return Page();
         }
 
@@ -48,7 +52,9 @@ namespace CS3750Assignment1.Pages.Registrations
                 return Page();
             }
 
-            _context.Attach(Registration).State = EntityState.Modified;
+            _context.Attach(Assignment).State = EntityState.Modified;
+
+            Assignment.DueTime = DueTime;
 
             try
             {
@@ -56,7 +62,7 @@ namespace CS3750Assignment1.Pages.Registrations
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RegistrationExists(Registration.Id))
+                if (!AssignmentExists(Assignment.Id))
                 {
                     return NotFound();
                 }
@@ -66,12 +72,12 @@ namespace CS3750Assignment1.Pages.Registrations
                 }
             }
 
-            return RedirectToPage("/WelcomeStudent");
+            return RedirectToPage("./Index");
         }
 
-        private bool RegistrationExists(int id)
+        private bool AssignmentExists(int id)
         {
-            return _context.Registration.Any(e => e.Id == id);
+            return _context.Assignment.Any(e => e.Id == id);
         }
     }
 }

@@ -17,5 +17,6 @@ namespace CS3750Assignment1.Data
         public DbSet<CS3750Assignment1.Models.Account> Account { get; set; } = default!;
         public DbSet<CS3750Assignment1.Models.Course> Course { get; set; } = default!;
         public DbSet<CS3750Assignment1.Models.Registration> Registration { get; set; } = default!;
+        public DbSet<CS3750Assignment1.Models.Assignment> Assignment { get; set; } = default!;
     }
 }

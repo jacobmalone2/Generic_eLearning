@@ -1,78 +1,180 @@
 ﻿@page
 @model CS3750Assignment1.Pages.Courses.EditModel
-
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Course";
+    Layout = "_Layout";
 }
 
-<h1>Edit</h1>
+<div class="container mt-4">
+    <h2>Edit Course</h2>
+    <form method="post">
+        <input type="hidden" asp-for="Course.Id" />
 
-<h4>Course</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Course.Id" />
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.InstructorID" class="control-label"></label>
-                <input asp-for="Course.InstructorID" class="form-control" />
-                <span asp-validation-for="Course.InstructorID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.Name" class="control-label"></label>
-                <input asp-for="Course.Name" class="form-control" />
-                <span asp-validation-for="Course.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.CourseNumber" class="control-label"></label>
-                <input asp-for="Course.CourseNumber" class="form-control" />
-                <span asp-validation-for="Course.CourseNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.Credits" class="control-label"></label>
-                <input asp-for="Course.Credits" class="form-control" />
-                <span asp-validation-for="Course.Credits" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.Capacity" class="control-label"></label>
-                <input asp-for="Course.Capacity" class="form-control" />
-                <span asp-validation-for="Course.Capacity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.MeetingDays" class="control-label"></label>
-                <input asp-for="Course.MeetingDays" class="form-control" />
-                <span asp-validation-for="Course.MeetingDays" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.MeetingTime" class="control-label"></label>
-                <input asp-for="Course.MeetingTime" class="form-control" />
-                <span asp-validation-for="Course.MeetingTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="Course.Location" class="control-label"></label>
-                <input asp-for="Course.Location" class="form-control" />
-                <span asp-validation-for="Course.Location" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Instructor ID</label>
+            <input asp-for="Course.InstructorID" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Course Name</label>
+            <input asp-for="Course.Name" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Course Number</label>
+            <input asp-for="Course.CourseNumber" type="number" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Credits</label>
+            <input asp-for="Course.Credits" type="number" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Capacity</label>
+            <input asp-for="Course.Capacity" type="number" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Meeting Days</label><br />
+            <input asp-for="MeetingSunday" type="checkbox" /> Sunday
+            <input asp-for="MeetingMonday" type="checkbox" /> Monday
+            <input asp-for="MeetingTuesday" type="checkbox" /> Tuesday
+            <input asp-for="MeetingWednesday" type="checkbox" /> Wednesday
+            <input asp-for="MeetingThursday" type="checkbox" /> Thursday
+            <input asp-for="MeetingFriday" type="checkbox" /> Friday
+            <input asp-for="MeetingSaturday" type="checkbox" /> Saturday
+        </div>
+        <div class="mb-3">
+            <span class="text-danger">*</span>
+            <label class="form-label">Department</label><br />
+            @Html.DropDownListFor(model => model.Department, new List<SelectListItem>
+            {
+                new SelectListItem {Text = "General Education", Value = "General Education", Selected = true },
+                new SelectListItem {Text = "English", Value = "English"},
+                new SelectListItem {Text = "Art", Value = "Art" },
+                new SelectListItem {Text = "Foreign Education", Value = "Foreign Education" },
+                new SelectListItem {Text = "Engineering", Value = "Engineering" },
+                new SelectListItem {Text = "Computer Science", Value = "Computer Science" },
+                new SelectListItem {Text = "Math", Value = "Math" },
+                }, new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Meeting Time</label>
+            @Html.DropDownListFor(model => model.MeetingTimeStart, new List<SelectListItem>
+            {
+                new SelectListItem {Text = "12:00am", Value = "12:00am", Selected = true },
+                new SelectListItem {Text = "12:30am", Value = "12:30am" },
+                new SelectListItem {Text = "01:00am", Value = "01:00am" },
+                new SelectListItem {Text = "01:30am", Value = "01:30am" },
+                new SelectListItem {Text = "02:00am", Value = "02:00am" },
+                new SelectListItem {Text = "02:30am", Value = "02:30am" },
+                new SelectListItem {Text = "03:00am", Value = "03:00am" },
+                new SelectListItem {Text = "03:30am", Value = "03:30am" },
+                new SelectListItem {Text = "04:00am", Value = "04:00am" },
+                new SelectListItem {Text = "04:30am", Value = "04:30am" },
+                new SelectListItem {Text = "05:00am", Value = "05:00am" },
+                new SelectListItem {Text = "05:30am", Value = "05:30am" },
+                new SelectListItem {Text = "06:00am", Value = "06:00am" },
+                new SelectListItem {Text = "06:30am", Value = "06:30am" },
+                new SelectListItem {Text = "07:00am", Value = "07:00am" },
+                new SelectListItem {Text = "07:30am", Value = "07:30am" },
+                new SelectListItem {Text = "08:00am", Value = "08:00am" },
+                new SelectListItem {Text = "08:30am", Value = "08:30am" },
+                new SelectListItem {Text = "09:00am", Value = "09:00am" },
+                new SelectListItem {Text = "09:30am", Value = "09:30am" },
+                new SelectListItem {Text = "10:00am", Value = "10:00am" },
+                new SelectListItem {Text = "10:30am", Value = "10:30am" },
+                new SelectListItem {Text = "11:00am", Value = "11:00am" },
+                new SelectListItem {Text = "11:30am", Value = "11:30am" },
+
+                new SelectListItem {Text = "12:00pm", Value = "12:00pm" },
+                new SelectListItem {Text = "12:30pm", Value = "12:30pm" },
+                new SelectListItem {Text = "01:00pm", Value = "01:00pm" },
+                new SelectListItem {Text = "01:30pm", Value = "01:30pm" },
+                new SelectListItem {Text = "02:00pm", Value = "02:00pm" },
+                new SelectListItem {Text = "02:30pm", Value = "02:30pm" },
+                new SelectListItem {Text = "03:00pm", Value = "03:00pm" },
+                new SelectListItem {Text = "03:30pm", Value = "03:30pm" },
+                new SelectListItem {Text = "04:00pm", Value = "04:00pm" },
+                new SelectListItem {Text = "04:30pm", Value = "04:30pm" },
+                new SelectListItem {Text = "05:00pm", Value = "05:00pm" },
+                new SelectListItem {Text = "05:30pm", Value = "05:30pm" },
+                new SelectListItem {Text = "06:00pm", Value = "06:00pm" },
+                new SelectListItem {Text = "06:30pm", Value = "06:30pm" },
+                new SelectListItem {Text = "07:00pm", Value = "07:00pm" },
+                new SelectListItem {Text = "07:30pm", Value = "07:30pm" },
+                new SelectListItem {Text = "08:00pm", Value = "08:00pm" },
+                new SelectListItem {Text = "08:30pm", Value = "08:30pm" },
+                new SelectListItem {Text = "09:00pm", Value = "09:00pm" },
+                new SelectListItem {Text = "09:30pm", Value = "09:30pm" },
+                new SelectListItem {Text = "10:00pm", Value = "10:00pm" },
+                new SelectListItem {Text = "10:30pm", Value = "10:30pm" },
+                new SelectListItem {Text = "11:00pm", Value = "11:00pm" },
+                new SelectListItem {Text = "11:30pm", Value = "11:30pm" },
+            }, new { @class = "form-control" })
+            <label>To</label>
+            @Html.DropDownListFor(model => model.MeetingTimeEnd, new List<SelectListItem>
+            {
+                new SelectListItem {Text = "12:00am", Value = "12:00am", Selected = true },
+                new SelectListItem {Text = "12:30am", Value = "12:30am" },
+                new SelectListItem {Text = "01:00am", Value = "01:00am" },
+                new SelectListItem {Text = "01:30am", Value = "01:30am" },
+                new SelectListItem {Text = "02:00am", Value = "02:00am" },
+                new SelectListItem {Text = "02:30am", Value = "02:30am" },
+                new SelectListItem {Text = "03:00am", Value = "03:00am" },
+                new SelectListItem {Text = "03:30am", Value = "03:30am" },
+                new SelectListItem {Text = "04:00am", Value = "04:00am" },
+                new SelectListItem {Text = "04:30am", Value = "04:30am" },
+                new SelectListItem {Text = "05:00am", Value = "05:00am" },
+                new SelectListItem {Text = "05:30am", Value = "05:30am" },
+                new SelectListItem {Text = "06:00am", Value = "06:00am" },
+                new SelectListItem {Text = "06:30am", Value = "06:30am" },
+                new SelectListItem {Text = "07:00am", Value = "07:00am" },
+                new SelectListItem {Text = "07:30am", Value = "07:30am" },
+                new SelectListItem {Text = "08:00am", Value = "08:00am" },
+                new SelectListItem {Text = "08:30am", Value = "08:30am" },
+                new SelectListItem {Text = "09:00am", Value = "09:00am" },
+                new SelectListItem {Text = "09:30am", Value = "09:30am" },
+                new SelectListItem {Text = "10:00am", Value = "10:00am" },
+                new SelectListItem {Text = "10:30am", Value = "10:30am" },
+                new SelectListItem {Text = "11:00am", Value = "11:00am" },
+                new SelectListItem {Text = "11:30am", Value = "11:30am" },
+
+                new SelectListItem {Text = "12:00pm", Value = "12:00pm" },
+                new SelectListItem {Text = "12:30pm", Value = "12:30pm" },
+                new SelectListItem {Text = "01:00pm", Value = "01:00pm" },
+                new SelectListItem {Text = "01:30pm", Value = "01:30pm" },
+                new SelectListItem {Text = "02:00pm", Value = "02:00pm" },
+                new SelectListItem {Text = "02:30pm", Value = "02:30pm" },
+                new SelectListItem {Text = "03:00pm", Value = "03:00pm" },
+                new SelectListItem {Text = "03:30pm", Value = "03:30pm" },
+                new SelectListItem {Text = "04:00pm", Value = "04:00pm" },
+                new SelectListItem {Text = "04:30pm", Value = "04:30pm" },
+                new SelectListItem {Text = "05:00pm", Value = "05:00pm" },
+                new SelectListItem {Text = "05:30pm", Value = "05:30pm" },
+                new SelectListItem {Text = "06:00pm", Value = "06:00pm" },
+                new SelectListItem {Text = "06:30pm", Value = "06:30pm" },
+                new SelectListItem {Text = "07:00pm", Value = "07:00pm" },
+                new SelectListItem {Text = "07:30pm", Value = "07:30pm" },
+                new SelectListItem {Text = "08:00pm", Value = "08:00pm" },
+                new SelectListItem {Text = "08:30pm", Value = "08:30pm" },
+                new SelectListItem {Text = "09:00pm", Value = "09:00pm" },
+                new SelectListItem {Text = "09:30pm", Value = "09:30pm" },
+                new SelectListItem {Text = "10:00pm", Value = "10:00pm" },
+                new SelectListItem {Text = "10:30pm", Value = "10:30pm" },
+                new SelectListItem {Text = "11:00pm", Value = "11:00pm" },
+                new SelectListItem {Text = "11:30pm", Value = "11:30pm" },
+            }, new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input asp-for="Course.Location" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a asp-page="/WelcomeInstructor" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@Model.Course.Id" onclick="return confirm('Are you sure you want to delete this course?');">
+            Delete Course
+        </button>
+
+    </form>
 </div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

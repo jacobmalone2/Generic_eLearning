@@ -21,23 +21,24 @@ namespace CS3750Assignment1.Pages.Courses
 
         public Course Course { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
+            if (id == null) return NotFound();
+
+            var course = await _context.Course.FindAsync(id);
+            if (course == null) return NotFound();
+
+            int loggedInInstructorID = int.Parse(Request.Cookies["LoggedUserID"]);
+            if (course.InstructorID != loggedInInstructorID)
             {
-                return NotFound();
+                return Unauthorized(); // Prevents deletion by other instructors
             }
 
-            var course = await _context.Course.FirstOrDefaultAsync(m => m.Id == id);
+            _context.Course.Remove(course);
+            await _context.SaveChangesAsync();
 
-            if (course is not null)
-            {
-                Course = course;
-
-                return Page();
-            }
-
-            return NotFound();
+            return RedirectToPage("/WelcomeInstructor");
         }
+
     }
 }

@@ -46,7 +46,8 @@ namespace CS3750Assignment1.Pages.Registrations
                                            Credits = course.Credits,
                                            MeetingDays = course.MeetingDays,
                                            MeetingTime = course.MeetingTime,
-                                           Location = course.Location
+                                           Location = course.Location,
+                                           Department = course.Department
                                        }).ToListAsync();
             }
         }
@@ -65,6 +66,7 @@ namespace CS3750Assignment1.Pages.Registrations
             public string MeetingDays { get; set; }
             public string MeetingTime { get; set; }
             public string Location { get; set; }
+            public string Department { get; set; }
         }
     }
 }

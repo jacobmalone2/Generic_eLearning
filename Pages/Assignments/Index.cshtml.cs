@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using CS3750Assignment1.Data;
+using CS3750Assignment1.Models;
+
+namespace CS3750Assignment1.Pages.Assignments
+{
+    public class IndexModel : PageModel
+    {
+        private readonly CS3750Assignment1.Data.CS3750Assignment1Context _context;
+
+        public IndexModel(CS3750Assignment1.Data.CS3750Assignment1Context context)
+        {
+            _context = context;
+        }
+
+        public IList<Assignment> Assignment { get;set; } = default!;
+
+        public int courseID;
+
+        public async Task OnGetAsync(int? id)
+        {
+            Console.WriteLine("Selected Course: ");
+
+            if (id != null)
+            {
+                courseID = id ?? default(int);
+            }
+            else
+            {
+                courseID = int.Parse(Request.Cookies["SelectedCourse"]);
+            }
+
+            // Grab Course ID
+            Response.Cookies.Append("SelectedCourse", courseID.ToString(), new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Lax,
+                Expires = DateTime.Now.AddMinutes(180)
+            });
+
+
+            Assignment = await _context.Assignment.Where(a => a.CourseID == courseID).ToListAsync();
+        }
+    }
+}

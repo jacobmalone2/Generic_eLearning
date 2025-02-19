@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 
-namespace CS3750Assignment1.Pages.Courses
+namespace CS3750Assignment1.Pages.Assignments
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace CS3750Assignment1.Pages.Courses
         }
 
         [BindProperty]
-        public Course Course { get; set; } = default!;
+        public Assignment Assignment { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,11 +29,11 @@ namespace CS3750Assignment1.Pages.Courses
                 return NotFound();
             }
 
-            var course = await _context.Course.FirstOrDefaultAsync(m => m.Id == id);
+            var assignment = await _context.Assignment.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (course is not null)
+            if (assignment is not null)
             {
-                Course = course;
+                Assignment = assignment;
 
                 return Page();
             }
@@ -48,15 +48,15 @@ namespace CS3750Assignment1.Pages.Courses
                 return NotFound();
             }
 
-            var course = await _context.Course.FindAsync(id);
-            if (course != null)
+            var assignment = await _context.Assignment.FindAsync(id);
+            if (assignment != null)
             {
-                Course = course;
-                _context.Course.Remove(Course);
+                Assignment = assignment;
+                _context.Assignment.Remove(Assignment);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("/WelcomeInstructor");
+            return RedirectToPage("./Index");
         }
     }
 }

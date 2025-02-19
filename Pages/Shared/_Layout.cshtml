@@ -58,9 +58,20 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Tuition">Tuition</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Calendar">Calendar</a>
-                            </li>
+
+                            @if (userRole == "Student")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Calendars/CalendarStudent">Calendar</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-page="/Calendars/CalendarInstructor">Calendar</a>
+                                </li>
+                            }
+                            
                         </ul>
 
 

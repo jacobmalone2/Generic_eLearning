@@ -13,11 +13,61 @@
         //javascript script for loading the calendar on the page
         document.addEventListener('DOMContentLoaded', function() {
           var calendarEl = document.getElementById('calendar'); //variable for the calendar element
+          //get student registered courses
+          var courses = @Html.Raw(Json.Serialize(Model.RegisteredCourses));
+          var courseEvents = [];
+          
+          //console.log(courses.length);
+          for(var x = 0; x < courses.length; x++)
+          {
+              //console.log(courses[x].meetingTime[0], " ", courses[x].meetingTime[1]);
+              var classStart = courses[x].meetingTime[0];
+              var classEnd = courses[x].meetingTime[1];
+
+              //console.log(courses[x].courseName, " ", classStart, " ", classEnd);
+              courses[x].meetingDays.forEach(function(day)
+              {
+                  var weekDay = mapDayToWeekday(day);
+                  courseEvents.push(
+                  {
+                      title: courses[x].courseName,
+                      daysOfWeek: [weekDay],
+                      startTime: classStart,
+                      endTime: classEnd,
+                      rrule: 
+                      {
+                          freq: 'weekly',
+                          byweekday: [weekDay],
+                          interval: 1
+                      }
+                  });
+              });
+
+
+          };
+
+
           var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth' //not sure which views are possible, dayGridMonth is probably the initial view we want for LMS 
+            initialView: 'dayGridMonth', //not sure which views are possible, dayGridMonth is probably the initial view we want for LMS 
+            events: courseEvents
           });
+       
           calendar.render();
         });
+
+        //little function to map days of the week to numbers for FullCalendar
+        function mapDayToWeekday(day) {
+          const dayMap = {
+            'Sunday': 0,
+            'Monday': 1,
+            'Tuesday': 2,
+            'Wednesday': 3,
+            'Thursday': 4,
+            'Friday': 5,
+            'Saturday': 6
+          };
+          return dayMap[day];
+        }
 
     </script>
 </head>

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{paymentStatus?}"
 @model CS3750Assignment1.Pages.TuitionModel
 @{
     ViewData["Title"] = "Tuition Payment";
@@ -45,10 +45,10 @@
                 </table>
                 <h4>Total Cost: <strong>$@Model.TotalCost</strong></h4>
 
-                <!-- Proceed to Payment Button, sending total cost as a query parameter -->
-                <form method="get" action="/Payment">
-                    <input type="hidden" name="amount" value="@Model.TotalCost" />
-                    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                <!-- Stripe Payment Form -->
+                <form method="get" asp-page="/Payment">
+                    <input type="hidden" name="Amount" value="@Model.TotalCost" />
+                    <button type="submit" class="btn btn-primary">Pay with Stripe</button>
                 </form>
             }
         </div>

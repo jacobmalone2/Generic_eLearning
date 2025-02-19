@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
-using Stripe;
+using Stripe.Checkout;
 
 namespace CS3750Assignment1.Pages {
     public class TuitionModel:PageModel {
@@ -31,8 +31,7 @@ namespace CS3750Assignment1.Pages {
                 return RedirectToPage("/Index");
             }
 
-            int studentID;
-            if (!int.TryParse(loggedUserId,out studentID)) {
+            if (!int.TryParse(loggedUserId,out int studentID)) {
                 Console.WriteLine("Invalid LoggedUserID cookie value. Redirecting to login page.");
                 return RedirectToPage("/Index");
             }
@@ -52,10 +51,40 @@ namespace CS3750Assignment1.Pages {
 
             if (paymentStatus == "success") {
                 IsPaymentMade = true;
-                TotalCost = 0; // Reset the total cost to 0 if payment is made
+                TotalCost = 0; // Reset the total cost if payment is made
             }
 
             return Page();
+        }
+
+        public IActionResult OnPost() {
+            var options = new SessionCreateOptions {
+                PaymentMethodTypes = new List<string> { "card" },
+                LineItems = new List<SessionLineItemOptions>
+                {
+                    new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            Currency = "usd",
+                            UnitAmount = (long)(TotalCost * 100), // Convert dollars to cents
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = "Tuition Payment",
+                            },
+                        },
+                        Quantity = 1,
+                    }
+                },
+                Mode = "payment",
+                SuccessUrl = "http://localhost:5000/Tuition?paymentStatus=success",
+                CancelUrl = "http://localhost:5000/Tuition?paymentStatus=cancel",
+            };
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            return Redirect(session.Url);
         }
 
         public class RegisteredCourseViewModel {

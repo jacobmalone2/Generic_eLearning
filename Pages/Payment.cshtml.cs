@@ -20,11 +20,15 @@ public class PaymentModel:PageModel {
 
         var options = new SessionCreateOptions {
             PaymentMethodTypes = new List<string> { "card" },
-            LineItems = new List<SessionLineItemOptions> {
-                new SessionLineItemOptions {
-                    PriceData = new SessionLineItemPriceDataOptions {
+            LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
                         Currency = "usd",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions {
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
                             Name = "Tuition Payment"
                         },
                         UnitAmount = (long)(Amount * 100) // Convert dollars to cents
@@ -33,8 +37,8 @@ public class PaymentModel:PageModel {
                 }
             },
             Mode = "payment",
-            SuccessUrl = $"{Request.Scheme}://{Request.Host}/Tuition?paymentStatus=success",
-            CancelUrl = $"{Request.Scheme}://{Request.Host}/Tuition?paymentStatus=failed"
+            SuccessUrl = $"{Request.Scheme}://{Request.Host}/Success",
+            CancelUrl = $"{Request.Scheme}://{Request.Host}/Cancel"
         };
 
         var service = new SessionService();

@@ -29,9 +29,6 @@ namespace CS3750Assignment1.Models
         [StringLength(7, MinimumLength = 0)]
         public string? DueTime { get; set; }
 
-        [Required]
-        public string AcceptedFileTypes { get; set; }
-
-
+        public string? AcceptedFileTypes { get; set; }
     }
 }

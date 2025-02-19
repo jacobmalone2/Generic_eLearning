@@ -31,6 +31,12 @@ namespace CS3750Assignment1.Pages.Assignments
         [BindProperty]
         public string DueTime { get; set; }
 
+        [BindProperty]
+        public bool Text { get; set; }
+
+        [BindProperty]
+        public bool PDF { get; set; }
+
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
@@ -39,8 +45,29 @@ namespace CS3750Assignment1.Pages.Assignments
                 return Page();
             }
 
+            List<string> filetypes = new List<string>();
+
+            // Check for selected file types.
+            if (Text)
+            {
+                filetypes.Add("Text");
+            }
+            if (PDF)
+            {
+                filetypes.Add("PDF");
+            }
+
+            //make sure there was at least one file type selected
+            if (filetypes.Count > 0)
+            {
+                Assignment.AcceptedFileTypes = string.Join(",", filetypes); //very proud of this
+            }
+            else
+            {
+                Assignment.AcceptedFileTypes = "NA";
+            }
+
             Assignment.CourseID = int.Parse(Request.Cookies["SelectedCourse"]);
-            Console.WriteLine(DueTime);
             Assignment.DueTime = DueTime;
 
             _context.Assignment.Add(Assignment);

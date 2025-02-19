@@ -38,5 +38,7 @@ namespace CS3750Assignment1.Models
         [StringLength(30, MinimumLength = 2)]
         [Required]
         public string Location { get; set; } = string.Empty;
+
+        public string Department { get; set; } = string.Empty;
     }
 }

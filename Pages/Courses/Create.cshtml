@@ -21,6 +21,21 @@
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
+                <label asp-for="Course.Department" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Department, new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "General Education", Value = "General Education", Selected = true },
+                    new SelectListItem {Text = "English", Value = "English"},
+                    new SelectListItem {Text = "Art", Value = "Art" },
+                    new SelectListItem {Text = "Foreign Education", Value = "Foreign Education" },
+                    new SelectListItem {Text = "Engineering", Value = "Engineering" },
+                    new SelectListItem {Text = "Computer Science", Value = "Computer Science" },
+                    new SelectListItem {Text = "Math", Value = "Math" },
+                }, new { @class = "form-control" })
+                <span asp-validation-for="Course.Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
                 <label asp-for="Course.CourseNumber" class="control-label"></label>
                 <input asp-for="Course.CourseNumber" class="form-control" />
                 <span asp-validation-for="Course.CourseNumber" class="text-danger"></span>

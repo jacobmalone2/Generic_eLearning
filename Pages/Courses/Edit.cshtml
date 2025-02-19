@@ -43,7 +43,20 @@
             <input asp-for="MeetingFriday" type="checkbox" /> Friday
             <input asp-for="MeetingSaturday" type="checkbox" /> Saturday
         </div>
-
+        <div class="mb-3">
+            <span class="text-danger">*</span>
+            <label class="form-label">Department</label><br />
+            @Html.DropDownListFor(model => model.Department, new List<SelectListItem>
+            {
+                new SelectListItem {Text = "General Education", Value = "General Education", Selected = true },
+                new SelectListItem {Text = "English", Value = "English"},
+                new SelectListItem {Text = "Art", Value = "Art" },
+                new SelectListItem {Text = "Foreign Education", Value = "Foreign Education" },
+                new SelectListItem {Text = "Engineering", Value = "Engineering" },
+                new SelectListItem {Text = "Computer Science", Value = "Computer Science" },
+                new SelectListItem {Text = "Math", Value = "Math" },
+                }, new { @class = "form-control" })
+        </div>
         <div class="mb-3">
             <label class="form-label">Meeting Time</label>
             @Html.DropDownListFor(model => model.MeetingTimeStart, new List<SelectListItem>

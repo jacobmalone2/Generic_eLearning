@@ -11,6 +11,7 @@
     <thead>
         <tr>
             <th>Course Name</th>
+            <th>Department</th>
             <th>Course Number</th>
             <th>Credits</th>
             <th>Capacity</th>
@@ -24,7 +25,8 @@
         @foreach (var item in Model.Registrations)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.CourseName)</td> 
+                <td>@Html.DisplayFor(modelItem => item.CourseName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Department)</td>
                 <td>@Html.DisplayFor(modelItem => item.CourseNumber)</td>
                 <td>@Html.DisplayFor(modelItem => item.Credits)</td>
                 <td>@Html.DisplayFor(modelItem => item.Capacity)</td>

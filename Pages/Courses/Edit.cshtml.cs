@@ -39,6 +39,8 @@ namespace CS3750Assignment1.Pages.Courses
         public string MeetingTimeStart { get; set; }
         [BindProperty]
         public string MeetingTimeEnd { get; set; }
+        [BindProperty]
+        public string Department { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -103,6 +105,7 @@ namespace CS3750Assignment1.Pages.Courses
 
             courseToUpdate.MeetingDays = selectedMeetingDays.Count > 0 ? string.Join(",", selectedMeetingDays) : "None";
             courseToUpdate.MeetingTime = String.Concat(MeetingTimeStart, "-", MeetingTimeEnd);
+            courseToUpdate.Department = Department;
 
             try
             {

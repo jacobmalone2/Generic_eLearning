@@ -44,7 +44,8 @@ namespace CS3750Assignment1.Pages {
                                        select new RegisteredCourseViewModel {
                                            CourseName = course.Name,
                                            CourseNumber = course.CourseNumber.ToString(),
-                                           Credits = course.Credits
+                                           Credits = course.Credits,
+                                           Department = course.Department
                                        }).ToListAsync();
 
             TotalCost = RegisteredCourses.Sum(c => c.Credits * 300);
@@ -61,6 +62,7 @@ namespace CS3750Assignment1.Pages {
             public string CourseName { get; set; }
             public string CourseNumber { get; set; }
             public int Credits { get; set; }
+            public string Department { get; set; }
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿@page
+@model CS3750Assignment1.Pages.Submissions.ViewSubmissionsModel
+
+
+@{
+    ViewData["Title"] = "View Submissions";
+}
+
+<h1>Submissions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>File</th>
+            <th>Submitted On</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var submission in Model.Submissions)
+        {
+            <tr>
+                <td>@submission.StudentID</td>
+                <td><a href="@submission.FilePath" target="_blank">Download</a></td>
+                <td>@submission.SubmittedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>

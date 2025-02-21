@@ -6,12 +6,21 @@
 }
 
 <div class="container mt-4">
-    <div class="card shadow-sm">
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" asp-page="/WelcomeInstructor">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-page="/ViewSubmissions">Submissions</a>
+        </li>
+    </ul>
+
+    <div class="card shadow-sm mt-3">
         <div class="card-header bg-primary text-white">
             <h2 class="mb-0">Welcome, Instructor!</h2>
         </div>
         <div class="card-body">
-           <!-- <p class="lead">Instructor ID: <strong>@Model.InstructorId</strong></p>-->
             <p>Manage your courses, students, and resources from your dashboard.</p>
 
             <h3 class="mt-4">Your Courses</h3>
@@ -35,13 +44,10 @@
                                     <p><strong>Meeting Time:</strong> @(string.IsNullOrEmpty(course.MeetingTime) ? "N/A" : course.MeetingTime)</p>
                                     <p><strong>Location:</strong> @course.Location</p>
 
-                                    <thread>
-                                        <!-- Replacing "View Details" with "Edit" -->
-                                        <a asp-page="/Courses/Edit" asp-route-id="@course.Id" class="btn btn-warning">Edit</a>
-
-                                        <!-- View List of Assignments -->
+                                    <div class="d-flex">
+                                        <a asp-page="/Courses/Edit" asp-route-id="@course.Id" class="btn btn-warning me-2">Edit</a>
                                         <a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-warning">Manage Assignments</a>
-                                    </thread>
+                                    </div>
                                 </div>
                             </div>
                         </div>

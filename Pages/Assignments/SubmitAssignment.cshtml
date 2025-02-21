@@ -1,0 +1,41 @@
+﻿@page
+@model CS3750Assignment1.Pages.Submissions.SubmitAssignmentModel
+@{
+    ViewData["Title"] = "Submit Assignment";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Submit Assignment</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Submission.AssignmentID" />
+
+                <div class="mb-3">
+                    <label class="form-label"><strong>Allowed File Types:</strong> @Model.AllowedFileTypes</label>
+                </div>
+
+                @if (Model.AllowedFileTypes.Contains("Text"))
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Write Your Submission</label>
+                        <textarea asp-for="TextSubmission" class="form-control" rows="5"></textarea>
+                    </div>
+                }
+
+                @if (Model.AllowedFileTypes.Contains("PDF"))
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Upload PDF File</label>
+                        <input type="file" name="uploadedFile" class="form-control" accept=".pdf" />
+                    </div>
+                }
+
+                <button type="submit" class="btn btn-success">Submit</button>
+                <a asp-page="/Assignments/Index" asp-route-id="@Model.CourseID" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

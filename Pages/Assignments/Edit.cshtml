@@ -104,7 +104,10 @@
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Assignment.AcceptedFileTypes" class="control-label"></label>
-                <input asp-for="Assignment.AcceptedFileTypes" class="form-control" />
+                @foreach (var submissionType in Model.Types)
+                {
+                    @Html.RadioButtonFor(model => model.submissionType, submissionType) @submissionType
+                }                
                 <span asp-validation-for="Assignment.AcceptedFileTypes" class="text-danger"></span>
             </div>
             <div class="form-group">

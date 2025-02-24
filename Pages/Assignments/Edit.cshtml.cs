@@ -26,6 +26,11 @@ namespace CS3750Assignment1.Pages.Assignments
         [BindProperty]
         public string DueTime { get; set; }
 
+        [BindProperty]
+        public string submissionType { get; set; }
+
+        public string[] Types = new[] { "Text_Entry", "File_Upload" };
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -55,6 +60,7 @@ namespace CS3750Assignment1.Pages.Assignments
             _context.Attach(Assignment).State = EntityState.Modified;
 
             Assignment.DueTime = DueTime;
+            Assignment.AcceptedFileTypes = submissionType;
 
             try
             {

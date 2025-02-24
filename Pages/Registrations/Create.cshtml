@@ -7,6 +7,16 @@
 
 <h1>Register for a Course</h1>
 
+<form>
+    <p>
+        <label>Course Name: <input type="text" asp-for="SearchString" /></label>
+        <select asp-for="CourseDepartment" asp-items="Model.Departments">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 @if (Model.Courses.Any())
 {
     <div class="row">

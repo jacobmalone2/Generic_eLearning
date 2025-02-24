@@ -21,7 +21,7 @@ namespace CS3750Assignment1.Pages.Assignments
 
         public IActionResult OnGet()
         {
-        ViewData["CourseID"] = new SelectList(_context.Course, "Id", "Location");
+            ViewData["CourseID"] = new SelectList(_context.Course, "Id", "Location");
             return Page();
         }
 
@@ -32,10 +32,9 @@ namespace CS3750Assignment1.Pages.Assignments
         public string DueTime { get; set; }
 
         [BindProperty]
-        public bool Text { get; set; }
+        public string submissionType { get; set; }
 
-        [BindProperty]
-        public bool File { get; set; }
+        public string[] Types = new[] { "Text_Entry", "File_Upload"};
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -45,27 +44,7 @@ namespace CS3750Assignment1.Pages.Assignments
                 return Page();
             }
 
-            List<string> filetypes = new List<string>();
-
-            // Check for selected file types.
-            if (Text)
-            {
-                filetypes.Add("Text");
-            }
-            if (File)
-            {
-                filetypes.Add("File_Upload");
-            }
-
-            //make sure there was at least one file type selected
-            if (filetypes.Count > 0)
-            {
-                Assignment.AcceptedFileTypes = string.Join(",", filetypes); //very proud of this
-            }
-            else
-            {
-                Assignment.AcceptedFileTypes = "NA";
-            }
+            Assignment.AcceptedFileTypes = submissionType;
 
             Assignment.CourseID = int.Parse(Request.Cookies["SelectedCourse"]);
             Assignment.DueTime = DueTime;

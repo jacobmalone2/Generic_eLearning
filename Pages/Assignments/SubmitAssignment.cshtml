@@ -25,11 +25,11 @@
                     </div>
                 }
 
-                @if (Model.AllowedFileTypes.Contains("PDF"))
+                @if (Model.AllowedFileTypes.Contains("File"))
                 {
                     <div class="mb-3">
-                        <label class="form-label">Upload PDF File</label>
-                        <input type="file" name="uploadedFile" class="form-control" accept=".pdf" />
+                        <label class="form-label">Upload File</label>
+                        <input type="file" name="uploadedFile" class="form-control"@* accept=".pdf" *@/>
                     </div>
                 }
 

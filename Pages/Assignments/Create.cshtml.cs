@@ -35,7 +35,7 @@ namespace CS3750Assignment1.Pages.Assignments
         public bool Text { get; set; }
 
         [BindProperty]
-        public bool PDF { get; set; }
+        public bool File { get; set; }
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -52,9 +52,9 @@ namespace CS3750Assignment1.Pages.Assignments
             {
                 filetypes.Add("Text");
             }
-            if (PDF)
+            if (File)
             {
-                filetypes.Add("PDF");
+                filetypes.Add("File_Upload");
             }
 
             //make sure there was at least one file type selected

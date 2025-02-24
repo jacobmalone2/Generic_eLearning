@@ -11,15 +11,16 @@
 {
     <p class="text-muted">No assignments due.</p>
 }
-else
-{
-    @if (Model.IsInstructor)
-    {
-        <p>
-            <a asp-page="Create" class="btn btn-primary">Create New Assignment</a>
-        </p>
-    }
 
+@if (Model.IsInstructor)
+{
+    <p>
+        <a asp-page="Create" class="btn btn-primary">Create New Assignment</a>
+    </p>
+}
+
+@if(Model.Assignment.Any())
+{
     <table class="table">
         <thead>
             <tr>

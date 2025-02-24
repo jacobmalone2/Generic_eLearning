@@ -33,7 +33,7 @@
                     </div>
                 }
 
-                <button type="submit" class="btn btn-success">Submit</button>
+                <a asp-page="/Assignments/Index" asp-route-id="@Model.CourseID" type="submit" class="btn btn-success">Submit</a>
                 <a asp-page="/Assignments/Index" asp-route-id="@Model.CourseID" class="btn btn-secondary">Cancel</a>
             </form>
         </div>

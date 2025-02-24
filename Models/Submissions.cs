@@ -18,6 +18,8 @@ namespace CS3750Assignment1.Models
         [Required]
         public string FilePath { get; set; } = string.Empty;
 
+        public int? PointsEarned { get; set; }
+
         [Required]
         [Column("SubmittedAt")] 
         public DateTime SubmittedAt { get; set; } = DateTime.UtcNow;

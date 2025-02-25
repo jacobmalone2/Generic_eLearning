@@ -44,19 +44,44 @@ namespace CS3750Assignment1.Pages {
                                            CourseName = course.Name,
                                            CourseNumber = course.CourseNumber.ToString(),
                                            Credits = course.Credits,
-                                           Department = course.Department
+                                           Department = course.Department,
+                                           IsPaid = reg.IsPaid
                                        }).ToListAsync();
+            // Calculate total cost
+            
+            IsPaymentMade = RegisteredCourses.All(c => c.IsPaid);
 
-            TotalCost = RegisteredCourses.Sum(c => c.Credits * 300);
-
-            if (paymentStatus == "success") {
-                IsPaymentMade = true;
-                TotalCost = 0; // Reset the total cost if payment is made
+            // check to see if the courses are paid for
+            if (IsPaymentMade) {
+                TotalCost = 0;
             }
+            else {
+                TotalCost = RegisteredCourses.Sum(c => c.Credits * 300);
+            }
+
+            if (!string.IsNullOrEmpty(paymentStatus)) {
+                if (paymentStatus == "success") {
+                    // Update the registration table to show that the student has paid for the courses
+                    foreach (var course in RegisteredCourses) {
+                        var registration = await _context.Registration.FirstOrDefaultAsync(r => r.StudentID == studentID && r.CourseID == int.Parse(course.CourseNumber));
+                        if (registration != null) {
+                            registration.IsPaid = true;
+                            _context.Registration.Update(registration);
+                        }
+                    }
+                    await _context.SaveChangesAsync();
+                    IsPaymentMade = true;
+                }
+                else if (paymentStatus == "cancel") {
+                    // Do nothing
+                }
+            }
+
 
             return Page();
         }
 
+        /*
         public IActionResult OnPost() {
             var options = new SessionCreateOptions {
                 PaymentMethodTypes = new List<string> { "card" },
@@ -67,7 +92,7 @@ namespace CS3750Assignment1.Pages {
                         PriceData = new SessionLineItemPriceDataOptions
                         {
                             Currency = "usd",
-                            UnitAmount = (long)(TotalCost * 100), // Convert dollars to cents
+                            UnitAmount = (long)(TotalCost * 300), 
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {
                                 Name = "Tuition Payment",
@@ -86,12 +111,14 @@ namespace CS3750Assignment1.Pages {
 
             return Redirect(session.Url);
         }
+        */
 
         public class RegisteredCourseViewModel {
             public string CourseName { get; set; }
             public string CourseNumber { get; set; }
             public int Credits { get; set; }
             public string Department { get; set; }
+            public bool IsPaid { get; set; }
         }
     }
 }

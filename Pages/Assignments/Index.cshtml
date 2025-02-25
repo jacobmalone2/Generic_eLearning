@@ -2,64 +2,68 @@
 @model CS3750Assignment1.Pages.Assignments.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Assignments";
 }
 
 <h1>Assignments</h1>
 
-<p>
-    <a asp-page="Create"> Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].MaxPoints)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].DueDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].DueTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment[0].AcceptedFileTypes)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Assignment) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxPoints)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DueDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DueTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AcceptedFileTypes)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@if (!Model.Assignment.Any())
+{
+    <p class="text-muted">No assignments due.</p>
 }
-    </tbody>
-</table>
+
+@if (Model.IsInstructor)
+{
+    <p>
+        <a asp-page="Create" class="btn btn-primary">Create New Assignment</a>
+    </p>
+}
+
+@if(Model.Assignment.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Max Points</th>
+                <th>Due Date</th>
+                <th>Due Time</th>
+                <th>Accepted File Types</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Assignment)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                        @if (Model.SubmittedAssignments.Contains(item.Id))
+                        {
+                            <span class="text-success">✔</span>
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MaxPoints)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DueTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AcceptedFileTypes)</td>
+                    <td>
+                        @if (Model.IsInstructor)
+                        {
+                            <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                        }
+                        else
+                        {
+                            <a asp-page="SubmitAssignment" asp-route-assignmentId="@item.Id" class="btn btn-success btn-sm">
+                                Submit Assignment
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

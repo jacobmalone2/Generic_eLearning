@@ -23,6 +23,14 @@ namespace CS3750Assignment1.Pages.Registrations
         [BindProperty]
         public Registration Registration { get; set; } = default!;
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
+        public SelectList? Departments { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? CourseDepartment { get; set; }
+
         public IList<Course> Courses { get; set; } = default!;
         public IList<Registration> Registrations { get; set; } = default!;
 
@@ -32,9 +40,27 @@ namespace CS3750Assignment1.Pages.Registrations
         {
             studentID = int.Parse(Request.Cookies["LoggedUserID"]);
 
+            // <snippet_search_linqQuery>
+            IQueryable<string> departmentQuery = from d in _context.Course
+                                            orderby d.Department
+                                            select d.Department;
+            // <snippet_search_selectList>
+            Departments = new SelectList(await departmentQuery.Distinct().ToListAsync());
+
             try
             {
-                Courses = await _context.Course.ToListAsync();
+                var CourseList = from c in _context.Course select c;
+
+                if (!string.IsNullOrEmpty(SearchString))
+                {
+                    CourseList = CourseList.Where(c => c.Name.Contains(SearchString));
+                }
+                if (!string.IsNullOrEmpty(CourseDepartment))
+                {
+                    CourseList = CourseList.Where(c => c.Department == CourseDepartment);
+                }
+
+                Courses = await CourseList.ToListAsync();
             }
             catch (Exception ex)
             {

@@ -8,10 +8,10 @@
 <h1>Drop :(</h1>
 
 <h3>Are you sure you want to drop this class?</h3>
-<div>    
+<div>
     <form method="post">
         <input type="hidden" asp-for="Registration.CourseID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Drop" class="btn btn-danger" />
+        <a asp-page="/WelcomeStudent" class="btn btn-secondary">Back to Dashboard</a>
     </form>
 </div>

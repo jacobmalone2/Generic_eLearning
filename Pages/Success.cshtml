@@ -4,7 +4,16 @@
     ViewData["Title"] = "Payment Success";
     Layout = "_Layout";
 }
+<head>
+    <script>
+                document.addEventListener("DOMContentLoaded", () => {
+            fetch('/Success?handler=ProcessPayment', {
+                method: 'POST'
+            });
+        });
+    </script>
+</head>
 
 <h2>Payment Successful</h2>
 <p>Your payment was successful. Thank you!</p>
-<a asp-page="/Tuition" class="btn btn-primary">Back to Tuition Page</a>
+<a asp-page="/PaymentSuccess" class="btn btn-primary">Back to Tuition Page</a>

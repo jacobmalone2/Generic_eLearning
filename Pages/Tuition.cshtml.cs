@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 using Stripe.Checkout;
+using System.Diagnostics;
 
 namespace CS3750Assignment1.Pages {
     public class TuitionModel:PageModel {
@@ -60,13 +61,15 @@ namespace CS3750Assignment1.Pages {
             }
 
             if (!string.IsNullOrEmpty(paymentStatus)) {
+                Debug.WriteLine(paymentStatus);
                 if (paymentStatus == "success") {
+                    Debug.WriteLine($"Payment status: {paymentStatus}");
                     // Update the registration table to show that the student has paid for the courses
                     foreach (var course in RegisteredCourses) {
-                        var registration = await _context.Registration.FirstOrDefaultAsync(r => r.StudentID == studentID && r.CourseID == int.Parse(course.CourseNumber));
-                        if (registration != null) {
-                            registration.IsPaid = true;
-                            _context.Registration.Update(registration);
+                        var registration = await _context.Registration.Where(r => r.StudentID == studentID && r.CourseID == int.Parse(course.CourseNumber)).ToListAsync();//FirstOrDefaultAsync(r => r.StudentID == studentID && r.CourseID == int.Parse(course.CourseNumber));
+                        if (registration != null && registration.Count == 1) {
+                            registration[0].IsPaid = true;
+                            _context.Registration.Update(registration[0]);
                         }
                     }
                     await _context.SaveChangesAsync();
@@ -81,7 +84,7 @@ namespace CS3750Assignment1.Pages {
             return Page();
         }
 
-        /*
+       
         public IActionResult OnPost() {
             var options = new SessionCreateOptions {
                 PaymentMethodTypes = new List<string> { "card" },
@@ -102,8 +105,8 @@ namespace CS3750Assignment1.Pages {
                     }
                 },
                 Mode = "payment",
-                SuccessUrl = "http://localhost:5000/Tuition?paymentStatus=success",
-                CancelUrl = "http://localhost:5000/Tuition?paymentStatus=cancel",
+                SuccessUrl = "/Tuition?paymentStatus=success",
+                CancelUrl = "/Tuition?paymentStatus=cancel",
             };
 
             var service = new SessionService();
@@ -111,7 +114,7 @@ namespace CS3750Assignment1.Pages {
 
             return Redirect(session.Url);
         }
-        */
+        
 
         public class RegisteredCourseViewModel {
             public string CourseName { get; set; }

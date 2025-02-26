@@ -7,7 +7,7 @@
 
 <h1>Assignments</h1>
 
-@if (!Model.Assignment.Any())
+@if (!Model.Assignments.Any())
 {
     <p class="text-muted">No assignments due.</p>
 }
@@ -19,7 +19,12 @@
     </p>
 }
 
-@if(Model.Assignment.Any())
+@if (!Model.IsInstructor)
+{
+    <h3>Unsubmitted</h3>
+}
+
+@if(Model.Assignments.Any())
 {
     <table class="table">
         <thead>
@@ -34,16 +39,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Assignment)
+            @foreach (var item in Model.Assignments)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                        @if (Model.SubmittedAssignments.Contains(item.Id))
-                        {
-                            <span class="text-success">✔</span>
-                        }
-                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td> 
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>@Html.DisplayFor(modelItem => item.MaxPoints)</td>
                     <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
@@ -62,6 +61,47 @@
                             </a>
                         }
                     </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (!Model.IsInstructor)
+{
+    <h3>Completed</h3>
+}
+
+@if (Model.SubmittedAssignments.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Points Earned</th>
+                <th>Max Points</th>
+                <th>Date Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SubmittedAssignments)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>
+                        @if (item.EarnedPoints != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.EarnedPoints)
+                        }
+                        else
+                        {
+                            <label>-----</label>
+                        }
+                     </td>
+                    <td>@Html.DisplayFor(modelItem => item.MaxPoints)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SubmittedAt)</td>
                 </tr>
             }
         </tbody>

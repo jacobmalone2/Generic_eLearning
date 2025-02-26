@@ -47,7 +47,7 @@
               let mins = assignments[x].dueTime.substring(3, 5);
               let modifier = assignments[x].dueTime.substring(5);
 
-              if (modifier == 'pm')
+              if (modifier == 'pm' && hrs != 12)
               {
                   hrs += 12;
               }

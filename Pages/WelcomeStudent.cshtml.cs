@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace CS3750Assignment1.Pages
 {
+
     public class WelcomeStudentModel : PageModel
     {
         private readonly CS3750Assignment1Context _context;
@@ -26,6 +28,10 @@ namespace CS3750Assignment1.Pages
 
         public List<Course> RegisteredCourses { get; set; } = new List<Course>();
 
+        public List<Assignment> Assignments { get; set; } = new List<Assignment>(); // Temporary list to hold assignments for each course
+        public record AssignmentWithCourse(Assignment Assignment, Course Course); // Structure that holds assignments and courses together
+        public List<AssignmentWithCourse> CourseAssignments { get; set; } = new List<AssignmentWithCourse>(); // List of all assignments with their corresponding courses
+
         public async Task<IActionResult> OnGetAsync()
         {
             // Get Student ID from cookie
@@ -41,7 +47,35 @@ namespace CS3750Assignment1.Pages
                 .Select(r => r.Course)
                 .ToListAsync();
 
+            // Fetch the assignments for each course
+            foreach (Course c in RegisteredCourses)
+            {
+                Assignments = await _context.Assignment //get all assignments for course
+                    .Where(a => a.CourseID == c.Id)
+                    //.Where(a => DateTime.ParseExact(a.DueDate, "yyyy-mm-dd", CultureInfo.InvariantCulture) > DateTime.Now)
+                    //.Include(a => a.Assignment)
+                    //.Select(a => a.Assignment)
+                    .ToListAsync();
+                
+                foreach (Assignment a in Assignments) // add assignments to total list
+                {
+                    // filter out past assignments
+                    if (DateTime.ParseExact(a.DueDate, "yyyy-MM-dd", CultureInfo.InvariantCulture) < DateTime.Now) {
+                        continue;
+                    }
+                    AssignmentWithCourse w = new AssignmentWithCourse(a, c);
+                    CourseAssignments.Add(w);
+                } 
+            }
+
+            // Sort the list based on due date
+            CourseAssignments.Sort((a1, a2) => DateTime.ParseExact(a1.Assignment.DueDate + " " + a1.Assignment.DueTime, "yyyy-MM-dd h:mmtt", CultureInfo.InvariantCulture).CompareTo(DateTime.ParseExact(a2.Assignment.DueDate + " " + a2.Assignment.DueTime, "yyyy-MM-dd h:mmtt", CultureInfo.InvariantCulture)));
+            
+
             return Page();
+
+
         }
     }
+
 }

@@ -17,7 +17,7 @@ namespace CS3750Assignment1.Models
         public int StudentID { get; set; } // Foreign Key
         [ForeignKey("StudentID")]
         public Account? Account { get; set; }
-
-        //public bool IsPaid { get; set; }
+        
+        public bool IsPaid { get; set; }
     }
 }

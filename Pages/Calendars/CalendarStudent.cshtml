@@ -15,6 +15,7 @@
           var calendarEl = document.getElementById('calendar'); //variable for the calendar element
           //get student registered courses
           var courses = @Html.Raw(Json.Serialize(Model.RegisteredCourses));
+          var assignments = @Html.Raw(Json.Serialize(Model.Assignment));
           var courseEvents = [];
           
           //console.log(courses.length);
@@ -23,28 +24,50 @@
               //console.log(courses[x].meetingTime[0], " ", courses[x].meetingTime[1]);
               var classStart = courses[x].meetingTime[0];
               var classEnd = courses[x].meetingTime[1];
+              var classDays = courses[x].meetingDays.map(function(day){
+                  return mapDayToWeekday(day);
+              }); //This should create an array with the full calendar mapped week days
 
-              //console.log(courses[x].courseName, " ", classStart, " ", classEnd);
-              courses[x].meetingDays.forEach(function(day)
+              courseEvents.push(
               {
-                  var weekDay = mapDayToWeekday(day);
-                  courseEvents.push(
-                  {
-                      title: courses[x].courseName,
-                      daysOfWeek: [weekDay],
-                      startTime: classStart,
-                      endTime: classEnd,
-                      rrule: 
-                      {
-                          freq: 'weekly',
-                          byweekday: [weekDay],
-                          interval: 1
-                      }
-                  });
+                  title: courses[x].courseName,
+                  daysOfWeek: classDays,
+                  startTime: classStart,
+                  endTime: classEnd,
+                  startRecur: '2025-01-06',
+                  endRecur: '2025-04-19',
+                  color: 'Blue'
               });
 
-
           };
+
+          for (var x = 0; x < assignments.length; x++)
+          {
+              let hrs = parseInt(assignments[x].dueTime.substring(0, 2));
+              let mins = assignments[x].dueTime.substring(3, 5);
+              let modifier = assignments[x].dueTime.substring(5);
+
+              if (modifier == 'pm')
+              {
+                  hrs += 12;
+              }
+
+              const testDate = new Date(assignments[x].dueDate + ' ' + hrs + ':' + mins + ':00');
+              var assignmentDueDateISO = testDate.toISOString(); //convert the date and time into an ISO8601 datetime for better use in the calendar. will likely break when daylight savings hits
+              const endDate = new Date(assignments[x].dueDate + ' ' + hrs + ':' + mins + ':01');
+              var assignmentDueDateISOEND = endDate.toISOString();
+
+
+              courseEvents.push(
+              {
+                  title: assignments[x].title,
+                  start: assignmentDueDateISO,
+                  end: assignmentDueDateISOEND, //I hate that I resorted to this but it works
+                  allDay: false,
+                  color: 'Green' //assignments will be green, classes will be blue
+              });
+
+          }
 
 
           var calendar = new FullCalendar.Calendar(calendarEl, {

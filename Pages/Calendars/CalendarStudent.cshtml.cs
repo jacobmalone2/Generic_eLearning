@@ -26,6 +26,8 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public IList<Registration> Registration { get;set; } = default!;
 
+        public IList<Assignment> Assignment { get; set; } = default!;
+
         public IList<RegisteredCourse> RegisteredCourses { get;set; }
 
         public async Task<IActionResult> OnGetAsync()
@@ -54,6 +56,17 @@ namespace CS3750Assignment1.Pages.Calendars
                 Registration = await _context.Registration.Where(r => r.Account.Id == loggedUserID)
                //not going to include the account as a part of this query as the cookie contains the account information .Include(r => r.Account)
                .Include(r => r.Course).ToListAsync();
+
+                //get list of courses for this student
+                List<int> courseIds = new List<int>();
+                foreach (var registration in Registration) {
+                    courseIds.Add(registration.CourseID);
+                }
+
+                //get list of assignments for classes this student is registered for
+                Assignment = await _context.Assignment.Where(a => courseIds.Contains(a.CourseID))
+                .ToListAsync();
+
             }
             catch
             {
@@ -78,22 +91,14 @@ namespace CS3750Assignment1.Pages.Calendars
                     }
                     string[] times = registration.Course.MeetingTime.Split("-");
 
-                   /* Debug.Write(registration.Course.Name + registration.Course.CourseNumber);// + classDays + times[0] + times[1]);
-                    foreach(string day in classDays)
-                    {
-                        Debug.Write(day);
-                    }
-                    Debug.Write(times[0] + times[1]);*/
-
                     RegisteredCourse tempCourse = new RegisteredCourse(registration.Course.Name, registration.Course.CourseNumber, classDays, times[0], times[1]);
 
                     RegisteredCourses.Add(tempCourse);
                     
                 }
 
-                
-                
             }
+
             return Page();
         }
     }

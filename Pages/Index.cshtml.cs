@@ -82,6 +82,9 @@ namespace CS3750Assignment1.Pages {
             if (!string.IsNullOrEmpty(account.imgSource))
             {
                 Response.Cookies.Append("LoggedUserPFP", account.imgSource);
+            } else
+            {
+                Response.Cookies.Delete("LoggedUserPFP");
             }
 
             // ? DO NOT CHECK THE COOKIE IN THE SAME REQUEST

@@ -12,35 +12,27 @@
         document.addEventListener('DOMContentLoaded', function() {
           var calendarEl = document.getElementById('calendar');
 
-          var courses = @Html.Raw(Json.Serialize(Model.InstructorCourses));
+          var courses = @Html.Raw(Json.Serialize(Model.InstructorCourses)); //serialize the course data from the server C# code
           var courseEvents = [];
 
           //console.log(courses.length);
           for(var x = 0; x < courses.length; x++)
           {
-              //console.log(courses[x].meetingTime[0], " ", courses[x].meetingTime[1]);
               var classStart = courses[x].meetingTime[0];
               var classEnd = courses[x].meetingTime[1];
+              var classDays = courses[x].meetingDays.map(function(day){
+                  return mapDayToWeekday(day);
+              }); //This should create an array with the full calendar mapped week days
 
-              //console.log(courses[x].courseName, " ", classStart, " ", classEnd);
-              courses[x].meetingDays.forEach(function(day)
+              courseEvents.push(
               {
-                  var weekDay = mapDayToWeekday(day);
-                  courseEvents.push(
-                  {
-                      title: courses[x].courseName,
-                      daysOfWeek: [weekDay],
-                      startTime: classStart,
-                      endTime: classEnd,
-                      rrule:
-                      {
-                          freq: 'weekly',
-                          byweekday: [weekDay],
-                          interval: 1
-                      }
-                  });
+                  title: courses[x].courseName,
+                  daysOfWeek: classDays,
+                  startTime: classStart,
+                  endTime: classEnd,
+                  startRecur: '2025-01-06',
+                  endRecur: '2025-04-19'
               });
-
 
           };
 

@@ -54,3 +54,4 @@ appsettings*.json
 /.vs/CS3750Assignment1/v17/.futdcache.v2
 /.vs/CS3750Assignment1/DesignTimeBuild/.dtbcache.v2
 /.vs/CS3750Assignment1/v17/DocumentLayout.backup.json
+appsettings.json

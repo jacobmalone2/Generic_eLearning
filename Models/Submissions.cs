@@ -11,9 +11,13 @@ namespace CS3750Assignment1.Models
 
         [Required]
         public int AssignmentID { get; set; }
+        [ForeignKey("AssignmentID")]
+        public Assignment? Assignment { get; set; }
 
         [Required]
         public int StudentID { get; set; }
+        [ForeignKey("StudentID")]
+        public Account? Account { get; set; }
 
         [Required]
         public string FilePath { get; set; } = string.Empty;

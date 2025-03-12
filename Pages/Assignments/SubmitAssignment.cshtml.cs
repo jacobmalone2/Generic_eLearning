@@ -120,7 +120,7 @@ namespace CS3750Assignment1.Pages.Submissions
                 {
                     AssignmentID = AssignmentID,
                     StudentID = studentId,
-                    FilePath = filePath
+                    FilePath = "/uploads/" + SubmissionFile.FileName
                 };
 
                 _context.Submission.Add(Submission);

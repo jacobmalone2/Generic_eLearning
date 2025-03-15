@@ -15,13 +15,13 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Course.Name" class="control-label"></label>
-                <input asp-for="Course.Name" class="form-control" />
-                <span asp-validation-for="Course.Name" class="text-danger"></span>
+                <label asp-for="UserCourse.Name" class="control-label"></label>
+                <input asp-for="UserCourse.Name" class="form-control" />
+                <span asp-validation-for="UserCourse.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Course.Department" class="control-label"></label>
+                <label asp-for="UserCourse.Department" class="control-label"></label>
                 @Html.DropDownListFor(model => model.Department, new List<SelectListItem>
                 {
                     new SelectListItem {Text = "General Education", Value = "General Education", Selected = true },
@@ -32,28 +32,28 @@
                     new SelectListItem {Text = "Computer Science", Value = "Computer Science" },
                     new SelectListItem {Text = "Math", Value = "Math" },
                 }, new { @class = "form-control" })
-                <span asp-validation-for="Course.Department" class="text-danger"></span>
+                <span asp-validation-for="UserCourse.Department" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Course.CourseNumber" class="control-label"></label>
-                <input asp-for="Course.CourseNumber" class="form-control" />
-                <span asp-validation-for="Course.CourseNumber" class="text-danger"></span>
+                <label asp-for="UserCourse.CourseNumber" class="control-label"></label>
+                <input asp-for="UserCourse.CourseNumber" class="form-control" />
+                <span asp-validation-for="UserCourse.CourseNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Course.Credits" class="control-label"></label>
-                <input asp-for="Course.Credits" class="form-control" />
-                <span asp-validation-for="Course.Credits" class="text-danger"></span>
+                <label asp-for="UserCourse.Credits" class="control-label"></label>
+                <input asp-for="UserCourse.Credits" class="form-control" />
+                <span asp-validation-for="UserCourse.Credits" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Course.Capacity" class="control-label"></label>
-                <input asp-for="Course.Capacity" class="form-control" />
-                <span asp-validation-for="Course.Capacity" class="text-danger"></span>
+                <label asp-for="UserCourse.Capacity" class="control-label"></label>
+                <input asp-for="UserCourse.Capacity" class="form-control" />
+                <span asp-validation-for="UserCourse.Capacity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.MeetingDays" class="control-label">Meeting Days</label><br />
+                <label asp-for="UserCourse.MeetingDays" class="control-label">Meeting Days</label><br />
                 <input asp-for="MeetingSunday" type="checkbox"/>
                 <label for="meetingSunday">Sunday</label>
                 <input asp-for="MeetingMonday" type="checkbox"/>
@@ -68,14 +68,10 @@
                 <label for="meetingSunday">Friday</label>
                 <input asp-for="MeetingSaturday" type="checkbox"/>
                 <label for="meetingSunday">Saturday</label>
-                @*<span class="text-danger">*</span>
-                <label asp-for="Course.MeetingDays" class="control-label"></label>
-                <input asp-for="Course.MeetingDays" class="form-control" />
-                <span asp-validation-for="Course.MeetingDays" class="text-danger"></span> @*Original form element for the meetingDays property.*@
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Course.MeetingTime" class="control-label"></label>
+                <label asp-for="UserCourse.MeetingTime" class="control-label"></label>
                 @Html.DropDownListFor(model => model.MeetingTimeStart, new List<SelectListItem> 
                 {
                     new SelectListItem {Text = "12:00am", Value = "12:00am", Selected = true },
@@ -182,13 +178,13 @@
                     new SelectListItem {Text = "11:30pm", Value = "11:30pm" },
                 }, new { @class = "form-control" })
 
-                <span asp-validation-for="Course.MeetingTime" class="text-danger"></span>
+                <span asp-validation-for="UserCourse.MeetingTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <span class="text-danger">*</span>
-                <label asp-for="Course.Location" class="control-label"></label>
-                <input asp-for="Course.Location" class="form-control" />
-                <span asp-validation-for="Course.Location" class="text-danger"></span>
+                <label asp-for="UserCourse.Location" class="control-label"></label>
+                <input asp-for="UserCourse.Location" class="form-control" />
+                <span asp-validation-for="UserCourse.Location" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

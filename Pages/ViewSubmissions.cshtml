@@ -11,6 +11,7 @@
     <thead>
         <tr>
             <th>Assignment</th>
+            <th>Course ID</th>
             <th>Max Points</th>
             <th>Student ID</th>
             <th>Submission</th>
@@ -24,6 +25,7 @@
         {
             <tr>
                 <td>@submission.Assignment.Title</td>
+                <td>@submission.Assignment.CourseID</td>
                 <td>@submission.Assignment.MaxPoints</td> <!-- Show Max Points -->
                 <td>@submission.StudentID</td>
                 <td>
@@ -59,10 +61,12 @@
                 <td>
                     <form method="post">
                         <input type="hidden" name="SubmissionId" value="@submission.Id" />
+                        <input type="hidden" name="CourseId" value="@submission.Assignment.CourseID" /> 
                         <input type="number" name="PointsEarned" class="form-control" min="0" max="@submission.Assignment.MaxPoints" required
                                value="@(submission.PointsEarned ?? 0)" />
                         <button type="submit" class="btn btn-primary btn-sm mt-2">Submit Grade</button>
                     </form>
+
                 </td>
             </tr>
         }

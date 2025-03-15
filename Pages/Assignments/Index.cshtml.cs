@@ -105,6 +105,8 @@ namespace CS3750Assignment1.Pages.Assignments
 
             return Page();
         }
+
+
     }
 
     // Custom ViewModel to hold Registration and Course details

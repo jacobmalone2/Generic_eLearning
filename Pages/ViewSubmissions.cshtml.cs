@@ -21,7 +21,7 @@ namespace CS3750Assignment1.Pages.Submissions
 
         public List<Submission> Submissions { get; set; } = new List<Submission>();
 
-        public async Task<IActionResult> OnGetAsync(int? assignmentId)
+        public async Task<IActionResult> OnGetAsync(int? courseId)
         {
             if (_context.Submission == null)
             {
@@ -29,19 +29,18 @@ namespace CS3750Assignment1.Pages.Submissions
             }
 
             IQueryable<Submission> query = _context.Submission
-            .Include(s => s.Assignment); // Load Assignment data to get MaxPoints
+                .Include(s => s.Assignment);
 
-
-
-            if (assignmentId != null)
+            if (courseId != null)
             {
-                query = query.Where(s => s.AssignmentID == assignmentId);
+                query = query.Where(s => s.Assignment.CourseID == courseId);
             }
 
             Submissions = await query.ToListAsync();
 
             return Page();
         }
+
 
         public async Task<IActionResult> OnPostAsync(int SubmissionId, int PointsEarned)
         {
@@ -64,8 +63,10 @@ namespace CS3750Assignment1.Pages.Submissions
             submission.PointsEarned = PointsEarned;
             await _context.SaveChangesAsync();
 
-            return RedirectToPage(new { assignmentId = submission.AssignmentID });
+            return RedirectToPage("/ViewSubmissions", new { courseId = submission.Assignment.CourseID });
         }
+
+
 
 
     }

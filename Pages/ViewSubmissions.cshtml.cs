@@ -21,7 +21,7 @@ namespace CS3750Assignment1.Pages.Submissions
 
         public List<Submission> Submissions { get; set; } = new List<Submission>();
 
-        public async Task<IActionResult> OnGetAsync(int? courseId)
+        public async Task<IActionResult> OnGetAsync(int? courseId, /*added for individual assignment functionality*/int? assignId)
         {
             if (_context.Submission == null)
             {
@@ -31,9 +31,9 @@ namespace CS3750Assignment1.Pages.Submissions
             IQueryable<Submission> query = _context.Submission
                 .Include(s => s.Assignment);
 
-            if (courseId != null)
+            if (courseId != null && assignId != null)
             {
-                query = query.Where(s => s.Assignment.CourseID == courseId);
+                query = query.Where(s => s.Assignment.CourseID == courseId && s.AssignmentID == assignId);
             }
 
             Submissions = await query.ToListAsync();

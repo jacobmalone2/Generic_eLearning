@@ -107,15 +107,24 @@ namespace CS3750Assignment1.Pages.Courses {
             }
             
             // Grab page information, and create course.
-            CreateCourse(instructorID, UserCourse.Name, UserCourse.CourseNumber, Department, UserCourse.Location
+            try
+            {
+                CreateCourse(instructorID, UserCourse.Name, UserCourse.CourseNumber, Department, UserCourse.Location
                 , UserCourse.Credits, UserCourse.Capacity, meetingDayString, MeetingTimeStart, MeetingTimeEnd);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return Page();
+            }
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("/WelcomeInstructor");
         }
 
         /// <summary>
-        /// Used to verify then submit course information to the database.
+        /// Verify then submit course information to the database.
         /// </summary>
         /// <param name="instructorID"></param>
         /// <param name="name"></param>

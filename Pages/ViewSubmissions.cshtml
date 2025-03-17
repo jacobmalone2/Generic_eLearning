@@ -46,6 +46,8 @@
         var options = {
           title: 'Lengths of dinosaurs, in meters',
           legend: { position: 'none' },
+          histogram.minValue: 0,
+          histogram.maxValue: @Model.MaxScore,
         };
 
         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));

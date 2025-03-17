@@ -21,6 +21,8 @@ namespace CS3750Assignment1.Pages.Submissions
 
         public List<Submission> Submissions { get; set; } = new List<Submission>();
 
+        public int MaxScore { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? courseId, /*added for individual assignment functionality*/int? assignId)
         {
             if (_context.Submission == null)
@@ -37,6 +39,10 @@ namespace CS3750Assignment1.Pages.Submissions
             }
 
             Submissions = await query.ToListAsync();
+            if (Submissions.Count > 0)
+            {
+                MaxScore = Submissions[0].Assignment.MaxPoints;
+            }
 
             return Page();
         }

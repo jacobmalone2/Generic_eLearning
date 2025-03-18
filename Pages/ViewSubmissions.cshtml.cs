@@ -21,6 +21,8 @@ namespace CS3750Assignment1.Pages.Submissions
 
         public List<Submission> Submissions { get; set; } = new List<Submission>();
 
+        public List<GradedSubmission> GradedSubmissions { get; set; }
+
         public int MaxScore { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? courseId, /*added for individual assignment functionality*/int? assignId)
@@ -41,7 +43,21 @@ namespace CS3750Assignment1.Pages.Submissions
             Submissions = await query.ToListAsync();
             if (Submissions.Count > 0)
             {
+                //if there is any number of submissions, load the max score of the assignment
                 MaxScore = Submissions[0].Assignment.MaxPoints;
+            }
+            GradedSubmissions = new List<GradedSubmission>();
+            foreach (var submission in Submissions)
+            {
+                //if the submission has earned points, add it to the list of graded assignments
+                if (submission.PointsEarned is not null)
+                {
+                    //cast the nullable int to an int now that we know it's not null
+                    int score = (int) submission.PointsEarned;
+                    string id = submission.StudentID.ToString();
+                    Console.WriteLine(id + " " + score);
+                    GradedSubmissions.Add(new GradedSubmission(id, score));
+                }
             }
 
             return Page();
@@ -69,11 +85,12 @@ namespace CS3750Assignment1.Pages.Submissions
             submission.PointsEarned = PointsEarned;
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/ViewSubmissions", new { courseId = submission.Assignment.CourseID });
+            return RedirectToPage("/ViewSubmissions", new { courseId = submission.Assignment.CourseID, assignId = submission.Assignment.Id });
         }
 
 
 
 
     }
+
 }

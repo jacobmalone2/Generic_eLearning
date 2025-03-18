@@ -9,10 +9,32 @@
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+      var assignmentMaxScore = @Html.Raw(Json.Serialize(Model.MaxScore));
+      var gradedAssignmentArray = @Html.Raw(Json.Serialize(Model.GradedSubmissions));
+
       google.charts.load("current", {packages:["corechart"]});
+
+
+
+      var dataArray = [['Student ID', 'Score']];
+      gradedAssignmentArray.forEach(function(currentValue){
+          dataArray.push([currentValue.submissionId, currentValue.grade]);
+      });
+
       google.charts.setOnLoadCallback(drawChart);
+      console.log(assignmentMaxScore);
+
+      //javascript hell for determining bucket size
+
+      //bunch of if statements to check what the max score is divisible by
+      //based on the calculated number, pick appropriate bucket sizes and number of buckets (aim for 10 buckets if possible, maybe a larger number like 20 would be better)
+
+      //finally out of javascript hell
+      
+
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
+          var data = google.visualization.arrayToDataTable(dataArray);
+        /*var data = google.visualization.arrayToDataTable([
           ['Dinosaur', 'Length'],
           ['Acrocanthosaurus (top-spined lizard)', 12.2],
           ['Albertosaurus (Alberta lizard)', 9.1],
@@ -41,13 +63,15 @@
           ['Supersaurus (super lizard)', 30.5],
           ['Tyrannosaurus (tyrant lizard)', 15.2],
           ['Ultrasaurus (ultra lizard)', 30.5],
-          ['Velociraptor (swift robber)', 1.8]]);
+          ['Velociraptor (swift robber)', 1.8]]);*/
 
         var options = {
-          title: 'Lengths of dinosaurs, in meters',
+          title: 'Assignment scores',
           legend: { position: 'none' },
-          histogram.minValue: 0,
-          histogram.maxValue: @Model.MaxScore,
+          histogram: {
+              minValue: 0,
+              maxValue: assignmentMaxScore
+          }
         };
 
         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
@@ -80,7 +104,7 @@
         {
             <tr>
                 <td>@submission.Assignment.Title</td>
-                <td>@submission.Assignment.CourseID</td>
+                <!--td>ampersandWasHere submission.Assignment.CourseID</!--td-->
                 <td>@submission.Assignment.MaxPoints</td> <!-- Show Max Points -->
                 <td>@submission.StudentID</td>
                 <td>

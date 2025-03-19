@@ -17,7 +17,7 @@ namespace CS3750Assignment1.Models
 
         [DataType(DataType.EmailAddress)]
         [Required]
-        public required string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
         [StringLength(30, MinimumLength = 2)]
         [Required]
@@ -31,17 +31,16 @@ namespace CS3750Assignment1.Models
         [StringLength(int.MaxValue, MinimumLength = 8)]
         [DataType(DataType.Password)] //gonna try without this, let's see what happens
         [Required]
-        public required string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         [Compare("Password", ErrorMessage = "Passwords do not match. Please try again.")]
         [StringLength(int.MaxValue, MinimumLength = 8)]
         [DataType(DataType.Password)]
         [NotMapped]
-        public required string PasswordConfirmation { get; set; } //extra field for password validation purposes
+        public string PasswordConfirmation { get; set; } = string.Empty; //extra field for password validation purposes
 
-        //[StringLength(10,  MinimumLength = 7)]
         [Required]
-        public required string AccountRole { get; set; } //can be instructor or student
+        public string AccountRole { get; set; } = string.Empty; //can be instructor or student
 
         [StringLength(int.MaxValue)]
         [DataType(DataType.ImageUrl)]

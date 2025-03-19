@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CS3750Assignment1", "CS3750Assignment1.csproj", "{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS3750Assignment1.Tests", "..\CS3750Assignment1.Tests\CS3750Assignment1.Tests.csproj", "{A9A8B967-2EB4-41DE-9739-875D28ED6B75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4EC08F7-7B2D-42A3-B99C-81E00E2C1E21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A8B967-2EB4-41DE-9739-875D28ED6B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A8B967-2EB4-41DE-9739-875D28ED6B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A8B967-2EB4-41DE-9739-875D28ED6B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A8B967-2EB4-41DE-9739-875D28ED6B75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

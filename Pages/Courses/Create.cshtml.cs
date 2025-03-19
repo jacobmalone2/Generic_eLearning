@@ -153,19 +153,19 @@ namespace CS3750Assignment1.Pages.Courses {
             }
 
             if (name == null || name == "")
-                throw new ArgumentException("Argument cannot be null: No Course Name Provided.");
+                throw new ArgumentNullException("Argument cannot be null: No Course Name Provided.");
             else course.Name = name;
 
             if (courseNumber == 0)
-                throw new ArgumentException("Argument cannot be null: No Course Number Provided.");
+                throw new ArgumentNullException("Argument cannot be null: No Course Number Provided.");
             else course.CourseNumber = courseNumber;
 
             if (department == null || department == "")
-                throw new ArgumentException("Argument cannot be null: No Course Department Provided.");
+                throw new ArgumentNullException("Argument cannot be null: No Course Department Provided.");
             else course.Department = department;
 
             if (location == null || location == "")
-                throw new ArgumentException("Argument cannot be null: No Course Location Provided.");
+                throw new ArgumentNullException("Argument cannot be null: No Course Location Provided.");
             else if (location.Length > 30 || location.Length < 2)
                 throw new ArgumentOutOfRangeException("Location must be between two to thirty characters.");
             else course.Location = location;
@@ -178,13 +178,18 @@ namespace CS3750Assignment1.Pages.Courses {
                 throw new ArgumentException("Parameter is out of range: Capacity Must Be Between One to Two-Hundred.");
             else course.Capacity = capacity;
 
-            string[] selectedMeetingDays = meetingDays.Split(',', StringSplitOptions.RemoveEmptyEntries);
-            foreach (string s in selectedMeetingDays)
+            if (meetingDays == "" ||  meetingDays == null)
+                throw new ArgumentNullException("Argument cannot be null: No Meeting Days Provided.");
+            else
             {
-                if (!Enum.IsDefined(typeof(DayOfWeek), s) && s != "None")
-                    throw new ArgumentException("Argument Must Be A Day Of The Week, Or None.");
+                string[] selectedMeetingDays = meetingDays.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                foreach (string s in selectedMeetingDays)
+                {
+                    if (!Enum.IsDefined(typeof(DayOfWeek), s) && s != "None")
+                        throw new ArgumentException("Argument Must Be A Day Of The Week, Or None.");
+                }
+                course.MeetingDays = meetingDays;
             }
-            course.MeetingDays = meetingDays;
 
             DateTime temp = new DateTime();
             if (!DateTime.TryParseExact(meetingTimeStart, "hh:mmtt", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out temp))

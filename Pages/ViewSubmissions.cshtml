@@ -1,28 +1,73 @@
 ﻿@page
 @model CS3750Assignment1.Pages.Submissions.ViewSubmissionsModel
 
-
 @{
-    ViewData["Title"] = "View Submissions";
+    ViewData["Title"] = "All Submitted Assignments";
 }
 
-<h1>Submissions</h1>
+<h1>All Submitted Assignments</h1>
 
 <table class="table">
     <thead>
         <tr>
+            <th>Assignment</th>
+            <th>Course ID</th>
+            <th>Max Points</th>
             <th>Student ID</th>
-            <th>File</th>
+            <th>Submission</th>
             <th>Submitted On</th>
+            <th>Grade</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var submission in Model.Submissions)
         {
             <tr>
+                <td>@submission.Assignment.Title</td>
+                <td>@submission.Assignment.CourseID</td>
+                <td>@submission.Assignment.MaxPoints</td> <!-- Show Max Points -->
                 <td>@submission.StudentID</td>
-                <td><a href="@submission.FilePath" target="_blank">Download</a></td>
+                <td>
+                    @if (!string.IsNullOrEmpty(submission.FilePath))
+                    {
+                        @if (submission.FilePath.StartsWith("/uploads/"))
+                        {
+                            <!-- File Upload -->
+                            <a href="@submission.FilePath" target="_blank">Download</a>
+                        }
+                        else
+                        {
+                            <!-- Text Entry -->
+                            <span>@submission.FilePath</span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">No submission</span>
+                    }
+                </td>
                 <td>@submission.SubmittedAt</td>
+                <td>
+                    @if (submission.PointsEarned != null)
+                    {
+                        <span class="badge bg-success">@submission.PointsEarned / @submission.Assignment.MaxPoints</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Not Graded</span>
+                    }
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="SubmissionId" value="@submission.Id" />
+                        <input type="hidden" name="CourseId" value="@submission.Assignment.CourseID" /> 
+                        <input type="number" name="PointsEarned" class="form-control" min="0" max="@submission.Assignment.MaxPoints" required
+                               value="@(submission.PointsEarned ?? 0)" />
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Submit Grade</button>
+                    </form>
+
+                </td>
             </tr>
         }
     </tbody>

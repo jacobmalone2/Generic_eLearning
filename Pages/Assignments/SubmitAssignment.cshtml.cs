@@ -19,7 +19,6 @@ namespace CS3750Assignment1.Pages.Submissions
         {
             _context = context;
         }
-
         
         public Submission Submission { get; set; } = default!;
 
@@ -43,6 +42,7 @@ namespace CS3750Assignment1.Pages.Submissions
             if (AssignmentID == 0)
                 return NotFound();
 
+#pragma warning disable CS8601 // Possible null reference assignment.
             Assignment = await _context.Assignment
                 .Where(a => a.Id == AssignmentID)
                 .Select(a => new Assignment
@@ -52,6 +52,7 @@ namespace CS3750Assignment1.Pages.Submissions
                     AcceptedFileTypes = a.AcceptedFileTypes
                 })
                 .FirstOrDefaultAsync();
+#pragma warning restore CS8601 // Possible null reference assignment.
 
             if (Assignment == null)
                 return NotFound();
@@ -131,6 +132,46 @@ namespace CS3750Assignment1.Pages.Submissions
             }
 
             return Page();
+        }
+
+        /// <summary>
+        /// Verify then submit information to the database.
+        /// </summary>
+        /// <param name="assignmentID"></param>
+        /// <param name="studentID"></param>
+        /// <param name="filePath"></param>
+        public void CreateSubmission(int assignmentID, int studentID, string filePath)
+        {
+            Submission submission = new Submission();
+
+            if (assignmentID <= 0)
+                throw new ArgumentOutOfRangeException("Parameter is out of range: InstructorID");
+            else
+            {
+                Assignment? assignment = _context.Assignment.Where(c => c.Id == assignmentID).FirstOrDefault();
+                if (assignment == null)
+                    throw new ArgumentNullException("No Assignment Found.");
+
+                submission.AssignmentID = assignmentID;
+            }
+
+            if (studentID <= 0)
+                throw new ArgumentOutOfRangeException("Parameter is out of range: InstructorID");
+            else
+            {
+                Models.Account? student = _context.Account.Where(c => c.Id == studentID).FirstOrDefault();
+                if (student == null)
+                    throw new ArgumentNullException("No Account Found.");
+
+                submission.StudentID = studentID;
+            }
+
+            if (filePath == null || filePath == "")
+                throw new ArgumentException("Argument cannot be null: No File Path Provided.");
+            // TODO: Check if it actually pulls up a file when read.
+            else submission.FilePath = filePath;
+
+            _context.Submission.Add(submission);
         }
     }
 }

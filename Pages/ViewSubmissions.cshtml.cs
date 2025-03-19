@@ -21,18 +21,53 @@ namespace CS3750Assignment1.Pages.Submissions
 
         public List<Submission> Submissions { get; set; } = new List<Submission>();
 
-        public async Task<IActionResult> OnGetAsync(int assignmentId)
+        public async Task<IActionResult> OnGetAsync(int? courseId)
         {
             if (_context.Submission == null)
             {
                 return NotFound();
             }
 
-            Submissions = await _context.Submission
-                .Where(s => s.AssignmentID == assignmentId)
-                .ToListAsync();
+            IQueryable<Submission> query = _context.Submission
+                .Include(s => s.Assignment);
+
+            if (courseId != null)
+            {
+                query = query.Where(s => s.Assignment.CourseID == courseId);
+            }
+
+            Submissions = await query.ToListAsync();
 
             return Page();
         }
+
+
+        public async Task<IActionResult> OnPostAsync(int SubmissionId, int PointsEarned)
+        {
+            var submission = await _context.Submission
+                .Include(s => s.Assignment) // Load assignment to get MaxPoints
+                .FirstOrDefaultAsync(s => s.Id == SubmissionId);
+
+            if (submission == null)
+            {
+                return NotFound();
+            }
+
+            // Ensure EarnedPoints do not exceed MaxPoints
+            if (PointsEarned > submission.Assignment.MaxPoints)
+            {
+                ModelState.AddModelError("", "Earned points cannot exceed Max Points.");
+                return Page();
+            }
+
+            submission.PointsEarned = PointsEarned;
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("/ViewSubmissions", new { courseId = submission.Assignment.CourseID });
+        }
+
+
+
+
     }
 }

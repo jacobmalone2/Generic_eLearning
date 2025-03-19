@@ -13,6 +13,8 @@ namespace CS3750Assignment1.Models
         [ForeignKey("CourseID")]
         public Course? Course { get; set; }
 
+
+
         [Required]
         public string Title { get; set; }
 
@@ -24,7 +26,7 @@ namespace CS3750Assignment1.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public string DueDate { get; set; }
+        public string DueDate { get; set; } = default!;
 
         [StringLength(7, MinimumLength = 0)]
         public string? DueTime { get; set; }

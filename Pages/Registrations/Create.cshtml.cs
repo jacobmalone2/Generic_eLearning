@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 namespace CS3750Assignment1.Pages.Registrations
 {
@@ -89,15 +90,55 @@ namespace CS3750Assignment1.Pages.Registrations
 
             studentID = int.Parse(Request.Cookies["LoggedUserID"]);
 
-            Registration.StudentID = studentID;
-            Registration.CourseID = Id; // Fetch Course ID from register button.
-
-            Registration.Id = 0; // Unless you feel like going down a rabit hole, don't delete this line.
-
-            _context.Registration.Add(Registration);
-            await _context.SaveChangesAsync();
+            try
+            {
+                CreateRegistration(Id, studentID); // Id variable is the Course ID being submitted.
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return Page();
+            }
 
             return RedirectToPage("/WelcomeStudent");
+        }
+
+        /// <summary>
+        /// Verifies then submits information to the database.
+        /// </summary>
+        /// <param name="courseID"></param>
+        /// <param name="studentID"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        public void CreateRegistration(int courseID, int studentID)
+        {
+            Registration registration = new Registration();
+            registration.Id = 0; // Unless you feel like going down a rabit hole, don't delete this line.
+
+            if (courseID <= 0)
+                throw new ArgumentOutOfRangeException("Parameter is out of range: CourseID");
+            else
+            {
+                Course? Course = _context.Course.Where(c => c.Id == courseID).FirstOrDefault();
+                if (Course == null)
+                    throw new ArgumentNullException("No Course Found.");
+
+                registration.CourseID = courseID;
+            }
+
+            if (studentID <= 0)
+                throw new ArgumentOutOfRangeException("Parameter is out of range: StudentID");
+            else
+            {
+                Models.Account? Student = _context.Account.Where(c => c.Id == studentID).FirstOrDefault();
+                if (Student == null)
+                    throw new ArgumentNullException("No Account Found.");
+
+                registration.StudentID = studentID;
+            }
+
+            _context.Registration.Add(registration);
         }
 
         public bool IsRegistered(int x)

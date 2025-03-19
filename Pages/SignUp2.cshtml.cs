@@ -44,14 +44,14 @@ namespace CS3750Assignment1.Pages
             {
                 CreateAccount(Account.FirstName, Account.LastName, Account.Email, Account.Username, Account.Birthdate
                     , Account.Password, Account.PasswordConfirmation, Account.AccountRole);
+
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return Page();
             }
-
-            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
@@ -81,7 +81,7 @@ namespace CS3750Assignment1.Pages
 
             if (email == null || email == "")
                 throw new ArgumentException("Argument cannot be null: No Email Provided.");
-            // ToDo: Add wildcard support so we can check for the @ and . symbols
+            // TODO: Add wildcard support so we can check for the @ and . symbols
             else
                 account.Email = email;
 
@@ -89,7 +89,6 @@ namespace CS3750Assignment1.Pages
                 throw new ArgumentException("Argument cannot be null: No User Name Provided.");
             else account.Username = username;
 
-            // ToDo: Validate this
             account.Birthdate = dateOfBirth;
 
             if (password == null || password == "")

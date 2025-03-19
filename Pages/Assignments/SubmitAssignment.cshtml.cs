@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
+using Stripe;
 
 namespace CS3750Assignment1.Pages.Submissions
 {
@@ -39,6 +40,7 @@ namespace CS3750Assignment1.Pages.Submissions
             if (AssignmentID == 0)
                 return NotFound();
 
+#pragma warning disable CS8601 // Possible null reference assignment.
             Assignment = await _context.Assignment
                 .Where(a => a.Id == AssignmentID)
                 .Select(a => new Assignment
@@ -48,6 +50,7 @@ namespace CS3750Assignment1.Pages.Submissions
                     AcceptedFileTypes = a.AcceptedFileTypes
                 })
                 .FirstOrDefaultAsync();
+#pragma warning restore CS8601 // Possible null reference assignment.
 
             if (Assignment == null)
                 return NotFound();
@@ -61,69 +64,84 @@ namespace CS3750Assignment1.Pages.Submissions
         public async Task<IActionResult> OnPostAsync(IFormFile uploadedFile)
         {
             int studentId = int.Parse(Request.Cookies["LoggedUserID"]);
-
-            // Fetch Assignment
-            Assignment = await _context.Assignment.FindAsync(AssignmentID);
-            if (Assignment == null)
-                return NotFound();
-
-            // Get allowed file types
-            string[] allowedTypes = Assignment.AcceptedFileTypes.Split(',');
+            string filePath = "";
 
             // Handle Text Submissions
-            if (allowedTypes.Contains("txt") && !string.IsNullOrWhiteSpace(TextSubmission))
+            if (Assignment.AcceptedFileTypes == "Text_Entry" && !string.IsNullOrWhiteSpace(TextSubmission))
             {
-                string textFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", $"{Guid.NewGuid()}.txt");
-                await System.IO.File.WriteAllTextAsync(textFilePath, TextSubmission);
-
-                Submission = new Submission
-                {
-                    AssignmentID = AssignmentID,
-                    StudentID = studentId,
-                    FilePath = textFilePath.Replace(Directory.GetCurrentDirectory(), "").Replace("\\", "/"),
-                };
-
-                _context.Submission.Add(Submission);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Assignments/Index", new { id = CourseID });
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", $"{Guid.NewGuid()}.txt");
+                await System.IO.File.WriteAllTextAsync(filePath, TextSubmission);
             }
 
-            // Handle PDF Submissions
+            // Handle File Submissions
             if (uploadedFile != null && uploadedFile.Length > 0)
             {
                 string fileExtension = Path.GetExtension(uploadedFile.FileName).ToLower().TrimStart('.');
-                if (!allowedTypes.Contains(fileExtension))
-                {
-                    ModelState.AddModelError("", $"Invalid file type. Allowed types: {Assignment.AcceptedFileTypes}");
-                    return Page();
-                }
 
                 string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
                 if (!Directory.Exists(uploadsFolder))
                     Directory.CreateDirectory(uploadsFolder);
 
-                string filePath = Path.Combine(uploadsFolder, $"{Guid.NewGuid()}.{fileExtension}");
+                filePath = Path.Combine(uploadsFolder, $"{Guid.NewGuid()}.{fileExtension}");
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-
-                Submission = new Submission
-                {
-                    AssignmentID = AssignmentID,
-                    StudentID = studentId,
-                    FilePath = filePath.Replace(Directory.GetCurrentDirectory(), "").Replace("\\", "/"),
-                };
-
-                _context.Submission.Add(Submission);
-                await _context.SaveChangesAsync();
-
-                return RedirectToPage("/Assignments/Index", new { id = CourseID });
             }
 
-            ModelState.AddModelError("", "No valid submission found. Please enter text or upload a file.");
-            return Page();
+            try
+            {
+                CreateSubmission(AssignmentID, studentId, filePath.Replace(Directory.GetCurrentDirectory(), "").Replace("\\", "/"));
+
+                await _context.SaveChangesAsync();
+                return RedirectToPage("/Assignments/Index", new { id = CourseID });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return Page();
+            }
+        }
+
+        /// <summary>
+        /// Verify then submit information to the database.
+        /// </summary>
+        /// <param name="assignmentID"></param>
+        /// <param name="studentID"></param>
+        /// <param name="filePath"></param>
+        public void CreateSubmission(int assignmentID, int studentID, string filePath)
+        {
+            Submission submission = new Submission();
+
+            if (assignmentID <= 0)
+                throw new ArgumentOutOfRangeException("Parameter is out of range: InstructorID");
+            else
+            {
+                Assignment? assignment = _context.Assignment.Where(c => c.Id == assignmentID).FirstOrDefault();
+                if (assignment == null)
+                    throw new ArgumentNullException("No Assignment Found.");
+
+                submission.AssignmentID = assignmentID;
+            }
+
+            if (studentID <= 0)
+                throw new ArgumentOutOfRangeException("Parameter is out of range: InstructorID");
+            else
+            {
+                Models.Account? student = _context.Account.Where(c => c.Id == studentID).FirstOrDefault();
+                if (student == null)
+                    throw new ArgumentNullException("No Account Found.");
+
+                submission.StudentID = studentID;
+            }
+
+            if (filePath == null || filePath == "")
+                throw new ArgumentException("Argument cannot be null: No File Path Provided.");
+            // TODO: Check if it actually pulls up a file.
+            else submission.FilePath = filePath;
+
+            _context.Submission.Add(submission);
         }
     }
 }

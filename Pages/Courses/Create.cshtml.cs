@@ -111,14 +111,14 @@ namespace CS3750Assignment1.Pages.Courses {
             {
                 CreateCourse(instructorID, UserCourse.Name, UserCourse.CourseNumber, Department, UserCourse.Location
                 , UserCourse.Credits, UserCourse.Capacity, meetingDayString, MeetingTimeStart, MeetingTimeEnd);
+
+                await _context.SaveChangesAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return Page();
             }
-
-            await _context.SaveChangesAsync();
 
             return RedirectToPage("/WelcomeInstructor");
         }
@@ -188,11 +188,11 @@ namespace CS3750Assignment1.Pages.Courses {
 
             DateTime temp = new DateTime();
             if (!DateTime.TryParseExact(meetingTimeStart, "hh:mmtt", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out temp))
-                throw new ArgumentException("Incorrect Datetime Format. Example: 10:30am");
+                throw new ArgumentException("Incorrect DateTime Format. Example: 10:30am");
             else
             {
                 if (!DateTime.TryParseExact(meetingTimeEnd, "hh:mmtt", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out temp))
-                    throw new ArgumentException("Incorrect Datetime Format. Example: 10:30am");
+                    throw new ArgumentException("Incorrect DateTime Format. Example: 10:30am");
                 else
                     course.MeetingTime = String.Concat(meetingTimeStart, "-", meetingTimeEnd);
             }

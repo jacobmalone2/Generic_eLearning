@@ -66,6 +66,7 @@ namespace CS3750Assignment1.Pages.Submissions
         public async Task<IActionResult> OnPostAsync()
         {
             int studentId = int.Parse(Request.Cookies["LoggedUserID"]);
+            string filepath = "";
 
             // Fetch Assignment
             Assignment = await _context.Assignment.FindAsync(AssignmentID);
@@ -131,7 +132,18 @@ namespace CS3750Assignment1.Pages.Submissions
 
             }
 
-            return Page();
+            try
+            {
+                CreateSubmission(AssignmentID, studentId, filepath);
+
+                await _context.SaveChangesAsync();
+                return RedirectToPage("/Assignments/Index", new { id = CourseID });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return Page();
+            }
         }
 
         /// <summary>

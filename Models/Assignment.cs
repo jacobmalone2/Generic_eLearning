@@ -13,8 +13,6 @@ namespace CS3750Assignment1.Models
         [ForeignKey("CourseID")]
         public Course? Course { get; set; }
 
-
-
         [Required]
         public string Title { get; set; }
 

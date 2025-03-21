@@ -62,10 +62,12 @@
 				<div class="row">
 					@foreach (var a in Model.CourseAssignments)
 					{
+						<a asp-page="/Assignments/SubmitAssignment" asp-route-assignmentId="@a.Assignment.Id" class="btn btn-light">
 							<div class="card shadow-sm m-1 p-2">
 								<p class="fw-semibold">@a.Course.Name @a.Course.CourseNumber &#45 @a.Assignment.Title</p>
 								<p class="fw-semibold">@a.Assignment.DueDate &#45 @a.Assignment.DueTime</p>
 							</div>
+						</a>
 					}
 				</div>
 			}

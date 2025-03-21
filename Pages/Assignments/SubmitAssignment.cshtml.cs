@@ -84,17 +84,7 @@ namespace CS3750Assignment1.Pages.Submissions
                     return Page();
                 }
 
-                Submission = new Submission
-                {
-                    AssignmentID = AssignmentID,
-                    StudentID = studentId,
-                    FilePath = TextSubmission
-                };
-
-                _context.Submission.Add(Submission);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Assignments/Index", new { id = CourseID });
-
+                filepath = TextSubmission;
             }
 
             // Handle File Submissions
@@ -110,26 +100,15 @@ namespace CS3750Assignment1.Pages.Submissions
                 if (!Directory.Exists(uploadsFolder))
                     Directory.CreateDirectory(uploadsFolder);
 
-                string filePath = Path.Combine(uploadsFolder, SubmissionFile.FileName);
+                string s = Path.Combine(uploadsFolder, SubmissionFile.FileName);
 
                 // Save the file in the directory
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                using (var stream = new FileStream(s, FileMode.Create))
                 {
                     await SubmissionFile.CopyToAsync(stream);
                 }
 
-                Submission = new Submission
-                {
-                    AssignmentID = AssignmentID,
-                    StudentID = studentId,
-                    FilePath = "/uploads/" + SubmissionFile.FileName
-                };
-
-                _context.Submission.Add(Submission);
-                await _context.SaveChangesAsync();
-
-                return RedirectToPage("/Assignments/Index", new { id = CourseID });
-
+                filepath = "/uploads/" + SubmissionFile.FileName;
             }
 
             try
@@ -137,7 +116,7 @@ namespace CS3750Assignment1.Pages.Submissions
                 CreateSubmission(AssignmentID, studentId, filepath);
 
                 await _context.SaveChangesAsync();
-                return RedirectToPage("/Assignments/Index", new { id = CourseID });
+                return RedirectToPage("./Index");
             }
             catch (Exception ex)
             {

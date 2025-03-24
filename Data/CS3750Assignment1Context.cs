@@ -9,6 +9,9 @@ namespace CS3750Assignment1.Data
 {
     public class CS3750Assignment1Context : DbContext
     {
+        public CS3750Assignment1Context() {
+        }
+
         public CS3750Assignment1Context (DbContextOptions<CS3750Assignment1Context> options)
             : base(options)
         {

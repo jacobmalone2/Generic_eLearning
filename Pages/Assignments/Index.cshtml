@@ -53,18 +53,30 @@
                         {
                             <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
                             <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                           <!-- Added for individual assignment functionality--> <a asp-page="/ViewSubmissions" asp-route-courseId="@Model.CourseID" asp-route-assignId="@item.Id" class="btn btn-info">
+                                View Submissions
+                            </a>
                         }
                         else
                         {
-                            <a asp-page="SubmitAssignment" asp-route-assignmentId="@item.Id" class="btn btn-success btn-sm">
-                                Submit Assignment
-                            </a>
+                            <a asp-page="SubmitAssignment" asp-route-assignmentId="@item.Id" class="btn btn-success btn-sm">Submit Assignment</a>
                         }
                     </td>
+
                 </tr>
             }
         </tbody>
     </table>
+   
+    /*@if (Model.IsInstructor)
+    {
+        <div class="mt-3">
+            <a asp-page="/ViewSubmissions" asp-route-courseId="@Model.CourseID" class="btn btn-info">
+                View Submissions
+            </a>
+        </div>
+    }*/
+
 }
 
 @if (!Model.IsInstructor)
@@ -106,4 +118,6 @@
             }
         </tbody>
     </table>
+
+
 }

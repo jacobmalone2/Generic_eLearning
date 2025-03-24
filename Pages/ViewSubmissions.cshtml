@@ -1,28 +1,130 @@
 ﻿@page
 @model CS3750Assignment1.Pages.Submissions.ViewSubmissionsModel
 
-
 @{
-    ViewData["Title"] = "View Submissions";
+    //ViewData["Title"] = "All Submitted Assignments";
+    ViewData["Title"] = "Assignment Submissions";
 }
 
-<h1>Submissions</h1>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      var assignmentMaxScore = @Html.Raw(Json.Serialize(Model.MaxScore));
+      var gradedAssignmentArray = @Html.Raw(Json.Serialize(Model.GradedSubmissions));
+      google.charts.load("current", {packages:["corechart"]});
+
+
+
+      var dataArray = [['Student ID', 'Score']];
+      gradedAssignmentArray.forEach(function(currentValue){
+          dataArray.push([currentValue.submissionId, currentValue.grade]);
+      });
+
+      google.charts.setOnLoadCallback(drawChart);
+      console.log(assignmentMaxScore);
+
+      //javascript hell for determining bucket size
+
+      //bunch of if statements to check what the max score is divisible by
+      
+
+
+
+      //based on the calculated number, pick appropriate bucket sizes and number of buckets (aim for 10 buckets if possible, maybe a larger number like 20 would be better)
+
+      //finally out of javascript hell
+      
+
+      function drawChart() {
+          var data = google.visualization.arrayToDataTable(dataArray);
+        
+        var options = {
+          title: 'Assignment scores',
+          legend: { position: 'none' },
+          histogram: {
+              bucketSize: assignmentMaxScore / 10,
+              maxNumBuckets: 10,
+              minValue: 0,
+              maxValue: assignmentMaxScore
+          },
+          /*hAxis: {
+              viewWindow: { max: assignmentMaxScore + 0.1 }
+          }*/
+        };
+
+        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+
+
+<h1>All Submitted Assignments</h1>
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+
 
 <table class="table">
     <thead>
         <tr>
+            <th>Assignment</th>
+            <!--th>Course ID</!--th-->
+            <th>Max Points</th>
             <th>Student ID</th>
-            <th>File</th>
+            <th>Submission</th>
             <th>Submitted On</th>
+            <th>Grade</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var submission in Model.Submissions)
         {
             <tr>
+                <td>@submission.Assignment.Title</td>
+                <!--td>ampersandWasHere submission.Assignment.CourseID</!--td-->
+                <td>@submission.Assignment.MaxPoints</td> <!-- Show Max Points -->
                 <td>@submission.StudentID</td>
-                <td><a href="@submission.FilePath" target="_blank">Download</a></td>
+                <td>
+                    @if (!string.IsNullOrEmpty(submission.FilePath))
+                    {
+                        @if (submission.FilePath.StartsWith("/uploads/"))
+                        {
+                            <!-- File Upload -->
+                            <a href="@submission.FilePath" target="_blank">Download</a>
+                        }
+                        else
+                        {
+                            <!-- Text Entry -->
+                            <span>@submission.FilePath</span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">No submission</span>
+                    }
+                </td>
                 <td>@submission.SubmittedAt</td>
+                <td>
+                    @if (submission.PointsEarned != null)
+                    {
+                        <span class="badge bg-success">@submission.PointsEarned / @submission.Assignment.MaxPoints</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Not Graded</span>
+                    }
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="SubmissionId" value="@submission.Id" />
+                        <input type="hidden" name="CourseId" value="@submission.Assignment.CourseID" /> 
+                        <input type="number" name="PointsEarned" class="form-control" min="0" max="@submission.Assignment.MaxPoints" required
+                               value="@(submission.PointsEarned ?? 0)" />
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Submit Grade</button>
+                    </form>
+
+                </td>
             </tr>
         }
     </tbody>

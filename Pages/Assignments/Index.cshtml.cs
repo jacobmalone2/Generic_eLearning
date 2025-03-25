@@ -25,6 +25,8 @@ namespace CS3750Assignment1.Pages.Assignments
         public IList<Assignment> Assignments { get; set; } = default!;
         public IList<AssignmentViewModel> SubmittedAssignments { get; set; } = new List<AssignmentViewModel>();
 
+        public AssignmentData[] SubmittedAssignmentData { get; set; }
+
         public int CourseID { get; private set; }
         public bool IsInstructor { get; private set; }
         public HashSet<int> submissions { get; private set; } = new HashSet<int>();
@@ -97,7 +99,32 @@ namespace CS3750Assignment1.Pages.Assignments
 
                 // Finalize view data.
                 SubmittedAssignments = await submissionList.ToListAsync();
+
+                SubmittedAssignmentData = new AssignmentData[SubmittedAssignmentData.Length];
+                int i = 0;
+
+                //go through the submission list and get the low, high, and mean scores for those assignments
+                foreach(var submission in submissionList)
+                {
+                    var currAssignList = await _context.Submission.Where(s => s.AssignmentID == submission.AssignmentID).ToListAsync();
+                    //use lambda expression to grab the scores from the currAssignList
+                    //operate on the newly created list to grab the desired data, then add it to the array
+                }
+
+                // GET INFORMATION FOR GRAPH VISUALIZATION
+
+                //iterate through the submission list and grab the following information for each assignment:
+                // the low score in the class
+                // the high score in the class
+                // the average score in the class
+                // this student's score (given in the submissionList
+
+
+
+                //END GRAPH INFORMATION
             }
+
+
 
 
             // Finalize view data.
@@ -122,5 +149,16 @@ namespace CS3750Assignment1.Pages.Assignments
         public int? EarnedPoints { get; set; }
         public int MaxPoints { get; set; }
         public DateTime SubmittedAt { get; set; }
+    }
+
+    /// <summary>
+    /// Custom Object for holding assignment data
+    /// </summary>
+    public class AssignmentData
+    {
+        public int Id { get; set; }
+        public int AssignLow { get; set; }
+        public int AssignHigh { get; set; }
+        public int AssignMean { get; set; }
     }
 }

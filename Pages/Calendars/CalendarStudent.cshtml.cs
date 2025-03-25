@@ -28,7 +28,7 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public IList<Assignment> Assignment { get; set; } = default!;
 
-        public IList<RegisteredCourse> RegisteredCourses { get;set; }
+        public IList<Classes.RegisteredCourse> RegisteredCourses { get;set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -91,7 +91,7 @@ namespace CS3750Assignment1.Pages.Calendars
                     }
                     string[] times = registration.Course.MeetingTime.Split("-");
 
-                    RegisteredCourse tempCourse = new RegisteredCourse(registration.Course.Name, registration.Course.CourseNumber, classDays, times[0], times[1]);
+                    Classes.RegisteredCourse tempCourse = new Classes.RegisteredCourse(registration.Course.Name, registration.Course.CourseNumber, classDays, times[0], times[1]);
 
                     RegisteredCourses.Add(tempCourse);
                     
@@ -103,25 +103,6 @@ namespace CS3750Assignment1.Pages.Calendars
         }
     }
 
-    public class RegisteredCourse
-    {
-        public string CourseName { get; set; }
-
-        public int CourseNumber { get; set; }
-
-        public IList<string> MeetingDays { get; set; }
-
-        public string[] MeetingTime { get; set; }
-
-
-        public RegisteredCourse(string name, int number, IList<string> meetingDays, string meetTimeStart, string meetTimeEnd)
-        {
-            CourseName = name;
-            CourseNumber = number;
-            MeetingDays = meetingDays;
-            MeetingTime = [meetTimeStart, meetTimeEnd];
-        }
-
-    }
+    
 
 }

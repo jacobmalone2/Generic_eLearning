@@ -56,15 +56,23 @@ namespace CS3750Assignment1.Pages
                     //.Include(a => a.Assignment)
                     //.Select(a => a.Assignment)
                     .ToListAsync();
-                
+
                 foreach (Assignment a in Assignments) // add assignments to total list
                 {
-                    // filter out past assignments
-                    if (DateTime.ParseExact(a.DueDate, "yyyy-MM-dd", CultureInfo.InvariantCulture) < DateTime.Now) {
-                        continue;
+                    //Added this try/catch block to let me log in as teststudent when testing student assignment graph
+                    // was crashing with some strange 2100/05/05 date not being recognized as a datetime object error
+                    // 3/25/2025 11:15pm -Carter
+                    try
+                    {
+                        // filter out past assignments
+                        if (DateTime.ParseExact(a.DueDate, "yyyy-MM-dd", CultureInfo.InvariantCulture) < DateTime.Now) {
+                            continue;
+                        }
+                        AssignmentWithCourse w = new AssignmentWithCourse(a, c);
+                        CourseAssignments.Add(w);
                     }
-                    AssignmentWithCourse w = new AssignmentWithCourse(a, c);
-                    CourseAssignments.Add(w);
+                    catch
+                    { continue; }
                 } 
             }
 

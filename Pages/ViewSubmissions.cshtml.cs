@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
+using CS3750Assignment1.Classes;
 
 namespace CS3750Assignment1.Pages.Submissions
 {

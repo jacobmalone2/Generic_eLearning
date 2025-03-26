@@ -10,6 +10,7 @@ using CS3750Assignment1.Models;
 using static CS3750Assignment1.Pages.Assignments.IndexModel;
 using static CS3750Assignment1.Pages.Registrations.IndexModel;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace CS3750Assignment1.Pages.Assignments
 {
@@ -24,6 +25,8 @@ namespace CS3750Assignment1.Pages.Assignments
 
         public IList<Assignment> Assignments { get; set; } = default!;
         public IList<AssignmentViewModel> SubmittedAssignments { get; set; } = new List<AssignmentViewModel>();
+
+        public AssignmentData[] SubmittedAssignmentData { get; set; }
 
         public int CourseID { get; private set; }
         public bool IsInstructor { get; private set; }
@@ -87,9 +90,10 @@ namespace CS3750Assignment1.Pages.Assignments
                                       });
 
                 submissionList = submissionList.Where(s => s.StudentID == userId);
-
+                
                 submissions = _context.Submission.Where(s => s.StudentID == userId)
                 .Select(s => s.AssignmentID).ToHashSet();
+
 
                 // Remove submissions from assignment list. Make Submissions their own list.
                 assignmentList = assignmentList.Where(s => !submissions.Contains(s.Id));
@@ -97,8 +101,70 @@ namespace CS3750Assignment1.Pages.Assignments
 
                 // Finalize view data.
                 SubmittedAssignments = await submissionList.ToListAsync();
-            }
 
+                SubmittedAssignmentData = new AssignmentData[SubmittedAssignments.Count()];
+                int currentIndex = 0;
+
+                //go through the submission list and get the low, high, and mean scores for those assignments
+                foreach(var submission in submissionList)
+                {
+                    List<int> submissionScores = new List<int>();
+                    var currAssignList = await _context.Submission.Where(s => s.AssignmentID == submission.AssignmentID).ToListAsync();
+                    //fancy lambda expression to add not null submission scores to the submissionScores list for grabbing data
+                    //this way, only assignments with at least one graded submission are used
+                    currAssignList.ForEach(sub => 
+                    {
+                        if (sub.PointsEarned is not null)
+                        {
+                            submissionScores.Add((int)sub.PointsEarned);
+                        }
+                    });
+                    int assignMax = 0;
+                    int assignMin = int.MaxValue;
+                    double assignMean = 0.00;
+
+                    if (submissionScores.Count > 0)
+                    {
+                        for (int i = 0; i < submissionScores.Count; i++)
+                        {
+                            if (submissionScores[i] > assignMax)
+                            {
+                                assignMax = submissionScores[i];
+                            }
+                            if (submissionScores[i] < assignMin)
+                            {
+                                assignMin = submissionScores[i];
+                            }
+                            assignMean += submissionScores[i];
+                        }
+
+                        assignMean /= submissionScores.Count;
+
+                        if (submission.EarnedPoints is not null)
+                        {
+                            SubmittedAssignmentData[currentIndex] = new AssignmentData(submission.AssignmentID, assignMin, assignMax, assignMean, (int) submission.EarnedPoints, submission.Title);
+                        }
+                        else
+                        {
+                            SubmittedAssignmentData[currentIndex] = new AssignmentData(submission.AssignmentID, assignMin, assignMax, assignMean, 0, submission.Title);
+                        }
+                        currentIndex++;
+
+                    }
+
+                    //operate on the newly created list to grab the desired data, then add it to the array
+                }
+
+                // GET INFORMATION FOR GRAPH VISUALIZATION
+
+                //iterate through the submission list and grab the following information for each assignment:
+                // the low score in the class
+                // the high score in the class
+                // the average score in the class
+                // this student's score (given in the submissionList
+
+                //END GRAPH INFORMATION
+            }
 
             // Finalize view data.
             Assignments = await assignmentList.ToListAsync();
@@ -122,5 +188,29 @@ namespace CS3750Assignment1.Pages.Assignments
         public int? EarnedPoints { get; set; }
         public int MaxPoints { get; set; }
         public DateTime SubmittedAt { get; set; }
+    }
+
+    /// <summary>
+    /// Custom Object for holding assignment data
+    /// </summary>
+    public class AssignmentData
+    {
+        public int Id { get; set; }
+        public int AssignLow { get; set; }
+        public int AssignHigh { get; set; }
+        public double AssignMean { get; set; }
+        public int AssignPoints { get; set; }
+        public string AssignTitle { get; set; }
+
+        public AssignmentData(int assignID, int assignLowScore, int assignHighScore, double assignMeanScore, int assignPoints, string assignTitle)
+        {
+            Id = assignID;
+            AssignLow = assignLowScore;
+            AssignHigh = assignHighScore;
+            AssignMean = assignMeanScore;
+            AssignPoints = assignPoints;
+            AssignTitle = assignTitle;
+
+        }
     }
 }

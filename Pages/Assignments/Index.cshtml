@@ -4,7 +4,52 @@
 @{
     ViewData["Title"] = "Assignments";
 }
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        var assignmentScoreDataArray = @Html.Raw(Json.Serialize(Model.SubmittedAssignmentData));
 
+        assignmentScoreDataArray.forEach(function(currentValue)
+        {
+            try
+            {
+                if (currentValue != null)
+                {
+                    console.log(currentValue);
+                    google.charts.load("current", {packages:['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ["Data Point", "Score"],
+                            ["Low Score", currentValue.assignLow],
+                            ["High Score", currentValue.assignHigh],
+                            ["Mean Score", currentValue.assignMean],
+                            ["Your Score", currentValue.assignPoints]
+                        ]);
+
+
+                        var options = {
+                            title: "Assignment Data - " + currentValue.assignTitle,
+                            width: 600,
+                            height: 300,
+                            bar: {groupWidth: "90%"},
+                            legend: { position: "none" },
+                        };
+                        let chartDivID = currentValue.id.toString();
+                        var chart = new google.visualization.ColumnChart(document.getElementById(chartDivID));
+                        chart.draw(data, options);
+                    }
+                }
+
+            } catch (error)
+            {
+                console.error("Something went wrong: " + error.message);
+
+            }
+
+        });
+    </script>
+</head>
 <h1>Assignments</h1>
 
 @if (!Model.Assignments.Any())
@@ -99,6 +144,7 @@
         <tbody>
             @foreach (var item in Model.SubmittedAssignments)
             {
+                
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
@@ -114,6 +160,18 @@
                      </td>
                     <td>@Html.DisplayFor(modelItem => item.MaxPoints)</td>
                     <td>@Html.DisplayFor(modelItem => item.SubmittedAt)</td>
+                    
+                    @*add bar graph here with the following:
+                        Assignment low score
+                        Assignment mean score
+                        Assignment high score
+                        Assignment student score
+                    *@
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <div id="@item.AssignmentID">ASSIGNMENT DATA UNAVAILABLE</div>
+                    </td>
                 </tr>
             }
         </tbody>

@@ -70,6 +70,8 @@ namespace CS3750Assignment1.Pages
         public void CreateAccount(string firstName, string lastName, string email, string username, DateOnly dateOfBirth, string password, string passwordConfirmation, string accountRole)
         {
             Account account = new();
+            bool hasAt = false;
+            bool hasDot = false;
 
             if (firstName == null || firstName == "")
                 throw new ArgumentException("Argument cannot be null: No First Name Provided.");
@@ -83,7 +85,29 @@ namespace CS3750Assignment1.Pages
                 throw new ArgumentException("Argument cannot be null: No Email Provided.");
             // TODO: Add wildcard support so we can check for the @ and . symbols
             else
-                account.Email = email;
+            {
+                int i = 0;
+                for (i = 0; i < email.Length; i++)
+                {
+                    if (email[i] == '@')
+                    {
+                        hasAt = true;
+                        break;
+                    }
+                }
+                for (int j = i; j < email.Length; j++)
+                {
+                    if (email[j] == '.')
+                    {
+                        hasDot = true;
+                        break;
+                    }
+                }
+                if (hasAt && hasDot)
+                    account.Email = email;
+                else
+                    throw new ArgumentException("Invalid Argument: Emails contain @ and . symbols, in that order.");
+            }
 
             if (username == null || username == "")
                 throw new ArgumentException("Argument cannot be null: No User Name Provided.");
@@ -95,6 +119,8 @@ namespace CS3750Assignment1.Pages
                 throw new ArgumentException("Argument cannot be null: No Password Provided.");
             else if (passwordConfirmation == null || passwordConfirmation == "")
                 throw new ArgumentException("Argument cannot be null: No Password Confirmation Provided.");
+            else if (password.Length < 8)
+                throw new ArgumentException("Invalid Argument: Password must be 8 characters or more.");
             else if (password != passwordConfirmation)
                 throw new ArgumentException("Arguments do not match: Password and Confirmation Do Not Match.");
             else

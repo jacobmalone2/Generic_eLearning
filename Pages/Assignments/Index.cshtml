@@ -6,6 +6,49 @@
 }
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        var assignmentScoreDataArray = @Html.Raw(Json.Serialize(Model.SubmittedAssignmentData));
+
+        assignmentScoreDataArray.forEach(function(currentValue)
+        {
+            try
+            {
+                if (currentValue != null)
+                {
+                    console.log(currentValue);
+                    google.charts.load("current", {packages:['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ["Data Point", "Score"],
+                            ["Low Score", currentValue.assignLow],
+                            ["High Score", currentValue.assignHigh],
+                            ["Mean Score", currentValue.assignMean],
+                            ["Your Score", currentValue.assignPoints]
+                        ]);
+
+
+                        var options = {
+                            title: "Assignment Data - " + currentValue.assignTitle,
+                            width: 600,
+                            height: 300,
+                            bar: {groupWidth: "90%"},
+                            legend: { position: "none" },
+                        };
+                        let chartDivID = currentValue.id.toString();
+                        var chart = new google.visualization.ColumnChart(document.getElementById(chartDivID));
+                        chart.draw(data, options);
+                    }
+                }
+
+            } catch (error)
+            {
+                console.error("Something went wrong: " + error.message);
+
+            }
+
+        });
+    </script>
 </head>
 <h1>Assignments</h1>
 
@@ -101,37 +144,7 @@
         <tbody>
             @foreach (var item in Model.SubmittedAssignments)
             {
-                <script type="text/javascript">
-                      google.charts.load("current", {packages:['corechart']});
-                      google.charts.setOnLoadCallback(drawChart);
-                      function drawChart() {
-                        var data = google.visualization.arrayToDataTable([
-                          ["Element", "Density", { role: "style" } ],
-                          ["Copper", 8.94, "#b87333"],
-                          ["Silver", 10.49, "silver"],
-                          ["Gold", 19.30, "gold"],
-                          ["Platinum", 21.45, "color: #e5e4e2"]
-                        ]);
-
-                        var view = new google.visualization.DataView(data);
-                        view.setColumns([0, 1,
-                                         { calc: "stringify",
-                                           sourceColumn: 1,
-                                           type: "string",
-                                           role: "annotation" },
-                                         2]);
-
-                        var options = {
-                          title: "Density of Precious Metals, in g/cm^3",
-                          width: 600,
-                          height: 400,
-                          bar: {groupWidth: "95%"},
-                          legend: { position: "none" },
-                        };
-                        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-                        chart.draw(view, options);
-                    }
-                </script>
+                
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
@@ -154,6 +167,11 @@
                         Assignment high score
                         Assignment student score
                     *@
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <div id="@item.AssignmentID">ASSIGNMENT DATA UNAVAILABLE</div>
+                    </td>
                 </tr>
             }
         </tbody>

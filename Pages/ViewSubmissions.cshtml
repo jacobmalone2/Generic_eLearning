@@ -70,7 +70,7 @@
             <th>Assignment</th>
             <!--th>Course ID</!--th-->
             <th>Max Points</th>
-            <th>Student ID</th>
+            <th>Student Name</th>
             <th>Submission</th>
             <th>Submitted On</th>
             <th>Grade</th>
@@ -84,7 +84,7 @@
                 <td>@submission.Assignment.Title</td>
                 <!--td>ampersandWasHere submission.Assignment.CourseID</!--td-->
                 <td>@submission.Assignment.MaxPoints</td> <!-- Show Max Points -->
-                <td>@submission.StudentID</td>
+                <td>@(submission.Student?.FirstName) @(submission.Student?.LastName)</td>
                 <td>
                     @if (!string.IsNullOrEmpty(submission.FilePath))
                     {

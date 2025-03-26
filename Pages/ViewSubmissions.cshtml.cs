@@ -34,7 +34,8 @@ namespace CS3750Assignment1.Pages.Submissions
             }
 
             IQueryable<Submission> query = _context.Submission
-                .Include(s => s.Assignment);
+                .Include(s => s.Assignment)
+                .Include(s => s.Student);
 
             if (courseId != null && assignId != null)
             {

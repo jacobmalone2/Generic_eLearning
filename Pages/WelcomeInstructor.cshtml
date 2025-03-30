@@ -38,7 +38,8 @@
 
                                     <div class="d-flex">
                                         <a asp-page="/Courses/Edit" asp-route-id="@course.Id" class="btn btn-warning me-2">Edit</a>
-                                        <a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-warning">Manage Assignments</a>
+                                        <a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-warning me-2">Manage Assignments</a>
+                                        <a asp-page="/Courses/Grades" asp-route-courseID="@course.Id" class="btn btn-warning">Grades</a>
                                     </div>
                                 </div>
                             </div>

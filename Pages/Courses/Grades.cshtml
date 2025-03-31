@@ -2,21 +2,68 @@
 @model CS3750Assignment1.Pages.Courses.GradesModel
 
 @{
-    ViewData["Title"] = "Grades for [className]";
+    ViewData["Title"] = "Grades for " + Model.CourseName;
     //tried to add this for "security" that wouldn't allow student users to view grades var userRole = Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context.Request.Cookies["LoggedUserRole"];
 }
 
 <head>
-    <script></script>
-    <script>//google charts pie chart script with data</script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        var chartGrades = @Html.Raw(Json.Serialize(Model.ChartGrades));
+
+        function drawChart() {
+
+          var data = google.visualization.arrayToDataTable([
+            ['Grade', 'Students with grade'],
+            ['A', chartGrades[0]],
+            ['A-', chartGrades[1]],
+            ['B+', chartGrades[2]],
+            ['B', chartGrades[3]],
+            ['B-', chartGrades[4]],
+            ['C+', chartGrades[5]],
+            ['C', chartGrades[6]],
+            ['C-', chartGrades[7]],
+            ['D+', chartGrades[8]],
+            ['D', chartGrades[9]],
+            ['E', chartGrades[10]]
+          ]);
+
+          var options = {
+            title: 'Grade Distribution'
+          };
+
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+          chart.draw(data, options);
+        }
+    </script>
 </head>
 
 @if (true) //wanted to add a check for userRole that would not display any content if the logged user was a student but got lazy and didn't feel like looking into it further
 {
-    <h1>Grades - [classID]</h1>
+    <h1>Grades - @Model.CourseName</h1>
 
     <hr />
 
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+    <h2>Students</h2>
+    <table>
+        <th>Student</th>
+        <th>Grade</th>
+        <th>Letter Grade</th>
+    @foreach(var student in Model.CourseStudentGrades)
+    {
+        <tr>
+        <td>@student.FirstName @student.LastName</td>
+        <td>@student.FinalNumberGrade</td>
+        <td>@student.FinalLetterGradeStr</td>
+        </tr>
+    }
+    </table>
     //large pie chart will be centered on the page with the percentage of A, A-, B+, B, B-, C+, C, C-, D+, D, D-, E grades in it
 
     //below it will be a list of students and their grades for the class

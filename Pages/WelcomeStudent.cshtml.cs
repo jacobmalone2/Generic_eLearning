@@ -22,6 +22,9 @@ namespace CS3750Assignment1.Pages
         }
 
         [BindProperty(SupportsGet = true)]
+
+        public string FullName { get; set; } = string.Empty;
+
         public int StudentId { get; set; }
 
         public bool? pageRole = false; // Added for calendar functionality
@@ -35,9 +38,19 @@ namespace CS3750Assignment1.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             // Get Student ID from cookie
-            if (!int.TryParse(Request.Cookies["LoggedUserID"], out int StudentId))
+            if (!int.TryParse(Request.Cookies["LoggedUserID"], out int accountId))
             {
-                return RedirectToPage("/Index"); // Redirect to login page if no valid student ID
+                return RedirectToPage("/Index");
+            }
+
+			StudentId = accountId;
+
+
+			// Fetch student's name
+			var account = await _context.Account.FindAsync(accountId);
+            if (account != null)
+            {
+                FullName = $"{account.FirstName} {account.LastName}";
             }
 
 

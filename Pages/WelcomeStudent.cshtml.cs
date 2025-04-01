@@ -40,6 +40,7 @@ namespace CS3750Assignment1.Pages
                 return RedirectToPage("/Index"); // Redirect to login page if no valid student ID
             }
 
+
             // Fetch the courses that the student is registered for
             RegisteredCourses = await _context.Registration
                 .Where(r => r.StudentID == StudentId)
@@ -75,6 +76,16 @@ namespace CS3750Assignment1.Pages
                     { continue; }
                 } 
             }
+            // Load notifications
+            var notifications = await _context.Notification
+                .Where(n => n.AccountId == StudentId)
+                .OrderByDescending(n => n.CreatedAt)
+                .Take(10)
+                .ToListAsync();
+
+            ViewData["Notifications"] = notifications;
+            ViewData["HasUnseenNotifications"] = notifications.Any(n => !n.IsSeen);
+
 
             // Sort the list based on due date
             CourseAssignments.Sort((a1, a2) => DateTime.ParseExact(a1.Assignment.DueDate + " " + a1.Assignment.DueTime, "yyyy-MM-dd h:mmtt", CultureInfo.InvariantCulture).CompareTo(DateTime.ParseExact(a2.Assignment.DueDate + " " + a2.Assignment.DueTime, "yyyy-MM-dd h:mmtt", CultureInfo.InvariantCulture)));

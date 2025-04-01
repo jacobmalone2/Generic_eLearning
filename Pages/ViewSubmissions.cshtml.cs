@@ -77,7 +77,6 @@ namespace CS3750Assignment1.Pages.Submissions
                 return NotFound();
             }
 
-            // Ensure EarnedPoints do not exceed MaxPoints
             if (PointsEarned > submission.Assignment.MaxPoints)
             {
                 ModelState.AddModelError("", "Earned points cannot exceed Max Points.");
@@ -85,10 +84,23 @@ namespace CS3750Assignment1.Pages.Submissions
             }
 
             submission.PointsEarned = PointsEarned;
+
+            
+            var studentNotification = new Notification
+            {
+                AccountId = submission.StudentID,
+                Message = $"Your assignment \"{submission.Assignment.Title}\" has been graded. You earned {PointsEarned}/{submission.Assignment.MaxPoints}.",
+                CreatedAt = DateTime.UtcNow,
+                IsSeen = false
+            };
+
+            _context.Notification.Add(studentNotification);
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("/ViewSubmissions", new { courseId = submission.Assignment.CourseID, assignId = submission.Assignment.Id });
         }
+
 
 
 

@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CS3750Assignment1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <header>
@@ -81,6 +83,40 @@
 
                         <!-- Profile Icon and Dropdown Menu -->
                         <ul class="navbar-nav ms-auto">
+                            @if (userRole == "Student")
+                            {
+                                var hasUnseen = ViewData["HasUnseenNotifications"] as bool? ?? false;
+                                var notifications = ViewData["Notifications"] as List<CS3750Assignment1.Models.Notification>;
+
+                                <li class="nav-item dropdown me-3">
+                                    <a class="nav-link dropdown-toggle position-relative" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-bell"></i>
+                                        @if (hasUnseen)
+                                        {
+                                            <span id="notificationDot" class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+
+                                                <span class="visually-hidden">New alerts</span>
+                                            </span>
+                                        }
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notifDropdown" style="min-width: 300px;">
+                                        @if (notifications != null && notifications.Any())
+                                        {
+                                            @foreach (var n in notifications)
+                                            {
+                                                <li><span class="dropdown-item text-wrap">@n.Message</span></li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li><span class="dropdown-item text-muted">No new notifications</span></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="@profileImage" alt="User" class="rounded-circle" width="32" height="32" asp-append-version="true">
@@ -117,5 +153,31 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <form id="antiForgeryForm" method="post" asp-page="/notificationSeen" style="display:none;">
+    </form>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const notifDropdown = document.getElementById('notifDropdown');
+            notifDropdown?.addEventListener('click', () => {
+                fetch('/notificationSeen', {
+
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                    }
+                }).then(res => {
+                    if (res.ok) {
+                        // Hide the red dot
+                        const dot = document.getElementById('notificationDot');
+                        if (dot) dot.classList.add('d-none');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

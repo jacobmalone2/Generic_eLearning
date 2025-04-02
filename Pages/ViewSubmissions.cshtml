@@ -41,6 +41,9 @@
         var options = {
           title: 'Assignment scores',
           legend: { position: 'none' },
+          vAxis: {title: 'Number of students'},
+          hAxis: {title: 'Score range'},
+          axisTitlesPosition: 'out',
           histogram: {
               bucketSize: assignmentMaxScore / 10,
               maxNumBuckets: 10,
@@ -61,7 +64,7 @@
 
 <h1>All Submitted Assignments</h1>
 
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 900px; height: 500px; margin-inline: auto;"></div>
 
 
 <table class="table">

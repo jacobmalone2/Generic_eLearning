@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CS3750Assignment1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
     <header>
@@ -81,6 +83,50 @@
 
                         <!-- Profile Icon and Dropdown Menu -->
                         <ul class="navbar-nav ms-auto">
+                            @if (userRole == "Student")
+                            {
+                                var hasUnseen = ViewData["HasUnseenNotifications"] as bool? ?? false;
+                                var notifications = ViewData["Notifications"] as List<CS3750Assignment1.Models.Notification>;
+
+                                <li class="nav-item dropdown me-3">
+                                    <a class="nav-link dropdown-toggle position-relative" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-bell"></i>
+                                        @if (hasUnseen)
+                                        {
+                                            <span id="notificationDot" class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+
+                                                <span class="visually-hidden">New alerts</span>
+                                            </span>
+                                        }
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notifDropdown" style="min-width: 300px;">
+                                        @foreach (var n in notifications)
+                                        {
+                                            <li>
+                                                @if (!n.IsSeen)
+                                                {
+                                                    <form method="post" asp-page="/MarkSingleSeen" class="notification-form d-flex align-items-center" data-id="@n.Id">
+                                                        <button type="submit" class="dropdown-item d-flex align-items-center text-wrap bg-light border-0">
+                                                            <span class="me-2 text-danger">&#x2022;</span> @n.Message
+                                                        </button>
+                                                    </form>
+                                                }
+                                                else
+                                                {
+                                                    <span class="dropdown-item text-muted">@n.Message</span>
+                                                }
+                                            </li>
+                                        }
+
+
+
+
+                                    </ul>
+                                </li>
+                            }
+
+
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="@profileImage" alt="User" class="rounded-circle" width="32" height="32" asp-append-version="true">
@@ -117,5 +163,55 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <form id="antiForgeryForm" method="post" asp-page="/notificationSeen" style="display:none;">
+    </form>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const notifDropdown = document.getElementById('notifDropdown');
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function updateBellDot() {
+                const unseenCount = document.querySelectorAll('.notification-form').length;
+                const bellDot = document.getElementById('notificationDot');
+                if (unseenCount === 0 && bellDot) {
+                    bellDot.classList.add('d-none');
+                }
+            }
+
+            document.querySelectorAll('.notification-form').forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const notificationId = this.dataset.id;
+
+                    fetch('/MarkSingleSeen', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                        },
+                        body: JSON.stringify({ id: parseInt(notificationId) })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                this.remove(); // remove this notification
+                                updateBellDot();
+                            }
+                        });
+                });
+            });
+
+            updateBellDot(); // run once initially in case none are unseen
+        });
+    </script>
+
+
+
 </body>
 </html>

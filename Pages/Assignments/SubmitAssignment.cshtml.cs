@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
+using Stripe;
 
 namespace CS3750Assignment1.Pages.Submissions
 {
@@ -19,7 +20,7 @@ namespace CS3750Assignment1.Pages.Submissions
         {
             _context = context;
         }
-        
+
         public Submission Submission { get; set; } = default!;
 
         public int CourseID { get; set; }
@@ -115,7 +116,7 @@ namespace CS3750Assignment1.Pages.Submissions
             {
                 CreateSubmission(AssignmentID, studentId, filepath);
 
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync(); //commented out when creating tests
                 return RedirectToPage("./Index");
             }
             catch (Exception ex)
@@ -136,7 +137,7 @@ namespace CS3750Assignment1.Pages.Submissions
             Submission submission = new Submission();
 
             if (assignmentID <= 0)
-                throw new ArgumentOutOfRangeException("Parameter is out of range: InstructorID");
+                throw new ArgumentOutOfRangeException("Parameter is out of range: AssignmentID");
             else
             {
                 Assignment? assignment = _context.Assignment.Where(c => c.Id == assignmentID).FirstOrDefault();
@@ -147,7 +148,7 @@ namespace CS3750Assignment1.Pages.Submissions
             }
 
             if (studentID <= 0)
-                throw new ArgumentOutOfRangeException("Parameter is out of range: InstructorID");
+                throw new ArgumentOutOfRangeException("Parameter is out of range: StudentID");
             else
             {
                 Models.Account? student = _context.Account.Where(c => c.Id == studentID).FirstOrDefault();
@@ -158,11 +159,18 @@ namespace CS3750Assignment1.Pages.Submissions
             }
 
             if (filePath == null || filePath == "")
-                throw new ArgumentException("Argument cannot be null: No File Path Provided.");
+                throw new ArgumentException("Argument cannot be null or empty: No File Path Provided.");
             // TODO: Check if it actually pulls up a file when read.
             else submission.FilePath = filePath;
 
             _context.Submission.Add(submission);
+            _context.SaveChanges(); //added when creating tests for this model
         }
+
+        public int GetNumberOfSubmissions()
+        {
+            return _context.Submission.Count();
+        }
+
     }
 }

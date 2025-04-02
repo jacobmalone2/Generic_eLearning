@@ -22,6 +22,9 @@ namespace CS3750Assignment1.Pages
         }
 
         [BindProperty(SupportsGet = true)]
+
+        public string FullName { get; set; } = string.Empty;
+
         public int StudentId { get; set; }
 
         public bool? pageRole = false; // Added for calendar functionality
@@ -35,10 +38,21 @@ namespace CS3750Assignment1.Pages
         public async Task<IActionResult> OnGetAsync()
         {
             // Get Student ID from cookie
-            if (!int.TryParse(Request.Cookies["LoggedUserID"], out int StudentId))
+            if (!int.TryParse(Request.Cookies["LoggedUserID"], out int accountId))
             {
-                return RedirectToPage("/Index"); // Redirect to login page if no valid student ID
+                return RedirectToPage("/Index");
             }
+
+			StudentId = accountId;
+
+
+			// Fetch student's name
+			var account = await _context.Account.FindAsync(accountId);
+            if (account != null)
+            {
+                FullName = $"{account.FirstName} {account.LastName}";
+            }
+
 
             // Fetch the courses that the student is registered for
             RegisteredCourses = await _context.Registration
@@ -56,17 +70,35 @@ namespace CS3750Assignment1.Pages
                     //.Include(a => a.Assignment)
                     //.Select(a => a.Assignment)
                     .ToListAsync();
-                
+
                 foreach (Assignment a in Assignments) // add assignments to total list
                 {
-                    // filter out past assignments
-                    if (DateTime.ParseExact(a.DueDate, "yyyy-MM-dd", CultureInfo.InvariantCulture) < DateTime.Now) {
-                        continue;
+                    //Added this try/catch block to let me log in as teststudent when testing student assignment graph
+                    // was crashing with some strange 2100/05/05 date not being recognized as a datetime object error
+                    // 3/25/2025 11:15pm -Carter
+                    try
+                    {
+                        // filter out past assignments
+                        if (DateTime.ParseExact(a.DueDate, "yyyy-MM-dd", CultureInfo.InvariantCulture) < DateTime.Now) {
+                            continue;
+                        }
+                        AssignmentWithCourse w = new AssignmentWithCourse(a, c);
+                        CourseAssignments.Add(w);
                     }
-                    AssignmentWithCourse w = new AssignmentWithCourse(a, c);
-                    CourseAssignments.Add(w);
+                    catch
+                    { continue; }
                 } 
             }
+            // Load notifications
+            var notifications = await _context.Notification
+                .Where(n => n.AccountId == StudentId)
+                .OrderByDescending(n => n.CreatedAt)
+                .Take(10)
+                .ToListAsync();
+
+            ViewData["Notifications"] = notifications;
+            ViewData["HasUnseenNotifications"] = notifications.Any(n => !n.IsSeen);
+
 
             // Sort the list based on due date
             CourseAssignments.Sort((a1, a2) => DateTime.ParseExact(a1.Assignment.DueDate + " " + a1.Assignment.DueTime, "yyyy-MM-dd h:mmtt", CultureInfo.InvariantCulture).CompareTo(DateTime.ParseExact(a2.Assignment.DueDate + " " + a2.Assignment.DueTime, "yyyy-MM-dd h:mmtt", CultureInfo.InvariantCulture)));

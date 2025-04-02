@@ -1,4 +1,4 @@
-﻿namespace CS3750Assignment1
+﻿namespace CS3750Assignment1.Classes
 {
     public class GradedSubmission
     {

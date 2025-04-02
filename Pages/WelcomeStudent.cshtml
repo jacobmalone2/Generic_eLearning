@@ -10,7 +10,8 @@
 		<div class="container mt-4">
 			<div class="card shadow-sm">
 				<div class="card-header bg-success text-white">
-					<h2 class="mb-0">Welcome, Student!</h2>
+					<h2 class="mb-0">Welcome, @Model.FullName!</h2>
+
 				</div>
 				<div class="card-body">
 					<p>Access your courses, assignments, and student resources from your dashboard.</p>
@@ -37,7 +38,7 @@
 									<p><strong>Meeting Time:</strong> @(string.IsNullOrEmpty(course.MeetingTime) ? "N/A" : course.MeetingTime)</p>
 									<p><strong>Location:</strong> @course.Location</p>
 
-									<a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-primary">View Assignments</a>
+									<a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-primary">View Course</a>
 									<a asp-page="/Registrations/Delete" asp-route-id="@course.Id" class="btn btn-danger">Drop Course</a>
 								</div>
 							</div>

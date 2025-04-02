@@ -5,36 +5,50 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CS3750Assignment1.Pages
 {
-    public class WelcomeInstructorModel : PageModel
-    {
-        private readonly CS3750Assignment1Context _context;
+	public class WelcomeInstructorModel : PageModel
+	{
+		private readonly CS3750Assignment1Context _context;
 
-        public WelcomeInstructorModel(CS3750Assignment1Context context)
-        {
-            _context = context;
-        }
+		public WelcomeInstructorModel(CS3750Assignment1Context context)
+		{
+			_context = context;
+		}
 
-        [BindProperty(SupportsGet = true)]
-        public int InstructorId { get; set; }
+		public string FullName { get; set; } = string.Empty;
 
-        public bool? pageRole = true; // added for calendar functionality
+		public int InstructorId { get; set; } //
 
-        public List<Course> InstructorCourses { get; set; } = new List<Course>();
+		public List<Course> InstructorCourses { get; set; } = new List<Course>();
 
-        public void OnGet()
-        {
-            if (Request.Cookies.ContainsKey("LoggedUserID"))
-            {
-                InstructorId = Int32.Parse(Request.Cookies["LoggedUserID"]);
+		public bool? pageRole = true; // for calendar functionality
 
-                // Fetch all courses where the instructor is teaching
-                InstructorCourses = _context.Course
-                    .Where(c => c.InstructorID == InstructorId)
-                    .ToList();
-            }
-        }
-    }
+		public async Task<IActionResult> OnGetAsync()
+		{
+			// Try to get logged-in instructor ID from cookie
+			if (!int.TryParse(Request.Cookies["LoggedUserID"], out int accountId))
+			{
+				return RedirectToPage("/Index");
+			}
+
+			InstructorId = accountId; 
+
+			// Fetch instructor's full name
+			var account = await _context.Account.FindAsync(accountId);
+			if (account != null)
+			{
+				FullName = $"{account.FirstName} {account.LastName}";
+			}
+
+			// Get courses taught by the instructor
+			InstructorCourses = await _context.Course
+				.Where(c => c.InstructorID == InstructorId)
+				.ToListAsync();
+
+			return Page();
+		}
+	}
 }

@@ -23,7 +23,7 @@ namespace CS3750Assignment1.Pages.Calendars
 
         public IList<Course> Course { get;set; } = default!;
 
-        public IList<RegisteredCourse> InstructorCourses { get; set; }
+        public IList<Classes.RegisteredCourse> InstructorCourses { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -63,7 +63,7 @@ namespace CS3750Assignment1.Pages.Calendars
                     }
                     string[] times = course.MeetingTime.Split("-");
 
-                    RegisteredCourse tempCourse = new RegisteredCourse(course.Name, course.CourseNumber, classDays, times[0], times[1]);
+                    Classes.RegisteredCourse tempCourse = new Classes.RegisteredCourse(course.Name, course.CourseNumber, classDays, times[0], times[1]);
 
                     InstructorCourses.Add(tempCourse);
 

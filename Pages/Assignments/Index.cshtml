@@ -50,6 +50,13 @@
         });
     </script>
 </head>
+
+@if (!Model.IsInstructor)
+{
+    <h3>Course Grade: @Model.letterGrade</h3>
+    <h4>Overall Score: @Model.studentFinalGrade / @Model.possibleTotalGrade<br/><br/></h4>
+}
+
 <h1>Assignments</h1>
 
 @if (!Model.Assignments.Any())

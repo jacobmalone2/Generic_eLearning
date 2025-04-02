@@ -32,8 +32,22 @@ namespace CS3750Assignment1.Pages.Assignments
         public bool IsInstructor { get; private set; }
         public HashSet<int> submissions { get; private set; } = new HashSet<int>();
 
+        [BindProperty]
+        public int studentFinalGrade { get; set; }
+
+        [BindProperty]
+        public int possibleTotalGrade { get; set; }
+
+        [BindProperty]
+        public string letterGrade { get; set; }
+
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            studentFinalGrade = 0;
+            possibleTotalGrade = 0;
+            letterGrade = string.Empty;
+
             if (!int.TryParse(Request.Cookies["LoggedUserID"], out int userId))
             {
                 return RedirectToPage("/Index");
@@ -98,6 +112,47 @@ namespace CS3750Assignment1.Pages.Assignments
                 // Remove submissions from assignment list. Make Submissions their own list.
                 assignmentList = assignmentList.Where(s => !submissions.Contains(s.Id));
                 submissionList = submissionList.Where(s => (submissions.Contains(s.AssignmentID) && s.CourseID == CourseID));
+
+                // Gather graded scores
+                foreach(var s in submissionList)
+                {
+                    if (s.EarnedPoints != null)
+                    {
+                        studentFinalGrade += s.EarnedPoints ?? default(int);
+                        possibleTotalGrade += s.MaxPoints;
+                    }
+                }
+
+                if (possibleTotalGrade > 0)
+                {
+                    float pointPercent = studentFinalGrade / possibleTotalGrade;
+                    if (pointPercent >= 1)
+                        letterGrade = "A+";
+                    else if (pointPercent >= 0.94)
+                        letterGrade = "A";
+                    else if (pointPercent >= 0.9)
+                        letterGrade = "A-";
+                    else if (pointPercent >= 0.87)
+                        letterGrade = "B+";
+                    else if (pointPercent >= 0.84)
+                        letterGrade = "B";
+                    else if (pointPercent >= 0.8)
+                        letterGrade = "B-";
+                    else if (pointPercent >= 0.77)
+                        letterGrade = "C+";
+                    else if (pointPercent >= 0.74)
+                        letterGrade = "C";
+                    else if (pointPercent >= 0.7)
+                        letterGrade = "C-";
+                    else if (pointPercent >= 0.67)
+                        letterGrade = "D+";
+                    else if (pointPercent >= 0.64)
+                        letterGrade = "D";
+                    else
+                        letterGrade = "F";
+                }
+                else
+                    letterGrade = "NA";
 
                 // Finalize view data.
                 SubmittedAssignments = await submissionList.ToListAsync();

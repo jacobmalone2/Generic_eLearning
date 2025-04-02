@@ -100,17 +100,27 @@
                                         }
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notifDropdown" style="min-width: 300px;">
-                                        @if (notifications != null && notifications.Any())
+                                        @foreach (var n in notifications)
                                         {
-                                            @foreach (var n in notifications)
-                                            {
-                                                <li><span class="dropdown-item text-wrap">@n.Message</span></li>
-                                            }
+                                            <li>
+                                                @if (!n.IsSeen)
+                                                {
+                                                    <form method="post" asp-page="/MarkSingleSeen" class="notification-form d-flex align-items-center" data-id="@n.Id">
+                                                        <button type="submit" class="dropdown-item d-flex align-items-center text-wrap bg-light border-0">
+                                                            <span class="me-2 text-danger">&#x2022;</span> @n.Message
+                                                        </button>
+                                                    </form>
+                                                }
+                                                else
+                                                {
+                                                    <span class="dropdown-item text-muted">@n.Message</span>
+                                                }
+                                            </li>
                                         }
-                                        else
-                                        {
-                                            <li><span class="dropdown-item text-muted">No new notifications</span></li>
-                                        }
+
+
+
+
                                     </ul>
                                 </li>
                             }
@@ -161,23 +171,47 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const notifDropdown = document.getElementById('notifDropdown');
-            notifDropdown?.addEventListener('click', () => {
-                fetch('/notificationSeen', {
-
-                    method: 'POST',
-                    headers: {
-                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
-                    }
-                }).then(res => {
-                    if (res.ok) {
-                        // Hide the red dot
-                        const dot = document.getElementById('notificationDot');
-                        if (dot) dot.classList.add('d-none');
-                    }
-                });
-            });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function updateBellDot() {
+                const unseenCount = document.querySelectorAll('.notification-form').length;
+                const bellDot = document.getElementById('notificationDot');
+                if (unseenCount === 0 && bellDot) {
+                    bellDot.classList.add('d-none');
+                }
+            }
+
+            document.querySelectorAll('.notification-form').forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const notificationId = this.dataset.id;
+
+                    fetch('/MarkSingleSeen', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                        },
+                        body: JSON.stringify({ id: parseInt(notificationId) })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                this.remove(); // remove this notification
+                                updateBellDot();
+                            }
+                        });
+                });
+            });
+
+            updateBellDot(); // run once initially in case none are unseen
+        });
+    </script>
+
+
 
 </body>
 </html>

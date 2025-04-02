@@ -38,7 +38,7 @@
 									<p><strong>Meeting Time:</strong> @(string.IsNullOrEmpty(course.MeetingTime) ? "N/A" : course.MeetingTime)</p>
 									<p><strong>Location:</strong> @course.Location</p>
 
-									<a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-primary">View Assignments</a>
+									<a asp-page="/Assignments/Index" asp-route-id="@course.Id" class="btn btn-primary">View Course</a>
 									<a asp-page="/Registrations/Delete" asp-route-id="@course.Id" class="btn btn-danger">Drop Course</a>
 								</div>
 							</div>

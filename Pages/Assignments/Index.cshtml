@@ -20,11 +20,11 @@
                     google.charts.setOnLoadCallback(drawChart);
                     function drawChart() {
                         var data = google.visualization.arrayToDataTable([
-                            ["Data Point", "Score"],
-                            ["Low Score", currentValue.assignLow],
-                            ["High Score", currentValue.assignHigh],
-                            ["Mean Score", currentValue.assignMean],
-                            ["Your Score", currentValue.assignPoints]
+                            ["Data Point", "Score", {role: 'style'}],
+                            ["Low Score", currentValue.assignLow, 'red'],
+                            ["High Score", currentValue.assignHigh, 'green'],
+                            ["Mean Score", currentValue.assignMean, 'grey'],
+                            ["Your Score", currentValue.assignPoints, 'blue']
                         ]);
 
 

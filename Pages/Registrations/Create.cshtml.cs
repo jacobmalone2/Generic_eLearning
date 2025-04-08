@@ -9,6 +9,7 @@ using CS3750Assignment1.Data;
 using CS3750Assignment1.Models;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
+using Microsoft.AspNetCore.Http;
 
 namespace CS3750Assignment1.Pages.Registrations
 {
@@ -100,6 +101,18 @@ namespace CS3750Assignment1.Pages.Registrations
                 Console.WriteLine(ex);
                 return Page();
             }
+
+            //Clear course cookies so that courses are pulled from the database on next load
+            Response.Cookies.Delete("SavedCourseIds");
+            Response.Cookies.Delete("SavedInstructorIds");
+            Response.Cookies.Delete("SavedCourseNames");
+            Response.Cookies.Delete("SavedCourseNumbers");
+            Response.Cookies.Delete("SavedCourseCredits");
+            Response.Cookies.Delete("SavedCourseCapacities");
+            Response.Cookies.Delete("SavedCourseMeetingDays");
+            Response.Cookies.Delete("SavedCourseMeetingTimes");
+            Response.Cookies.Delete("SavedCourseLocations");
+            Response.Cookies.Delete("SavedCourseDepartments");
 
             return RedirectToPage("/WelcomeStudent");
         }

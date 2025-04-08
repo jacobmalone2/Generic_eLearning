@@ -58,6 +58,18 @@ namespace CS3750Assignment1.Pages.Registrations
                 await _context.SaveChangesAsync();
             }
 
+            //Clear course cookies so that courses are pulled from the database on next load
+            Response.Cookies.Delete("SavedCourseIds");
+            Response.Cookies.Delete("SavedInstructorIds");
+            Response.Cookies.Delete("SavedCourseNames");
+            Response.Cookies.Delete("SavedCourseNumbers");
+            Response.Cookies.Delete("SavedCourseCredits");
+            Response.Cookies.Delete("SavedCourseCapacities");
+            Response.Cookies.Delete("SavedCourseMeetingDays");
+            Response.Cookies.Delete("SavedCourseMeetingTimes");
+            Response.Cookies.Delete("SavedCourseLocations");
+            Response.Cookies.Delete("SavedCourseDepartments");
+
             return RedirectToPage("/WelcomeStudent");
         }
     }

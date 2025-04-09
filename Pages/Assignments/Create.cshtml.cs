@@ -48,7 +48,7 @@ namespace CS3750Assignment1.Pages.Assignments
 
             try
             {
-                CreateAssignment(courseID, Assignment.Title, Assignment.MaxPoints, DateOnly.Parse(Assignment.DueDate), DueTime, submissionType);
+                CreateAssignment(courseID, Assignment.Title, Assignment.Description, Assignment.MaxPoints, DateOnly.Parse(Assignment.DueDate), DueTime, submissionType);
 
                 // Save the assignment to generate its ID
                 await _context.SaveChangesAsync();
@@ -81,7 +81,7 @@ namespace CS3750Assignment1.Pages.Assignments
             return RedirectToPage("./Index");
         }
 
-        public void CreateAssignment(int courseID, string title, string description, int points, DateOnly dueDate, string dueTime, string submissionType)
+        public void CreateAssignment(int courseID, string title, string? description, int points, DateOnly dueDate, string dueTime, string submissionType)
         {
             Assignment assignment = new Assignment();
 

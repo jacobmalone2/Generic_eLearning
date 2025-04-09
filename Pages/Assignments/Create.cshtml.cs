@@ -50,26 +50,7 @@ namespace CS3750Assignment1.Pages.Assignments
             {
                 CreateAssignment(courseID, Assignment.Title, Assignment.Description, Assignment.MaxPoints, DateOnly.Parse(Assignment.DueDate), DueTime, submissionType);
 
-                // Save the assignment to generate its ID
-                await _context.SaveChangesAsync();
-
-                // ✅ AFTER assignment is saved, notify students in the course
-                var studentIds = _context.Registration
-                    .Where(r => r.CourseID == courseID)
-                    .Select(r => r.Id)
-                    .ToList();
-
-                foreach (var studentId in studentIds)
-                {
-                    _context.Notification.Add(new Notification
-                    {
-                        AccountId = studentId,
-                        Message = $"A new assignment \"{Assignment.Title}\" has been posted.",
-                        IsSeen = false,
-                        CreatedAt = DateTime.UtcNow
-                    });
-                }
-
+                // Save the assignment and generated notifications.
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -117,7 +98,6 @@ namespace CS3750Assignment1.Pages.Assignments
             assignment.AcceptedFileTypes = submissionType;
 
             _context.Assignment.Add(assignment);
-            _context.SaveChanges();
 
             // Create notifications for all students registered in this course
             var registeredStudents = _context.Registration
@@ -137,11 +117,8 @@ namespace CS3750Assignment1.Pages.Assignments
                 _context.Notification.Add(note);
             }
 
-            // Save all notifications
-            _context.SaveChanges();
-
             // Also bind it to the page model so it's accessible for notification
-            Assignment = assignment;
+            // Assignment = assignment;
         }
     }
 }

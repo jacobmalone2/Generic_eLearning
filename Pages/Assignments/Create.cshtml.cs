@@ -81,7 +81,7 @@ namespace CS3750Assignment1.Pages.Assignments
             return RedirectToPage("./Index");
         }
 
-        public void CreateAssignment(int courseID, string title, int points, DateOnly dueDate, string dueTime, string submissionType)
+        public void CreateAssignment(int courseID, string title, string description, int points, DateOnly dueDate, string dueTime, string submissionType)
         {
             Assignment assignment = new Assignment();
 
@@ -96,6 +96,9 @@ namespace CS3750Assignment1.Pages.Assignments
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("No Assignment Title Provided.");
             assignment.Title = title;
+
+            // Description can be null here.
+            assignment.Description = description;
 
             if (points <= 0)
                 throw new ArgumentException("No Point Value Provided.");
